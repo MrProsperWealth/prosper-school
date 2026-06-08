@@ -1,0 +1,565 @@
+[
+  {
+    "id": "lesson_001",
+    "title": "BUY Signal — Lower BB Bounce in Uptrend",
+    "module": 1,
+    "module_name": "Core Patterns",
+    "pattern": "buy_bb_bounce",
+    "frames": [
+      {
+        "image": "lessons/lesson_001_buy_context.png",
+        "narration": "XAU/USD 1H. Price pulled back to the lower Bollinger Band. The 4H EMA (orange) is trending up — we are in an uptrend.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_001_buy_annotated.png",
+        "narration": "RSI dropped below 40. Price touched the lower BB. Entry above the signal candle close. SL below the swing low. TP at 2R.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_001_buy_clean.png",
+        "narration": "All 4 conditions met: RSI below 40, lower BB touch, 4H EMA up, London session. What is the call?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "BUY",
+      "explanation": "All 4 conditions confirmed: RSI < 40, lower BB touch, 4H EMA trending up, London session active. BUY is correct."
+    }
+  },
+  {
+    "id": "lesson_002",
+    "title": "SELL Signal — Upper BB Touch in Downtrend",
+    "module": 1,
+    "module_name": "Core Patterns",
+    "pattern": "sell_bb_touch",
+    "frames": [
+      {
+        "image": "lessons/lesson_002_sell_context.png",
+        "narration": "XAU/USD 1H. The 4H EMA (orange) is sloping DOWN — we are in a downtrend. Price rallied into the upper BB.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_002_sell_annotated.png",
+        "narration": "RSI pushed above 60. Price touched the upper BB. Entry below signal candle close. SL above the wick. TP at 2R.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_002_sell_clean.png",
+        "narration": "RSI > 60, upper BB touch, 4H EMA down, London session. What is the call?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "SELL",
+      "explanation": "Downtrend confirmed by 4H EMA. RSI > 60 + upper BB touch = SELL signal. All 4 conditions met."
+    }
+  },
+  {
+    "id": "lesson_003",
+    "title": "NO TRADE — Counter-Trend Trap",
+    "module": 1,
+    "module_name": "Core Patterns",
+    "pattern": "no_trade_counter_trend",
+    "frames": [
+      {
+        "image": "lessons/lesson_003_notrade_countertend.png",
+        "narration": "RSI dropped below 40 and price touched the lower BB — looks like a BUY. But check the 4H EMA.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_003_notrade_annotated.png",
+        "narration": "The 4H EMA is trending DOWN. Buying against the trend here is a counter-trend trap. Price continued lower.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_003_notrade_clean.png",
+        "narration": "RSI low, BB touch — but 4H EMA is DOWN. Is this a BUY, SELL, or NO TRADE?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "NO TRADE",
+      "explanation": "EMA condition FAILED. The 4H EMA is trending down, so buying here is counter-trend. Wait for EMA to turn up first."
+    }
+  },
+  {
+    "id": "lesson_004",
+    "title": "NO TRADE — Asian Session (Off-Hours)",
+    "module": 1,
+    "module_name": "Core Patterns",
+    "pattern": "no_trade_off_hours",
+    "frames": [
+      {
+        "image": "lessons/lesson_004_notrade_offhours.png",
+        "narration": "RSI and BB conditions look met. But it's 01:00 UTC — the Asian session. London and NY are closed.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_004_notrade_offhours_annotated.png",
+        "narration": "Low volume during Asian hours creates false moves. The candle that triggered RSI may be a fakeout with no follow-through.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_004_notrade_offhours_clean.png",
+        "narration": "RSI < 40, lower BB touch, EMA up — but it's 02:00 UTC. BUY, SELL, or NO TRADE?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "NO TRADE",
+      "explanation": "Session condition FAILED. Only trade during London (07:00-16:00 UTC) or NY (13:00-21:00 UTC). Asian hours = no trade."
+    }
+  },
+  {
+    "id": "lesson_005",
+    "title": "NO TRADE — Falling Knife",
+    "module": 1,
+    "module_name": "Core Patterns",
+    "pattern": "no_trade_falling_knife",
+    "frames": [
+      {
+        "image": "lessons/lesson_005_notrade_knife.png",
+        "narration": "Gold dropped sharply. RSI is deeply oversold. It looks like a great buy opportunity.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_005_notrade_knife_annotated.png",
+        "narration": "But the EMA has turned down and price broke below the lower BB — not a bounce, a breakdown. Catching this knife means getting cut.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_005_notrade_knife_clean.png",
+        "narration": "Sharp drop, RSI deeply oversold, price below lower BB. BUY, SELL, or NO TRADE?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "NO TRADE",
+      "explanation": "Price broke BELOW the lower BB — not a bounce signal. Wait for price to stabilise and return inside the band before considering a BUY."
+    }
+  },
+  {
+    "id": "lesson_006",
+    "title": "Entry Timing — Wait for Candle Close",
+    "module": 2,
+    "module_name": "Entry Precision",
+    "pattern": "entry_timing",
+    "frames": [
+      {
+        "image": "lessons/lesson_006_breakdown_entry.png",
+        "narration": "A BUY signal fired. There are two ways to enter: mid-wick (aggressive) or candle close (confirmed).",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_006_breakdown_entry_annotated.png",
+        "narration": "Enter on the CLOSE of the signal candle above the lower BB. Not mid-wick. The close confirms the bounce is real.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_006_breakdown_entry_clean.png",
+        "narration": "A signal candle touches the lower BB. When should you enter?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "breakdown",
+      "clean_image": "lessons/lesson_006_breakdown_entry_clean.png",
+      "questions": [
+        {
+          "text": "Is the 4H EMA (orange line) trending up or down?",
+          "options": ["Up", "Down", "Flat"],
+          "correct": 0,
+          "explanation": "The orange EMA is sloping upward — confirming uptrend."
+        },
+        {
+          "text": "Where is price relative to the Bollinger Bands?",
+          "options": ["Above upper BB", "Between the bands", "At or below lower BB"],
+          "correct": 2,
+          "explanation": "Price touched or crossed the lower BB — the first trigger condition."
+        },
+        {
+          "text": "Which RSI reading would confirm a BUY signal?",
+          "options": ["RSI 65", "RSI 50", "RSI 35"],
+          "correct": 2,
+          "explanation": "RSI below 40 confirms oversold momentum aligned with the lower BB touch."
+        },
+        {
+          "text": "When do you enter the trade?",
+          "options": ["As soon as price touches the lower BB", "On the close of the signal candle", "On the next candle open"],
+          "correct": 1,
+          "explanation": "Wait for the candle to CLOSE above the lower BB. This confirms the bounce is real, not a wick fakeout."
+        },
+        {
+          "text": "What is the correct trade direction here?",
+          "options": ["BUY", "SELL", "NO TRADE"],
+          "correct": 0,
+          "explanation": "All conditions met: EMA up, lower BB touch, RSI < 40, London session. BUY."
+        }
+      ]
+    }
+  },
+  {
+    "id": "lesson_007",
+    "title": "Stop Loss Placement — Below the Swing Low",
+    "module": 2,
+    "module_name": "Entry Precision",
+    "pattern": "sl_placement",
+    "frames": [
+      {
+        "image": "lessons/lesson_007_breakdown_sl.png",
+        "narration": "You've identified a BUY setup. Now where does the stop loss go?",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_007_breakdown_sl_annotated.png",
+        "narration": "SL goes 5 pips below the swing low — the lowest wick of the signal candle. Not a fixed 20-pip stop.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_007_breakdown_sl_clean.png",
+        "narration": "BUY signal confirmed. Where should the stop loss be placed?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "breakdown",
+      "clean_image": "lessons/lesson_007_breakdown_sl_clean.png",
+      "questions": [
+        {
+          "text": "What is the purpose of a stop loss?",
+          "options": ["To guarantee profit", "To limit loss if the trade goes wrong", "To set the take profit"],
+          "correct": 1,
+          "explanation": "The SL defines your maximum loss. If price hits it, the trade closes automatically."
+        },
+        {
+          "text": "Where is the swing low on a BUY setup?",
+          "options": ["The highest wick of the signal candle", "The lowest wick of the signal candle", "The closing price of the signal candle"],
+          "correct": 1,
+          "explanation": "The swing low is the lowest wick — the point at which price was rejected and bounced."
+        },
+        {
+          "text": "How far below the swing low should the SL be placed?",
+          "options": ["Exactly at the swing low", "5 pips below the swing low", "50 pips below the swing low"],
+          "correct": 1,
+          "explanation": "5 pips buffer below the swing low avoids being stopped out by minor spread/noise while keeping risk tight."
+        },
+        {
+          "text": "What is WRONG with using a fixed 20-pip stop on every trade?",
+          "options": ["It is too large", "It ignores the chart structure", "It is too small"],
+          "correct": 1,
+          "explanation": "Fixed stops ignore volatility and chart structure. Some setups need 10 pips, others 30. Always use the swing low."
+        },
+        {
+          "text": "On this setup (entry ~4453, swing low ~4448), where is the SL?",
+          "options": ["4460", "4443", "4420"],
+          "correct": 1,
+          "explanation": "SL = swing low (4448) minus 5 pips = 4443. Keeps risk tight to the structure."
+        }
+      ]
+    }
+  },
+  {
+    "id": "lesson_008",
+    "title": "Take Profit — Minimum 2R Target",
+    "module": 2,
+    "module_name": "Entry Precision",
+    "pattern": "tp_placement",
+    "frames": [
+      {
+        "image": "lessons/lesson_008_breakdown_tp.png",
+        "narration": "Entry and SL are set. Now where does the take profit go?",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_008_breakdown_tp_annotated.png",
+        "narration": "TP = Entry + 2 × Risk. If Risk = 7 pips, TP is 14 pips above entry. Never target less than 1.5R.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_008_breakdown_tp_clean.png",
+        "narration": "Entry 4661, SL 4654 (7-pip risk). Where does the TP go for 2R?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "breakdown",
+      "clean_image": "lessons/lesson_008_breakdown_tp_clean.png",
+      "questions": [
+        {
+          "text": "What does 'R' mean in trading?",
+          "options": ["The position size in lots", "One unit of risk (Entry - SL)", "The current RSI value"],
+          "correct": 1,
+          "explanation": "R = Risk = the distance between your entry and stop loss in price. 1R = you lose that amount if stopped out."
+        },
+        {
+          "text": "Entry = 4661, SL = 4654. What is 1R?",
+          "options": ["4 pips", "7 pips", "14 pips"],
+          "correct": 1,
+          "explanation": "1R = Entry (4661) - SL (4654) = 7 pips."
+        },
+        {
+          "text": "For a 2R take profit, where is the TP?",
+          "options": ["4665 (4 pips above entry)", "4668 (7 pips above entry)", "4675 (14 pips above entry)"],
+          "correct": 2,
+          "explanation": "TP = Entry + 2R = 4661 + 14 = 4675."
+        },
+        {
+          "text": "Why must TP be at least 1.5R?",
+          "options": ["To avoid paying spread", "So that winners outweigh losers over time", "Because the BB bands are 1.5R apart"],
+          "correct": 1,
+          "explanation": "At 1.5R+, even a 40% win rate is profitable. Below 1R, you need >50% wins just to break even."
+        },
+        {
+          "text": "What is the correct trade direction on this chart?",
+          "options": ["BUY", "SELL", "NO TRADE"],
+          "correct": 0,
+          "explanation": "Lower BB touch, RSI < 40, EMA up — confirmed BUY. TP at 2R above entry."
+        }
+      ]
+    }
+  },
+  {
+    "id": "lesson_009",
+    "title": "Real Example #1 — BUY Winner",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "buy_winner",
+    "frames": [
+      {
+        "image": "lessons/lesson_009_winner1_clean.png",
+        "narration": "Nov 2025. XAU/USD pulled back hard. Lower BB touch at 4037. RSI 38. 4H EMA trending up. London session.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_009_winner1_annotated.png",
+        "narration": "All 4 conditions met. Entry 4037, SL 4015, TP 4081. Price hit TP — a clean 2R winner.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_009_winner1_clean.png",
+        "narration": "Place your entry, SL, and TP on this chart. Then select BUY or SELL.",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "mark_chart",
+      "clean_image": "lessons/lesson_009_winner1_clean.png",
+      "chart_bounds": {"x": 0, "y": 60, "width": 900, "height": 600},
+      "price_axis": {"min": 4022, "max": 4265},
+      "correct": {
+        "direction": "BUY",
+        "entry": 4037,
+        "sl": 4015,
+        "tp": 4081
+      }
+    }
+  },
+  {
+    "id": "lesson_010",
+    "title": "Real Example #2 — BUY Winner",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "buy_winner",
+    "frames": [
+      {
+        "image": "lessons/lesson_010_winner2_clean.png",
+        "narration": "Oct 2025. Gold retested lower BB after an uptrend continuation. RSI 37. EMA up. London open.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_010_winner2_clean.png",
+        "narration": "Entry 4020, SL 4001, TP 4058. Clean 2R setup with clear swing low for SL placement.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_010_winner2_clean.png",
+        "narration": "Mark the chart: place entry, SL, TP and select direction.",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "mark_chart",
+      "clean_image": "lessons/lesson_010_winner2_clean.png",
+      "chart_bounds": {"x": 0, "y": 60, "width": 900, "height": 600},
+      "price_axis": {"min": 4004, "max": 4381},
+      "correct": {
+        "direction": "BUY",
+        "entry": 4020,
+        "sl": 4001,
+        "tp": 4058
+      }
+    }
+  },
+  {
+    "id": "lesson_011",
+    "title": "Real Example #3 — BUY Winner",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "buy_winner",
+    "frames": [
+      {
+        "image": "lessons/lesson_011_winner3_clean.png",
+        "narration": "Dec 2025. Pullback to lower BB inside a strong uptrend. RSI 35. EMA clearly up.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_011_winner3_clean.png",
+        "narration": "Entry 4282, SL 4265, TP 4316. Price bounced cleanly — another 2R winner.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_011_winner3_clean.png",
+        "narration": "All 4 conditions met. Mark your levels.",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "mark_chart",
+      "clean_image": "lessons/lesson_011_winner3_clean.png",
+      "chart_bounds": {"x": 0, "y": 60, "width": 900, "height": 600},
+      "price_axis": {"min": 4257, "max": 4526},
+      "correct": {
+        "direction": "BUY",
+        "entry": 4282,
+        "sl": 4265,
+        "tp": 4316
+      }
+    }
+  },
+  {
+    "id": "lesson_012",
+    "title": "Real Example #4 — SELL Loser (Lesson: Manage Risk)",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "sell_loser",
+    "frames": [
+      {
+        "image": "lessons/lesson_012_loser1_clean.png",
+        "narration": "Jan 2026. Gold hit the upper BB with RSI 62. 4H EMA trending down. SELL signal fired.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_012_loser1_clean.png",
+        "narration": "Entry 5557, SL 5574. Price briefly moved in favour then reversed — stop was hit. A -1R loss. That is fine. The setup was valid.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_012_loser1_clean.png",
+        "narration": "Upper BB touch, RSI > 60, EMA down. Mark your levels.",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "mark_chart",
+      "clean_image": "lessons/lesson_012_loser1_clean.png",
+      "chart_bounds": {"x": 0, "y": 60, "width": 900, "height": 600},
+      "price_axis": {"min": 4403, "max": 5598},
+      "correct": {
+        "direction": "SELL",
+        "entry": 5557,
+        "sl": 5574,
+        "tp": 5523
+      }
+    }
+  },
+  {
+    "id": "lesson_013",
+    "title": "Real Example #5 — SELL Loser (Lesson: News Spike)",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "sell_loser",
+    "frames": [
+      {
+        "image": "lessons/lesson_013_loser2_clean.png",
+        "narration": "Feb 2026. SELL signal at upper BB, RSI 63. But a major news event spiked gold higher, stopping out the trade.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_013_loser2_clean.png",
+        "narration": "Entry 5107, SL 5127. The spike hit the SL within 2 hours. Lesson: avoid trading during major news releases.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_013_loser2_clean.png",
+        "narration": "SELL conditions met. Mark your entry, SL, TP.",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "mark_chart",
+      "clean_image": "lessons/lesson_013_loser2_clean.png",
+      "chart_bounds": {"x": 0, "y": 60, "width": 900, "height": 600},
+      "price_axis": {"min": 4655, "max": 5119},
+      "correct": {
+        "direction": "SELL",
+        "entry": 5107,
+        "sl": 5127,
+        "tp": 5067
+      }
+    }
+  },
+  {
+    "id": "lesson_014",
+    "title": "NO TRADE — Conditions Partially Met",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "no_trade_partial",
+    "frames": [
+      {
+        "image": "lessons/lesson_014_notrade3_clean.png",
+        "narration": "Jul 2025. RSI dropped below 40. Lower BB touch. Looks like a BUY.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_014_notrade3_clean.png",
+        "narration": "But only 3 of 4 conditions met: the 4H EMA was still trending sideways-to-down. This is a borderline NO TRADE.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_014_notrade3_clean.png",
+        "narration": "RSI < 40, lower BB touch — but check the 4H EMA. BUY, SELL, or NO TRADE?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "NO TRADE",
+      "explanation": "4H EMA condition NOT confirmed — it was flat/down, not clearly up. All 4 conditions must be met. When in doubt, sit out."
+    }
+  },
+  {
+    "id": "lesson_015",
+    "title": "NO TRADE — Setup Looks Perfect But Session Wrong",
+    "module": 3,
+    "module_name": "Real Examples",
+    "pattern": "no_trade_session",
+    "frames": [
+      {
+        "image": "lessons/lesson_015_notrade4_clean.png",
+        "narration": "Jun 2025. All 3 technical conditions look met: RSI low, lower BB touch, EMA up. Textbook signal.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_015_notrade4_clean.png",
+        "narration": "But this signal fired at 22:00 UTC — late NY session overlap into Asian. Volume dried up. Spread widened. The move faded.",
+        "duration_ms": 5000
+      },
+      {
+        "image": "lessons/lesson_015_notrade4_clean.png",
+        "narration": "Looks perfect technically. But it's 22:00 UTC. BUY, SELL, or NO TRADE?",
+        "duration_ms": 4000
+      }
+    ],
+    "quiz": {
+      "type": "call",
+      "correct_answer": "NO TRADE",
+      "explanation": "Session condition FAILED. 22:00 UTC is outside the London/NY window. Technical conditions alone are not enough — all 4 must pass."
+    }
+  }
+]
