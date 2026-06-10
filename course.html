@@ -3496,6 +3496,7 @@ body {
 
 <!-- ─── LESSONS (existing replay lessons) ────────────────────────────── -->
 <div class="school-section active" id="ss-lessons">
+  <p class="section-sub" style="color:var(--red);border:1px solid var(--red);border-radius:6px;padding:10px 12px;">⚠ These replay lessons teach PROSPER v1 (1H RSI 40/60 + BB + session windows) — superseded by the v2 Evening Engine (C1–C5, 21:30, pending orders). Don’t drill them. Use FLASHCARDS (v2 deck) until the v2 scenario trainer lands.</p>
   <div id="school-library">
     <div class="lesson-list" id="lesson-grid"></div>
   </div>
@@ -7750,29 +7751,28 @@ if ('serviceWorker' in navigator) {
 /* ===== PROSPER Flashcards — spaced-repetition rule recall ===== */
 (function(){
   var DECK=[
-    {id:'buy4',cat:'Setup',front:'BUY signal — the 4 conditions?',back:'1) RSI(14) < 40 on 1H · 2) price at/below lower BB(20,2) · 3) 4H close > EMA(50) = uptrend · 4) session 07:00–13:00 UTC'},
-    {id:'sell4',cat:'Setup',front:'SELL signal — the 4 conditions?',back:'1) RSI(14) > 60 · 2) price at/above upper BB · 3) 4H close < EMA(50) = downtrend · 4) session 14:00–17:00 UTC'},
-    {id:'c34',cat:'Setup',front:'Only 3 of the 4 conditions are met. Trade?',back:'NO TRADE. 3/4 is not the setup. If you are explaining why an exception is OK — it is not OK.'},
-    {id:'rsi',cat:'Parameters',front:'RSI thresholds and settings?',back:'Period 14 on 1H. Oversold / BUY zone < 40. Overbought / SELL zone > 60.'},
-    {id:'bb',cat:'Parameters',front:'Bollinger Band settings?',back:'Period 20, 2.0 standard deviations. Touch tolerance 0.08% (~$2 on $2500 gold).'},
-    {id:'ema',cat:'Parameters',front:'The trend filter?',back:'4H EMA(50). Above it = longs only. Below it = shorts only.'},
-    {id:'sess',cat:'Parameters',front:'BUY vs SELL session (UTC)?',back:'BUY 07:00–13:00 (London + early NY). SELL 14:00–17:00 (NY afternoon). Add +1h in British Summer Time.'},
-    {id:'entry',cat:'Execution',front:'How do you enter a trade?',back:'Wait for the 1H candle to CLOSE with all 4 conditions. Market order at close. Set SL + TP immediately. Then close the app — do not watch.'},
-    {id:'sl',cat:'Execution',front:'Where does the stop loss go?',back:'Below the nearest 1H swing low (BUY) or above the swing high (SELL), + $0.50 buffer. Max 0.8% of price if no clear level.'},
-    {id:'tp',cat:'Execution',front:'Take-profit target?',back:'1.5× the stop distance — minimum 1.5:1 reward-to-risk.'},
-    {id:'widen',cat:'Execution',front:'Can you ever widen a stop?',back:'Never. Ever.'},
-    {id:'size',cat:'Risk',front:'Risk per trade + lot formula?',back:'Risk 1% of the account. lots = (account × 0.01) / (stop_pips × pip_value).'},
-    {id:'daily',cat:'Risk',front:'The daily limits?',back:'Max 2 trades/day · daily loss stop −2% · daily gain cap +1% (bank it) · news blackout 30 min around red events · revenge trading banned (2 losses = done).'},
-    {id:'ftmo1',cat:'FTMO Rules',front:'FTMO Phase 1 — targets & limits?',back:'+10% target · −5% max daily loss = instant fail · −10% max total drawdown = instant fail · min 10 trading days · 30 days.'},
-    {id:'ftmo2',cat:'FTMO Rules',front:'FTMO Phase 2?',back:'+5% target, same drawdown limits, 60 days.'},
-    {id:'funded',cat:'FTMO Rules',front:'Funded account rules?',back:'No profit target, no time limit, same drawdown limits forever. You keep 80–90% of profits.'},
-    {id:'p1',cat:'Psychology',front:'Trap: “I am up big, let me push.”',back:'+1% for the day = done. Bank it. Pushing is how you give it back.'},
-    {id:'p2',cat:'Psychology',front:'Trap: “3 out of 4 — close enough.”',back:'It is not. You are rationalising. 3/4 = no trade.'},
-    {id:'p3',cat:'Psychology',front:'Trap: “No signal for 3 days, I need to trade.”',back:'Boredom is the enemy. No signal = no trade. One clean trade a week is a good week.'},
-    {id:'p4',cat:'Psychology',front:'Trap: “Down £300 — switch strategy to recover.”',back:'The strategy has the edge; abandoning it removes the edge. 2 losses = laptop closed, reset tomorrow.'},
-    {id:'ev',cat:'Edge',front:'Why does this have an edge (expectancy)?',back:'55% win × 1.5R − 45% × 1R = +0.375R per trade. ~20 trades ≈ +7.5R.'}
+    {id:'c1',cat:'Gates',front:'C1 — the direction gate?',back:'D1 close vs EMA50, outside the ±0.5×ATR(14) chop band. Sets the ONLY allowed direction. ✗ = DEAD tonight.'},
+    {id:'c2',cat:'Gates',front:'C2 — the location gate?',back:'4H pullback into the zone: EMA20 ↔ last swing. ✗ = DEAD.'},
+    {id:'c3',cat:'Gates',front:'C3 — the momentum gate?',back:'4H RSI(14) < 45 for longs · > 55 for shorts. ✗ = DEAD.'},
+    {id:'c4',cat:'Gates',front:'C4 — the trigger gate?',back:'Last CLOSED 4H candle = pin (wick ≥ 50% of range) or engulfing, IN the zone, in trend direction. ✗ = WAIT, recheck next evening.'},
+    {id:'c5',cat:'Gates',front:'C5 — the news gate?',back:'No red-folder event (NFP / CPI / FOMC / Powell) within 12 hours. ✗ = WAIT.'},
+    {id:'glogic',cat:'Gates',front:'Gate logic — DEAD vs WAIT vs GO?',back:'Any ✗ on C1–C3 = DEAD. ✗ only on C4/C5 = WAIT (recheck tomorrow). 5/5 = GO. There is no 4.5 out of 5.'},
+    {id:'gexec',cat:'Execution',front:'Execution on a GO?',back:'Limit at 50% of the trigger candle. Expires after two 4H bars — no chase. SL beyond swing ± 0.5×ATR. TP fixed 2R. Breakeven at +1R, checked at the evening session only.'},
+    {id:'gcad',cat:'Execution',front:'When do decisions happen?',back:'One window: ~21:30 UK, on CLOSED 4H/D1 candles, pending orders only. Zero intraday screen time — that is the design, not a compromise.'},
+    {id:'r1',cat:'Risk',front:'Risk per trade · total open · daily stop?',back:'0.5% per trade · max 1% total open · −1.5% personal daily stop. FTMO’s −5% counts FLOATING P/L at 00:00 CET — overnight positions must survive gaps.'},
+    {id:'r2',cat:'Risk',front:'Sizing formula (including layers)?',back:'lots = (0.5% × equity) ÷ (COMBINED stop pips × pip value). Combined = trade SL + all layer SLs. Community worst case: −250 pips at £10/pip = −£2,500 = −25% of a £10k account = instant fail.'},
+    {id:'r3',cat:'Risk',front:'When are NEW entries banned?',back:'Within 12h of red-folder news. Swing accounts may hold through it, but holding is unproven in the backtest — blocked until tested.'},
+    {id:'f1',cat:'FTMO Swing',front:'Why FTMO 2-Step SWING?',back:'No time limit in either phase · overnight, weekend and news holding allowed even when funded · 1-Step has no Swing variant and a trailing drawdown.'},
+    {id:'f2',cat:'FTMO Swing',front:'£10k account — targets and limits?',back:'Phase 1 +10% · Phase 2 +5% · max daily −5% (floating, resets 00:00 CET) · max total −10% · no clock.'},
+    {id:'d1',cat:'Discipline',front:'What did 74 logged UKDT trades prove?',back:'Rules-met: 96.7 pips/trade. Rules-broken: 35.1. Following the rules = 2.75× the result — and rules were broken on 68% of trades. Adherence IS the edge.'},
+    {id:'d2',cat:'Discipline',front:'The only stat that matters this month?',back:'Consecutive rules-met trades. Process streak, not P&L. A rules-met loss is a GOOD trade; a rules-broken win is a BAD trade.'},
+    {id:'i1',cat:'If-Then',front:'IF I feel the urge to check charts at work…',back:'THEN I open flashcards instead. Decisions exist only at 21:30 on closed candles.'},
+    {id:'i2',cat:'If-Then',front:'IF a gate is “nearly” met…',back:'THEN it is ✗ — DEAD or WAIT. Log it, laptop closed. If I am explaining why it is close enough, it is not.'},
+    {id:'i3',cat:'If-Then',front:'IF my limit expired and price runs without me…',back:'THEN nothing. No chase. A missed trade costs £0. Next evening.'},
+    {id:'i4',cat:'If-Then',front:'IF I am down on the week and want to size up…',back:'THEN size stays 0.5% and I review my rules-met %, not my lots. Recovery sizing is how challenges die.'},
+    {id:'i5',cat:'If-Then',front:'IF I just took a loss tonight…',back:'THEN mindset line + state 1–5 in the tracker, close the laptop. The system takes the next GO — not my mood.'}
   ];
-  var STORE='prosper_fc_v1', BOX_DAYS=[0,1,3,7,16,35], MASTER_BOX=5;
+  var STORE='prosper_fc_v2', BOX_DAYS=[0,1,3,7,16,35], MASTER_BOX=5;
   function nowMs(){return Date.now();}
   function load(){try{return JSON.parse(localStorage.getItem(STORE))||{};}catch(e){return {};}}
   function save(s){try{localStorage.setItem(STORE,JSON.stringify(s));}catch(e){}}
