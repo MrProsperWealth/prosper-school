@@ -3470,6 +3470,7 @@ body {
   <button class="ssub-btn" data-ssub="ss-markup">MARKUP</button>
   <button class="ssub-btn" data-ssub="ss-flashcards">FLASHCARDS</button>
   <button class="ssub-btn" data-ssub="ss-battle">BATTLE</button>
+  <button class="ssub-btn" data-ssub="ss-walk">WALKTHROUGH</button>
 </div>
 
 <!-- ─── FLASHCARDS (spaced-repetition rule recall) ─────────────────── -->
@@ -3493,6 +3494,37 @@ body {
     <button class="quiz-action-btn next" id="fc-good" style="flex:1;max-width:200px;">Got it</button>
   </div>
   <div id="fc-empty" style="display:none;text-align:center;color:var(--green);padding:30px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;">All caught up — every card in this deck reviewed. Come back later for the next round.</div>
+</div>
+
+<!-- ─── WALKTHROUGH (narrated animated presentation, ~21 min) ────────── -->
+<div class="school-section" id="ss-walk">
+  <h2>The Full <span>Walkthrough</span></h2>
+  <p class="section-sub">The whole v2 system in ~21 minutes — natural-voice narration, real charts, and the annotations draw themselves as the talk reaches them. Headphones on, thumb on pause.</p>
+  <div id="wk-start" style="text-align:center;padding:30px;">
+    <button class="quiz-action-btn next" id="wk-begin" style="font-size:1rem;padding:14px 34px;">▶ Begin the walkthrough (21 min)</button>
+    <div style="color:var(--muted);font-size:0.78rem;margin-top:10px;font-family:'JetBrains Mono',monospace;">20 slides · audio + read-along captions · works offline once cached</div>
+  </div>
+  <div id="wk-stage" style="display:none;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+      <div id="wk-title" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;"></div>
+      <div id="wk-counter" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);"></div>
+    </div>
+    <div id="wk-media" style="position:relative;border-radius:8px;overflow:hidden;background:#05080a;">
+      <img id="wk-img" src="" alt="" style="width:100%;display:none;">
+      <svg id="wk-svg" viewBox="0 0 1000 395" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></svg>
+      <div id="wk-panel" style="display:none;padding:26px 22px;min-height:230px;"></div>
+    </div>
+    <div id="wk-caption" style="font-size:0.92rem;line-height:1.6;color:var(--text);margin:12px 0;max-height:130px;overflow-y:auto;"></div>
+    <div class="drill-timer"><div class="fill" id="wk-progress" style="width:0%"></div></div>
+    <div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap;">
+      <button class="quiz-action-btn hint" id="wk-prev">‹</button>
+      <button class="quiz-action-btn next" id="wk-play" style="min-width:90px;">Pause</button>
+      <button class="quiz-action-btn hint" id="wk-next">›</button>
+      <button class="quiz-action-btn hint" id="wk-speed">1×</button>
+      <span id="wk-clock" style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);margin-left:auto;"></span>
+    </div>
+  </div>
+  <audio id="wk-audio" preload="auto"></audio>
 </div>
 
 <!-- ─── BATTLE DRILLS (real TradingView charts, v2 gate calls) ───────── -->
@@ -7865,6 +7897,109 @@ if ('serviceWorker' in navigator) {
 })();
 </script>
 <script>
+/* ===== PROSPER Walkthrough — narrated animated presentation ===== */
+(function(){
+  var IMG_GO='drills/bd06.png', IMG_WAIT='drills/bd05.png', IMG_DEAD='drills/bd11.png', IMG_D1='walk/d1_ema50.png';
+  var SLIDES=[
+   {id:'w01',t:'Welcome — one decision a day',p:[[2,'One look. One decision. Done.'],[18,'Evening only · closed candles only'],[34,'Pause me whenever a drawing appears'],[50,'Goal: trade correctly, ~1–2× a week']]},
+   {id:'w02',t:'Your life IS the design',p:[[4,'School run · day job · house quiet ~21:30'],[20,'Closed candles can’t lie'],[36,'Pending orders — the market works, you sleep'],[52,'The constraint is the edge']]},
+   {id:'w03',t:'The edge — trends persist',p:[[4,'Time-series momentum · evidence back to the 1880s'],[22,'No predicting tops · no falling knives'],[40,'Wait for trend → pause → rejoin'],[56,'We don’t predict. We follow — on conditions.']]},
+   {id:'w04',t:'Five gates — DEAD / WAIT / GO',p:[[4,'C1 C2 C3 = structure → any ✗ = DEAD'],[22,'C4 C5 = timing → ✗ = WAIT, recheck tomorrow'],[40,'5/5 = GO. There is no 4½.'],[56,'Say it: dead… wait… go.']]},
+   {id:'w05',t:'C1 — Direction (D1 vs EMA50)',img:IMG_D1,d:[
+     [12,'ell',355,118,22,60,'#f0b429','rally into the line'],
+     [24,'lbl',330,70,'rejected at the EMA','#ff1744'],
+     [40,'rect',700,250,295,40,'#5a7a9a','the chop band — no-trade zone'],
+     [54,'lbl',690,345,'close below = SHORTS ONLY','#ff1744']]},
+   {id:'w06',t:'C2 — Location (the zone)',img:IMG_GO,d:[
+     [10,'rect',540,80,455,105,'#00bcd4','THE ZONE — EMA20 ↔ last swing'],
+     [34,'lbl',545,60,'only place you’re allowed to do business','#00e5ff'],
+     [58,'lbl',640,330,'below it = late · above it = failing','#5a7a9a']]},
+   {id:'w07',t:'C3 — Momentum (RSI 45/55)',p:[[4,'Downtrend → RSI must rise ABOVE 55'],[20,'Uptrend → RSI below 45'],[36,'Trend + zone + stretched spring = coiled'],[54,'RSI past 55 ≠ reversal — it says “ripe”.']]},
+   {id:'w08',t:'C4 — The trigger candle',img:IMG_GO,d:[
+     [8,'ell',975,115,18,58,'#f0b429','the trigger'],
+     [28,'lbl',700,60,'pin: wick ≥ 50% of range · or engulfing','#00e676'],
+     [48,'lbl',700,330,'no pin, no engulf → WAIT','#5a7a9a']]},
+   {id:'w09',t:'C5 — News (red folder, 12h)',p:[[4,'Jobs report · inflation print · Fed decision · Fed chair'],[22,'Within 12h → NO new entries'],[38,'Swing account: existing positions may hold'],[52,'Calendar check = first line of the run-card']]},
+   {id:'w10',t:'Worked example — GO (short)',img:IMG_GO,d:[
+     [6,'rect',540,80,455,105,'#00bcd4','zone'],
+     [16,'ell',975,115,18,58,'#f0b429','trigger ✓'],
+     [34,'hl',150,860,995,'#f0b429','SELL LIMIT @ 50% of trigger'],
+     [46,'hl',62,860,995,'#ff1744','STOP — beyond swing +0.5×ATR'],
+     [57,'hl',330,860,995,'#00e676','TARGET — fixed 2R']]},
+   {id:'w11',t:'Worked example — WAIT',img:IMG_WAIT,d:[
+     [10,'rect',680,65,315,95,'#00bcd4','in the zone ✓'],
+     [26,'ell',975,108,16,52,'#f0b429','last candle'],
+     [42,'lbl',640,310,'…but where’s the rejection? C4 ✗ → WAIT','#f0b429']]},
+   {id:'w12',t:'Worked example — DEAD',img:IMG_DEAD,d:[
+     [8,'hl',232,640,995,'#00bcd4','zone is up here'],
+     [22,'ell',975,300,16,48,'#ff1744','price is down here'],
+     [38,'lbl',620,355,'C2 ✗ · RSI ~41 → C3 ✗ — twenty seconds, done','#ff1744']]},
+   {id:'w13',t:'Execution mechanics',p:[[4,'Limit at 50% of the trigger candle'],[18,'Expires after two 4H bars — no chase'],[34,'SL beyond swing +0.5×ATR · TP fixed 2R'],[48,'BE at +1R — checked at evening only'],[62,'NEVER widen a stop. No exceptions.']]},
+   {id:'w14',t:'Sizing — 0.5%, layers combined',p:[[4,'0.5% per trade — £50 on the £10k'],[20,'lots = risk ÷ (COMBINED stop pips × pip value)'],[40,'Worst logged case: −250 pips = −£2,500 = −25% = FAIL'],[60,'Layers are the same trade, getting heavier']]},
+   {id:'w15',t:'The daily stop',p:[[4,'FTMO −5%/day counts FLOATING P/L at 00:00 CET'],[22,'Your fence: −1.5% and done for the day'],[38,'Max 1% open across everything — gap-proof'],[52,'Their limit is a cliff. Yours is the fence.']]},
+   {id:'w16',t:'Why FTMO 2-Step SWING',p:[[4,'No time limit — patience is free'],[20,'Swing = hold overnight, weekends, news'],[36,'1-step trailing DD strangles swing trades'],[50,'P1 +10% · P2 +5% · keep up to 90% funded']]},
+   {id:'w17',t:'The discipline data — 2.75×',p:[[4,'74 real trades, one community log'],[16,'Rules met: 96.7 pips/trade'],[28,'Rules broken: 35.1 — same person, same market'],[44,'Broken on 68% of trades…'],[58,'A rules-met loss is a GOOD trade.']]},
+   {id:'w18',t:'The if-then five',p:[[6,'Urge to peek at work → flashcards instead'],[22,'“Nearly met” → it is NOT met'],[38,'Limit expired, price ran → nothing. £0 lost.'],[52,'Down on the week → size STAYS 0.5%'],[66,'Loss tonight → one honest line, laptop shut']]},
+   {id:'w19',t:'The 21:30 run-card (25 min)',p:[[4,'1 calendar · 2 positions/BE · 3 C1 daily'],[22,'4 zone+RSI · 5 trigger stare · 6 orders in'],[40,'7 log it — verdict, gates, honest mindset line'],[56,'Most nights end at step 3: DEAD = success']]},
+   {id:'w20',t:'Path to funded — gates, not moods',p:[[4,'Drills → 85% on unseen charts · deck at zero due'],[20,'Backtest picks the final rulebook'],[36,'Demo month: zero rule-broken entries'],[50,'Funded in January beats blown in December'],[64,'The system works. Don’t interfere with it.']]}
+  ];
+  var idx=0,scripts={},speeds=[1,1.25,1.5],spi=0;
+  var au,el=function(id){return document.getElementById(id);};
+  function fmt(s){s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+  function svgEl(n,attrs){var e=document.createElementNS('http://www.w3.org/2000/svg',n);for(var k in attrs)e.setAttribute(k,attrs[k]);return e;}
+  function renderBase(s){
+    el('wk-title').textContent=s.t;
+    el('wk-counter').textContent=(idx+1)+' / '+SLIDES.length;
+    var img=el('wk-img'),panel=el('wk-panel'),svg=el('wk-svg');
+    svg.textContent='';
+    if(s.img){img.src=s.img;img.style.display='block';panel.style.display='none';svg.style.display='block';}
+    else{img.style.display='none';svg.style.display='none';panel.style.display='block';panel.textContent='';
+      (s.p||[]).forEach(function(b,i){var d=document.createElement('div');d.id='wk-b'+i;
+        d.style.cssText='font-family:Barlow Condensed,sans-serif;font-size:1.25rem;color:#fff;margin:12px 0;opacity:0;transform:translateY(8px);transition:all .6s;';
+        d.textContent='› '+b[1];panel.appendChild(d);});}
+    el('wk-caption').textContent=scripts[s.id]||'';
+  }
+  function applyDraws(t){
+    var s=SLIDES[idx];
+    if(s.p){(s.p||[]).forEach(function(b,i){var d=el('wk-b'+i);if(d){var on=t>=b[0];d.style.opacity=on?'1':'0';d.style.transform=on?'translateY(0)':'translateY(8px)';}});return;}
+    var svg=el('wk-svg');
+    (s.d||[]).forEach(function(dr,i){
+      var id='wk-d'+i,ex=document.getElementById(id),on=t>=dr[0];
+      if(on&&!ex){
+        var g=svgEl('g',{id:id,opacity:'0'});var kind=dr[1];
+        if(kind==='rect'){g.appendChild(svgEl('rect',{x:dr[2],y:dr[3],width:dr[4],height:dr[5],fill:dr[6],'fill-opacity':'0.13',stroke:dr[6],'stroke-width':'2','stroke-dasharray':'8 5'}));
+          if(dr[7])g.appendChild(label(dr[2]+8,dr[3]-8,dr[7],dr[6]));}
+        else if(kind==='ell'){g.appendChild(svgEl('ellipse',{cx:dr[2],cy:dr[3],rx:dr[4],ry:dr[5],fill:'none',stroke:dr[6],'stroke-width':'3'}));
+          if(dr[7])g.appendChild(label(Math.max(10,dr[2]-260),dr[3]-dr[5]-12,dr[7],dr[6]));}
+        else if(kind==='hl'){g.appendChild(svgEl('line',{x1:dr[3],y1:dr[2],x2:dr[4],y2:dr[2],stroke:dr[5],'stroke-width':'3'}));
+          if(dr[6])g.appendChild(label(Math.max(10,dr[3]-560),dr[2]+5,dr[6],dr[5]));}
+        else if(kind==='lbl'){g.appendChild(label(dr[2],dr[3],dr[4],dr[5]));}
+        svg.appendChild(g);requestAnimationFrame(function(){g.style.transition='opacity .7s';g.setAttribute('opacity','1');});
+      } else if(!on&&ex){ex.remove();}
+    });
+    function label(x,y,text,color){var t2=svgEl('text',{x:x,y:y,fill:color,'font-size':'22','font-family':'JetBrains Mono,monospace','font-weight':'700','paint-order':'stroke','stroke':'#05080a','stroke-width':'5'});t2.textContent=text;return t2;}
+  }
+  function go(i,autoplay){
+    idx=Math.max(0,Math.min(SLIDES.length-1,i));
+    var s=SLIDES[idx];renderBase(s);
+    au.src='walk/'+s.id+'.mp3';au.playbackRate=speeds[spi];applyDraws(0);
+    if(autoplay)au.play().catch(function(){el('wk-play').textContent='▶ Play';});
+  }
+  function init(){
+    au=el('wk-audio');if(!el('wk-begin'))return;
+    fetch('narration/scripts.json').then(function(r){return r.json();}).then(function(j){scripts=j;}).catch(function(){});
+    el('wk-begin').addEventListener('click',function(){el('wk-start').style.display='none';el('wk-stage').style.display='block';go(0,true);el('wk-play').textContent='Pause';});
+    el('wk-play').addEventListener('click',function(){if(au.paused){au.play();this.textContent='Pause';}else{au.pause();this.textContent='▶ Play';}});
+    el('wk-prev').addEventListener('click',function(){go(idx-1,true);});
+    el('wk-next').addEventListener('click',function(){go(idx+1,true);});
+    el('wk-speed').addEventListener('click',function(){spi=(spi+1)%speeds.length;au.playbackRate=speeds[spi];this.textContent=speeds[spi]+'×';});
+    au.addEventListener('timeupdate',function(){applyDraws(au.currentTime);
+      if(au.duration){el('wk-progress').style.width=(au.currentTime/au.duration*100)+'%';el('wk-clock').textContent=fmt(au.currentTime)+' / '+fmt(au.duration)+' · slide '+(idx+1)+'/'+SLIDES.length;}});
+    au.addEventListener('ended',function(){if(idx<SLIDES.length-1){go(idx+1,true);}else{el('wk-play').textContent='▶ Replay';el('wk-clock').textContent='complete ✓';}});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
 /* ===== PROSPER Battle Drills — real-chart GO/WAIT/DEAD calls ===== */
 (function(){
   var KEY='prosper_bd_v1';
