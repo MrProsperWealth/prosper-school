@@ -1,0 +1,314 @@
+[
+ {
+  "ts": 1773651600,
+  "iso": "2026-03-16T09:00:00+00:00",
+  "verdict": "GO",
+  "direction": "LONG",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": true,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": 78.05,
+   "chop_band": 71.98,
+   "rsi4h": 38.2,
+   "ema20_4h": 5083.98,
+   "zone": [
+    4967.77,
+    5083.98
+   ],
+   "trigger": "engulfing"
+  },
+  "id": "bd01",
+  "img": "drills/bd01.png"
+ },
+ {
+  "ts": 1773738000,
+  "iso": "2026-03-17T09:00:00+00:00",
+  "verdict": "GO",
+  "direction": "LONG",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": true,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": 74.21,
+   "chop_band": 69.38,
+   "rsi4h": 40.6,
+   "ema20_4h": 5052.42,
+   "zone": [
+    4967.77,
+    5052.42
+   ],
+   "trigger": "pin"
+  },
+  "id": "bd02",
+  "img": "drills/bd02.png"
+ },
+ {
+  "ts": 1774918800,
+  "iso": "2026-03-31T01:00:00+00:00",
+  "verdict": "GO",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": true,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -133.36,
+   "chop_band": 91.73,
+   "rsi4h": 55.7,
+   "ema20_4h": 4503.99,
+   "zone": [
+    4503.99,
+    4619.26
+   ],
+   "trigger": "pin"
+  },
+  "id": "bd03",
+  "img": "drills/bd03.png"
+ },
+ {
+  "ts": 1778014800,
+  "iso": "2026-05-05T21:00:00+00:00",
+  "verdict": "WAIT",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -172.48,
+   "chop_band": 58.57,
+   "rsi4h": 56.4,
+   "ema20_4h": 4576.74,
+   "zone": [
+    4576.74,
+    4619.97
+   ],
+   "trigger": "none"
+  },
+  "id": "bd04",
+  "img": "drills/bd04.png"
+ },
+ {
+  "ts": 1779728400,
+  "iso": "2026-05-25T17:00:00+00:00",
+  "verdict": "WAIT",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -106.49,
+   "chop_band": 51.4,
+   "rsi4h": 56.2,
+   "ema20_4h": 4545.99,
+   "zone": [
+    4545.99,
+    4580.21
+   ],
+   "trigger": "none"
+  },
+  "id": "bd05",
+  "img": "drills/bd05.png"
+ },
+ {
+  "ts": 1780045200,
+  "iso": "2026-05-29T09:00:00+00:00",
+  "verdict": "GO",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": true,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -159.48,
+   "chop_band": 53.72,
+   "rsi4h": 55.3,
+   "ema20_4h": 4491.3,
+   "zone": [
+    4491.3,
+    4543.31
+   ],
+   "trigger": "pin"
+  },
+  "id": "bd06",
+  "img": "drills/bd06.png"
+ },
+ {
+  "ts": 1780074000,
+  "iso": "2026-05-29T17:00:00+00:00",
+  "verdict": "WAIT",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -159.48,
+   "chop_band": 53.72,
+   "rsi4h": 56.5,
+   "ema20_4h": 4502.51,
+   "zone": [
+    4502.51,
+    4595.33
+   ],
+   "trigger": "none"
+  },
+  "id": "bd07",
+  "img": "drills/bd07.png"
+ },
+ {
+  "ts": 1780261200,
+  "iso": "2026-05-31T21:00:00+00:00",
+  "verdict": "WAIT",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": true,
+   "C3": true,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -110.23,
+   "chop_band": 53.68,
+   "rsi4h": 56.5,
+   "ema20_4h": 4506.15,
+   "zone": [
+    4506.15,
+    4595.33
+   ],
+   "trigger": "none"
+  },
+  "id": "bd08",
+  "img": "drills/bd08.png"
+ },
+ {
+  "ts": 1780678800,
+  "iso": "2026-06-05T17:00:00+00:00",
+  "verdict": "DEAD",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": false,
+   "C3": false,
+   "C4": false,
+   "C5": false
+  },
+  "values": {
+   "d1_close_vs_ema50": -148.78,
+   "chop_band": 50.75,
+   "rsi4h": 28.9,
+   "ema20_4h": 4442.89,
+   "zone": [
+    4442.89,
+    4515.52
+   ],
+   "trigger": "none"
+  },
+  "id": "bd09",
+  "img": "drills/bd09.png"
+ },
+ {
+  "ts": 1780909200,
+  "iso": "2026-06-08T09:00:00+00:00",
+  "verdict": "DEAD",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": false,
+   "C3": false,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -271.31,
+   "chop_band": 52.42,
+   "rsi4h": 36.5,
+   "ema20_4h": 4401.97,
+   "zone": [
+    4401.97,
+    4483.56
+   ],
+   "trigger": "none"
+  },
+  "id": "bd10",
+  "img": "drills/bd10.png"
+ },
+ {
+  "ts": 1780995600,
+  "iso": "2026-06-09T09:00:00+00:00",
+  "verdict": "DEAD",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": false,
+   "C3": false,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -271.31,
+   "chop_band": 52.42,
+   "rsi4h": 40.9,
+   "ema20_4h": 4370.42,
+   "zone": [
+    4353.45,
+    4370.42
+   ],
+   "trigger": "none"
+  },
+  "id": "bd11",
+  "img": "drills/bd11.png"
+ },
+ {
+  "ts": 1781082000,
+  "iso": "2026-06-10T09:00:00+00:00",
+  "verdict": "DEAD",
+  "direction": "SHORT",
+  "gates": {
+   "C1": true,
+   "C2": false,
+   "C3": false,
+   "C4": false,
+   "C5": true
+  },
+  "values": {
+   "d1_close_vs_ema50": -271.31,
+   "chop_band": 52.42,
+   "rsi4h": 22.7,
+   "ema20_4h": 4291.97,
+   "zone": [
+    4291.97,
+    4363.72
+   ],
+   "trigger": "none"
+  },
+  "id": "bd12",
+  "img": "drills/bd12.png"
+ }
+]

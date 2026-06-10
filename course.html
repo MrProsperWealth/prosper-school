@@ -3469,6 +3469,7 @@ body {
   <button class="ssub-btn" data-ssub="ss-drill">DRILL</button>
   <button class="ssub-btn" data-ssub="ss-markup">MARKUP</button>
   <button class="ssub-btn" data-ssub="ss-flashcards">FLASHCARDS</button>
+  <button class="ssub-btn" data-ssub="ss-battle">BATTLE</button>
 </div>
 
 <!-- ─── FLASHCARDS (spaced-repetition rule recall) ─────────────────── -->
@@ -3492,6 +3493,33 @@ body {
     <button class="quiz-action-btn next" id="fc-good" style="flex:1;max-width:200px;">Got it</button>
   </div>
   <div id="fc-empty" style="display:none;text-align:center;color:var(--green);padding:30px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;">All caught up — every card in this deck reviewed. Come back later for the next round.</div>
+</div>
+
+<!-- ─── BATTLE DRILLS (real TradingView charts, v2 gate calls) ───────── -->
+<div class="school-section" id="ss-battle">
+  <h2>Battle <span>Drills</span></h2>
+  <p class="section-sub">Real XAUUSD 4H charts (TradingView/Pepperstone), frozen at historical decision points — no future bars. It is 21:30. The candle has closed. Call it: GO, WAIT or DEAD. Graded against the computed C1–C5 truth.</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+    <div class="drill-stat"><span class="label">Scenario</span><span class="val gold" id="bt-pos">—</span></div>
+    <div class="drill-stat"><span class="label">Score</span><span class="val ok" id="bt-score">0</span></div>
+    <div class="drill-stat"><span class="label">Best streak</span><span class="val" id="bt-streak">0</span></div>
+  </div>
+  <div id="bt-stage" style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;">
+    <img id="bt-img" src="" alt="Decision chart" style="width:100%;border-radius:8px;display:block;">
+    <div id="bt-data" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);margin:12px 0;"></div>
+    <div id="bt-q" style="font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">It is 21:30. The 4H just closed. Your call?</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="quiz-action-btn next" id="bt-go" style="flex:1;min-width:90px;">GO</button>
+      <button class="quiz-action-btn hint" id="bt-wait" style="flex:1;min-width:90px;">WAIT</button>
+      <button class="quiz-action-btn retry" id="bt-dead" style="flex:1;min-width:90px;">DEAD</button>
+    </div>
+    <div id="bt-reveal" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+      <div id="bt-verdict" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;"></div>
+      <div id="bt-gates" style="font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:1.8;color:var(--text);"></div>
+      <button class="quiz-action-btn next" id="bt-next" style="margin-top:12px;">Next chart →</button>
+    </div>
+  </div>
+  <div id="bt-done" style="display:none;text-align:center;color:var(--green);padding:30px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;"></div>
 </div>
 
 <!-- ─── LESSONS (existing replay lessons) ────────────────────────────── -->
@@ -7833,6 +7861,62 @@ if ('serviceWorker' in navigator) {
     start();
   }
   window.gotoSchoolSub=function(id){var b=document.querySelector('.ssub-btn[data-ssub="'+id+'"]');if(b){b.click();var s=document.getElementById(id);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});}};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script>
+/* ===== PROSPER Battle Drills — real-chart GO/WAIT/DEAD calls ===== */
+(function(){
+  var KEY='prosper_bd_v1';
+  var order=[], idx=0, scens=[], score=0, streak=0, best=0, answered=false;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({best:best}));}catch(e){}}
+  function el(id){return document.getElementById(id);}
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function stat(){el('bt-pos').textContent=(idx+1)+' / '+order.length;el('bt-score').textContent=score;el('bt-streak').textContent=best;}
+  function cur(){return scens[order[idx]];}
+  function show(){
+    answered=false;var s=cur();if(!s)return done();
+    el('bt-stage').style.display='block';el('bt-done').style.display='none';
+    el('bt-img').src=s.img;el('bt-reveal').style.display='none';
+    var v=s.values, d1=v.d1_close_vs_ema50, band=v.chop_band;
+    el('bt-data').textContent='XAUUSD · decision close '+s.iso.slice(0,16).replace('T',' ')+' UTC · D1 close − EMA50: '+(d1>0?'+':'')+d1+' (chop band ±'+band+') · 4H RSI(14): '+v.rsi4h;
+    ['bt-go','bt-wait','bt-dead'].forEach(function(b){el(b).disabled=false;el(b).style.opacity='1';});
+    stat();
+  }
+  function reveal(call){
+    if(answered)return;answered=true;
+    var s=cur(), right=call===s.verdict;
+    if(right){score++;streak++;if(streak>best){best=streak;save();}}else{streak=0;}
+    var vd=el('bt-verdict');
+    vd.textContent=(right?'✓ CORRECT — ':'✗ WRONG — answer: ')+s.verdict+(s.verdict!=='DEAD'?' ('+s.direction+')':'');
+    vd.style.color=right?'var(--green)':'var(--red)';
+    var g=s.gates, names={C1:'C1 direction (D1 vs EMA50 ± band)',C2:'C2 pullback into zone',C3:'C3 4H RSI < 45 / > 55',C4:'C4 trigger candle in zone',C5:'C5 news clear (12h)'};
+    var lines=Object.keys(names).map(function(k){return (g[k]?'✔':'✘')+' '+names[k];});
+    if(s.values.trigger&&s.values.trigger!=='none')lines.push('trigger: '+s.values.trigger);
+    if(s.values.zone)lines.push('zone: '+s.values.zone[0]+' ↔ '+s.values.zone[1]);
+    el('bt-gates').textContent=lines.join('\n');
+    el('bt-gates').style.whiteSpace='pre';
+    el('bt-reveal').style.display='block';
+    ['bt-go','bt-wait','bt-dead'].forEach(function(b){el(b).disabled=true;el(b).style.opacity='0.5';});
+    stat();
+  }
+  function done(){
+    el('bt-stage').style.display='none';
+    var d=el('bt-done');d.style.display='block';
+    d.textContent='Round complete: '+score+' / '+order.length+' · best streak '+best+'. Tap BATTLE again for a reshuffled round.';
+  }
+  function init(){
+    var sec=el('ss-battle');if(!sec)return;
+    best=(load().best)||0;
+    fetch('drills/scenarios.json').then(function(r){return r.json();}).then(function(js){
+      scens=js;order=shuffle(js.map(function(_,i){return i;}));idx=0;score=0;streak=0;show();
+    }).catch(function(){el('bt-data').textContent='Could not load drills/scenarios.json';});
+    el('bt-go').addEventListener('click',function(){reveal('GO');});
+    el('bt-wait').addEventListener('click',function(){reveal('WAIT');});
+    el('bt-dead').addEventListener('click',function(){reveal('DEAD');});
+    el('bt-next').addEventListener('click',function(){idx++;idx<order.length?show():done();});
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
