@@ -304,19 +304,28 @@ a{color:var(--gold)}
 
 <!-- ============ WATCH ============ -->
 <section id="watch">
-  <div class="card center">
-    <span class="pill">WALKTHROUGH</span>
-    <h2 style="margin-top:8px">Narrated walkthrough</h2>
-    <p>A voiced, animated walk through a real index dip-buy — entry, exit, and reading the gates
-    live on the chart.</p>
-    <div class="card tight" style="background:var(--panel2)">
-      <p class="muted" style="font-size:.9rem">🎙️ Gemini-voiced video lessons are being produced
-      next. The narration pipeline and slide engine are ready — the audio drops in here when
-      rendered.</p>
-    </div>
-    <p class="note">Until then: the <strong>Learn</strong> tab has the full method, and
-    <strong>Drills</strong> trains the live read.</p>
+  <div class="card tight">
+    <div class="tag">narrated walkthrough · <span id="wIdx">1</span>/10 · ~6 min</div>
+    <div class="prog"><i id="wBar" style="width:0%"></i></div>
   </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div id="wStage" style="background:var(--panel2);padding:24px 16px;min-height:210px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <div id="wVis" style="height:96px;display:flex;align-items:center;justify-content:center"></div>
+      <div id="wTitle" style="font-size:1.18rem;font-weight:800;margin-top:14px"></div>
+      <div id="wPoint" style="color:var(--dim);font-size:.92rem;margin-top:6px;max-width:34ch"></div>
+    </div>
+    <div id="wCap" style="padding:13px 16px;font-size:.88rem;color:var(--faint);min-height:62px;
+      border-top:1px solid var(--line);font-style:italic"></div>
+  </div>
+  <audio id="wAudio" preload="none"></audio>
+  <div class="row">
+    <button class="btn" onclick="wGo(-1)" style="max-width:64px">◀</button>
+    <button class="btn gold" id="wPlay" onclick="wToggle()">▶  Play</button>
+    <button class="btn" onclick="wGo(1)" style="max-width:64px">▶</button>
+  </div>
+  <p class="note">Plays hands-free — it auto-advances through all 10 lessons. Tap a slide's
+  ◀ ▶ to jump. (If audio hasn't loaded yet, give it a moment after a fresh deploy.)</p>
 </section>
 
 <nav>
@@ -450,6 +459,72 @@ function homeProg(){
     '<p style="font-size:.85rem;margin:6px 0 0">'+seen+'/'+DECK.length+' cards learned · '+
     dScore.n+' drills attempted ('+(dScore.n?Math.round(dScore.c/dScore.n*100):0)+'% right)</p>';
 }
+
+/* ---------- walkthrough player ---------- */
+function svgChart(){return '<svg width="150" height="84" viewBox="0 0 150 84">'+
+ '<rect x="14" y="40" width="7" height="20" fill="#3a4654"/><rect x="26" y="30" width="7" height="22" fill="#3a4654"/>'+
+ '<rect x="38" y="34" width="7" height="26" fill="#ff5c5c"/><rect x="50" y="46" width="7" height="30" fill="#ff5c5c"/>'+
+ '<path d="M57 70 Q72 74 86 50 T130 14" stroke="#f0b429" stroke-width="2.5" fill="none"/>'+
+ '<polygon points="130,12 122,18 132,22" fill="#f0b429"/>'+
+ '<rect x="92" y="30" width="7" height="16" fill="#2fd07a"/><rect x="104" y="20" width="7" height="18" fill="#2fd07a"/>'+
+ '<circle cx="54" cy="76" r="4" fill="#2fd07a"/></svg>';}
+function svgGate(n){return '<div style="width:84px;height:84px;border-radius:18px;background:#1b232c;'+
+ 'border:2px solid #f0b429;display:flex;align-items:center;justify-content:center;'+
+ 'font-size:2.4rem;font-weight:800;color:#f0b429">'+n+'</div>';}
+function svgGauge(){return '<svg width="120" height="80" viewBox="0 0 120 80">'+
+ '<path d="M14 70 A46 46 0 0 1 106 70" stroke="#27313c" stroke-width="9" fill="none"/>'+
+ '<path d="M14 70 A46 46 0 0 1 30 36" stroke="#2fd07a" stroke-width="9" fill="none"/>'+
+ '<line x1="60" y1="70" x2="24" y2="44" stroke="#f0b429" stroke-width="3"/>'+
+ '<circle cx="60" cy="70" r="5" fill="#f0b429"/><text x="60" y="40" fill="#9fb0c0" font-size="11" text-anchor="middle">RSI(2) &lt; 5</text></svg>';}
+function svgGlyph(e){return '<div style="font-size:3rem">'+e+'</div>';}
+function svgPass(){return '<div style="font-size:2.2rem;font-weight:800;color:#2fd07a">≈100%<div style="font-size:.7rem;color:#6b7c8c;font-weight:600;letter-spacing:.05em">PASS · ~0% BLOW-UP</div></div>';}
+function svgTags(){return '<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:230px">'+
+ ['US2000','SPX500','JP225','NAS100','DAX'].map(function(t,i){return '<span style="font-size:.74rem;font-weight:700;padding:4px 9px;border-radius:999px;background:#1b232c;border:1px solid #27313c;color:'+(i<3?'#f0b429':'#6b7c8c')+'">'+t+'</span>';}).join('')+'</div>';}
+
+const SLIDES=[
+ {t:"Welcome to PROSPER",p:"One simple idea you can run in the evenings.",v:svgChart},
+ {t:"What we trade",p:"Stock indices — not gold or forex. The dip-bounce lives here.",v:svgTags},
+ {t:"Gate 1 · Uptrend",p:"Price > 200-day, and 50-day > 200-day. No uptrend, no trade.",v:function(){return svgGate('1');}},
+ {t:"Gate 2 · The dip",p:"RSI(2) below 5 — a rare, sharp flush of fear.",v:svgGauge},
+ {t:"Gate 3 · Entry",p:"Buy-limit below the close, stop 1×ATR under. Set & walk away.",v:function(){return svgGate('3');}},
+ {t:"Gate 4 · Exit",p:"Out on the snap-back: close > SMA5 or RSI(2) > 70.",v:function(){return svgGate('4');}},
+ {t:"All together",p:"Uptrend → flush → buy → snap back → exit in profit.",v:svgChart},
+ {t:"Risk",p:"0.5% per trade · max 1% open · stop the day at −1.5%.",v:function(){return svgGlyph('🛡️');}},
+ {t:"Does it pass?",p:"~100% pass at 0.5% risk. Safe — the trade-off is patience.",v:svgPass},
+ {t:"Your routine",p:"4 check-ins · place or pass · log it · stay disciplined.",v:function(){return svgGlyph('🎯');}}
+];
+const CAPS=["Welcome to PROSPER. One simple idea you can run in the evenings — we buy fear in rising markets and let price snap back.",
+ "Not gold, not currencies — stock indices. When they drop sharply in a rising market, they bounce back fast. The edge lives here.",
+ "Rule one: a proven uptrend. Price above the 200-day, and the 50-day above the 200-day. If not — we do nothing.",
+ "Rule two: the dip. A fast gauge, RSI-2, dropping below five — real fear in an otherwise healthy market.",
+ "Rule three: the evening before, place a buy just below the close with a stop one ATR under. Set it and walk away.",
+ "Rule four: don't get greedy. The moment price snaps back, we're out. Small, clean wins.",
+ "All together: rising market, a sharp flush, we buy the dip, and within days it reverts — in profit. About 60% win.",
+ "Risk keeps you in the game: half a percent per trade, max one percent open, and stop for the day at minus one and a half.",
+ "Simulated ten thousand times: at 0.5% risk it passes nearly every time, with almost no chance of breaching drawdown.",
+ "Your job: four quick check-ins, place or pass, and log every trade honestly. Discipline is the real edge."];
+
+let wi=0, wPlaying=false;
+const wAudio=document.getElementById('wAudio');
+function wPad(n){return (n+1<10?'0':'')+(n+1);}
+function wShow(){
+  const s=SLIDES[wi];
+  document.getElementById('wVis').innerHTML=s.v();
+  document.getElementById('wTitle').textContent=s.t;
+  document.getElementById('wPoint').textContent=s.p;
+  document.getElementById('wCap').textContent=CAPS[wi];
+  document.getElementById('wIdx').textContent=wi+1;
+  document.getElementById('wBar').style.width=((wi+1)/SLIDES.length*100)+'%';
+  wAudio.src='./walk_v3/w'+wPad(wi)+'.mp3';
+  if(wPlaying){wAudio.play().catch(function(){});}
+}
+function wToggle(){
+  if(wPlaying){wAudio.pause();wPlaying=false;document.getElementById('wPlay').textContent='▶  Play';}
+  else{wPlaying=true;document.getElementById('wPlay').textContent='❚❚ Pause';wAudio.play().catch(function(){});}
+}
+function wGo(d){wi=(wi+d+SLIDES.length)%SLIDES.length;wShow();}
+wAudio.addEventListener('ended',function(){ if(wi<SLIDES.length-1){wGo(1);} else {wPlaying=false;document.getElementById('wPlay').textContent='↻  Replay';} });
+wShow();
 
 buildQueue(); showDrill(); homeProg();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){});}
