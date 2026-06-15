@@ -1,11 +1,13 @@
 // PROSPER Service Worker — offline-first cache for tube/commute
-const CACHE = 'prosper-v8-idxmr';
+const CACHE = 'prosper-v9-art';
 const ASSETS = [
   './course.html',
   './course_v2.html',
   './manifest.json',
   './icon-192.svg',
-  './icon-512.svg'
+  './icon-512.svg',
+  './art/hero.png',
+  './art/icon.png'
 ];
 
 self.addEventListener('install', (e) => {
