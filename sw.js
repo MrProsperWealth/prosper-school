@@ -1,7 +1,8 @@
 // PROSPER Service Worker — offline-first cache for tube/commute
-const CACHE = 'prosper-v7';
+const CACHE = 'prosper-v8-idxmr';
 const ASSETS = [
   './course.html',
+  './course_v2.html',
   './manifest.json',
   './icon-192.svg',
   './icon-512.svg'

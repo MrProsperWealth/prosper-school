@@ -1,7 +1,7 @@
 {
-  "name": "PROSPER — Trading School",
-  "short_name": "PROSPER",
-  "description": "XAU/USD visual trading school with lessons, quizzes, and FTMO readiness tracking. Offline-capable.",
+  "name": "PROSPER v3 — Index Mean-Reversion School",
+  "short_name": "PROSPER v3",
+  "description": "Index mean-reversion trading school: lessons, spaced-repetition flashcards, GO/WAIT drills, and the validated backtest evidence. Offline-capable.",
   "start_url": "./course.html",
   "scope": "./",
   "display": "standalone",
