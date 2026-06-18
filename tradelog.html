@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f13">
+<title>PROSPER v3 — Trade Log</title>
+<style>
+:root{--bg:#0b0f13;--panel:#141a21;--panel2:#1b232c;--line:#27313c;--ink:#e8eef5;
+  --dim:#9fb0c0;--faint:#6b7c8c;--gold:#f0b429;--green:#2fd07a;--red:#ff5c5c;--amber:#ffb020;--cyan:#39c0d8}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{padding:0 16px 60px;max-width:760px;margin:0 auto}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,var(--bg) 75%,transparent);
+  padding:14px 0 10px;display:flex;align-items:center;gap:10px}
+header .logo{width:32px;height:32px;border-radius:9px;background:conic-gradient(from 210deg,var(--gold),#7a5a12);
+  display:grid;place-items:center;font-weight:800;color:#0b0f13;font-size:14px}
+header .t{font-weight:700}
+a.back{margin-left:auto;color:var(--gold);text-decoration:none;font-size:.85rem;font-weight:600}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
+.tag{font-size:.7rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+label{display:block;font-size:.78rem;color:var(--dim);margin:10px 0 5px}
+input,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--ink);font:inherit;font-size:.95rem}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;min-width:64px;padding:10px 6px;border-radius:10px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--dim);font:600 .82rem inherit;cursor:pointer}
+.seg button.on{background:var(--gold);color:#0b0f13;border-color:var(--gold)}
+.seg.danger button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.seg.warn button.on{background:var(--amber);color:#0b0f13;border-color:var(--amber)}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.save{display:block;width:100%;padding:14px;border-radius:12px;border:0;background:var(--gold);
+  color:#0b0f13;font:800 1rem inherit;cursor:pointer;margin-top:14px}
+.btn{display:block;width:100%;padding:11px;border-radius:11px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--ink);font:700 .88rem inherit;cursor:pointer;margin:7px 0}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 6px;text-align:center}
+.kpi .v{font-size:1.3rem;font-weight:800}.kpi .l{font-size:.62rem;color:var(--faint);text-transform:uppercase}
+.grn{color:var(--green)}.red{color:var(--red)}.gold{color:var(--gold)}.amb{color:var(--amber)}
+.split{display:flex;gap:8px;margin-top:8px}
+.split>div{flex:1;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px;text-align:center}
+.split .l{font-size:.62rem;color:var(--faint);text-transform:uppercase}
+.split .v{font-size:1.3rem;font-weight:800}
+.hide{display:none}
+.row{font-size:.82rem;border-bottom:1px solid var(--line);padding:9px 0;display:flex;justify-content:space-between;gap:8px}
+.row .meta{color:var(--faint);font-size:.74rem}
+.note{font-size:.82rem;color:var(--faint);border-left:2px solid var(--line);padding:2px 0 2px 11px}
+.calc{font-size:.82rem;color:var(--dim);margin-top:6px;min-height:1em}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">P</div>
+  <div class="t">Trade Log <span class="gold">v3</span></div>
+  <a class="back" href="./course.html">← Course</a>
+</header>
+
+<!-- LIVE STATS -->
+<div class="card">
+  <div class="tag">your edge — live</div>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="sCount">0</div><div class="l">trades</div></div>
+    <div class="kpi"><div class="v" id="sWin">—</div><div class="l">win rate</div></div>
+    <div class="kpi"><div class="v" id="sExp">—</div><div class="l">expectancy</div></div>
+  </div>
+  <div class="split">
+    <div><div class="l">rules kept</div><div class="v grn" id="sKept">—</div></div>
+    <div><div class="l">followed</div><div class="v grn" id="sFoll">—</div></div>
+    <div><div class="l">broke</div><div class="v red" id="sBroke">—</div></div>
+  </div>
+  <p class="note" id="splitMsg" style="margin-top:10px">Log trades to see your own followed-vs-broke split — your live version of the 2.75× finding.</p>
+</div>
+
+<!-- LOG A TRADE -->
+<div class="card">
+  <div class="tag">log a trade · ~20 seconds</div>
+  <label>Date</label>
+  <input type="date" id="fDate">
+
+  <label>Instrument</label>
+  <div class="seg" id="fInstrument">
+    <button data-v="US2000">US2000</button><button data-v="SPX500">SPX500</button><button data-v="JP225">JP225</button>
+  </div>
+
+  <label>System</label>
+  <select id="fSystem">
+    <option value="v3 mean-rev">v3 mean-reversion</option>
+    <option value="momentum">momentum</option>
+  </select>
+
+  <label>All 4 gates green?</label>
+  <div class="seg" id="fGates">
+    <button data-v="Y">✓ Yes — all clean</button><button data-v="N">✗ No — I broke a rule</button>
+  </div>
+
+  <div id="brokeBlock" class="hide">
+    <label>Which gate broke?</label>
+    <div class="seg danger" id="fBroke">
+      <button data-v="G1 trend">G1 trend</button><button data-v="G2 dip">G2 dip</button>
+      <button data-v="G3 entry">G3 entry</button><button data-v="G4 exit">G4 exit</button>
+    </div>
+    <label>Why? (one honest line)</label>
+    <input id="fWhy" placeholder="e.g. jumped in before RSI(2) hit 5">
+  </div>
+
+  <label>State going in</label>
+  <div class="seg warn" id="fState">
+    <button data-v="calm">calm</button><button data-v="impatient">impatient</button>
+    <button data-v="revenge">revenge</button><button data-v="fear">fear</button>
+  </div>
+
+  <div class="grid3">
+    <div><label>Entry</label><input type="number" step="any" id="fEntry" inputmode="decimal"></div>
+    <div><label>Stop</label><input type="number" step="any" id="fStop" inputmode="decimal"></div>
+    <div><label>Exit</label><input type="number" step="any" id="fExit" inputmode="decimal"></div>
+  </div>
+  <div><label>R result <span style="color:var(--faint)">(blank = auto-calc)</span></label>
+    <input type="number" step="any" id="fR" inputmode="decimal"></div>
+  <div class="calc" id="rCalc"></div>
+
+  <button class="save" onclick="saveTrade()">Save trade</button>
+</div>
+
+<!-- EXPORT / SYNC -->
+<div class="card">
+  <button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
+  <button class="btn" onclick="syncAll()" id="syncBtn">☁ Send all to Google Sheet</button>
+  <p class="note" id="syncNote">Sheet sync off — add your Apps Script URL in the code to enable cross-device sync.</p>
+</div>
+
+<!-- RECENT -->
+<div class="card">
+  <div class="tag">recent trades</div>
+  <div id="list"></div>
+</div>
+
+<script>
+/* ===== paste your Google Apps Script /exec URL between the quotes to enable cross-device sync ===== */
+const SHEET_WEBHOOK_URL = "";
+
+const KEY='prosper_v3_trades';
+let trades=JSON.parse(localStorage.getItem(KEY)||'[]');
+const sel={instrument:'US2000',gates:'Y',broke:'G1 trend',state:'calm'};
+
+function wireSeg(id,key,onChange){
+  document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); sel[key]=b.dataset.v; if(onChange)onChange(b.dataset.v);
+  });
+}
+wireSeg('fInstrument','instrument');
+wireSeg('fGates','gates',v=>document.getElementById('brokeBlock').classList.toggle('hide',v!=='N'));
+wireSeg('fBroke','broke');
+wireSeg('fState','state');
+document.querySelector('#fInstrument button').classList.add('on');
+document.querySelector('#fGates button').classList.add('on');
+document.querySelector('#fState button').classList.add('on');
+document.getElementById('fDate').value=new Date().toISOString().slice(0,10);
+
+function calcR(entry,stop,exit){
+  const e=parseFloat(entry),s=parseFloat(stop),x=parseFloat(exit);
+  if(isNaN(e)||isNaN(s)||isNaN(x)||e===s) return null;
+  return (x-e)/(e-s);                 // long-only: risk = entry-stop
+}
+function fv(id){return document.getElementById(id).value;}
+['fEntry','fStop','fExit'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{
+  const r=calcR(fv('fEntry'),fv('fStop'),fv('fExit')), el=document.getElementById('rCalc');
+  if(r===null){el.textContent='';}
+  else{el.textContent='Auto-calc: '+r.toFixed(2)+'R'; el.className='calc '+(r>=0?'grn':'red');}
+}));
+
+function saveTrade(){
+  let r=parseFloat(fv('fR'));
+  if(isNaN(r)){const a=calcR(fv('fEntry'),fv('fStop'),fv('fExit')); r=a===null?null:+a.toFixed(2);}
+  const t={ts:Date.now(),date:fv('fDate'),instrument:sel.instrument,system:fv('fSystem'),
+    gates:sel.gates,brokeGate:sel.gates==='N'?sel.broke:'',why:sel.gates==='N'?fv('fWhy'):'',
+    state:sel.state,entry:fv('fEntry'),stop:fv('fStop'),exit:fv('fExit'),r:r};
+  trades.push(t); localStorage.setItem(KEY,JSON.stringify(trades)); postToSheet(t);
+  ['fEntry','fStop','fExit','fR','fWhy'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('rCalc').textContent='';
+  render();
+}
+
+function stats(rows){
+  const w=rows.filter(t=>t.r!==null&&t.r!==undefined&&!isNaN(t.r));
+  if(!w.length) return null;
+  const wins=w.filter(t=>+t.r>0).length;
+  return {n:w.length,win:wins/w.length,exp:w.reduce((a,t)=>a+(+t.r),0)/w.length};
+}
+function setRel(id,exp){
+  const el=document.getElementById(id);
+  if(exp===null){el.textContent='—';el.className=el.id==='sBroke'?'v red':'v grn';return;}
+  el.textContent=(exp>=0?'+':'')+exp.toFixed(2)+'R'; el.className='v '+(exp>=0?'grn':'red');
+}
+function render(){
+  const s=stats(trades);
+  document.getElementById('sCount').textContent=trades.length;
+  document.getElementById('sWin').textContent=s?Math.round(s.win*100)+'%':'—';
+  setRel('sExp',s?s.exp:null);
+  const kept=trades.filter(t=>t.gates==='Y').length;
+  document.getElementById('sKept').textContent=trades.length?Math.round(kept/trades.length*100)+'%':'—';
+  const sf=stats(trades.filter(t=>t.gates==='Y')), sb=stats(trades.filter(t=>t.gates==='N'));
+  setRel('sFoll',sf?sf.exp:null); setRel('sBroke',sb?sb.exp:null);
+  const m=document.getElementById('splitMsg');
+  if(sf&&sb){m.textContent='Followed the rules: '+sf.exp.toFixed(2)+'R per trade vs '+sb.exp.toFixed(2)+'R when you broke them. Discipline is your edge.';}
+  else if(sf&&!sb){m.textContent=sf.exp.toFixed(2)+'R across '+sf.n+' rule-kept trades, zero rule-breaks. Keep it that way.';}
+  else{m.textContent='Log trades to see your own followed-vs-broke split — your live version of the 2.75× finding.';}
+  // list (safe DOM, no innerHTML)
+  const list=document.getElementById('list'); list.textContent='';
+  const rows=trades.slice(-12).reverse();
+  if(!rows.length){const p=document.createElement('p');p.className='note';p.textContent='No trades yet. Log your first above.';list.appendChild(p);return;}
+  rows.forEach(t=>{
+    const row=document.createElement('div');row.className='row';
+    const left=document.createElement('div');
+    const inst=document.createElement('b');inst.textContent=t.instrument+' ';
+    const meta=document.createElement('span');meta.className='meta';
+    meta.textContent=t.date+' · '+t.state+' · '+(t.gates==='N'?('broke '+t.brokeGate):'clean');
+    left.appendChild(inst);left.appendChild(meta);
+    const right=document.createElement('div');
+    const rv=(t.r===null||t.r===undefined||isNaN(t.r))?null:+t.r;
+    right.textContent=rv===null?'—':((rv>=0?'+':'')+rv.toFixed(2)+'R');
+    right.className=(rv||0)>=0?'grn':'red';
+    row.appendChild(left);row.appendChild(right);list.appendChild(row);
+  });
+}
+
+function postToSheet(t){
+  if(!SHEET_WEBHOOK_URL) return;
+  fetch(SHEET_WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(t)}).catch(()=>{});
+}
+function syncAll(){
+  if(!SHEET_WEBHOOK_URL){alert('Add your Google Apps Script URL in the code first (SHEET_WEBHOOK_URL).');return;}
+  trades.forEach(postToSheet); document.getElementById('syncBtn').textContent='☁ Sent '+trades.length+' trades';
+}
+function exportCSV(){
+  const cols=['ts','date','instrument','system','gates','brokeGate','why','state','entry','stop','exit','r'];
+  const csv=[cols.join(',')].concat(trades.map(t=>cols.map(c=>{
+    const v=(t[c]===null||t[c]===undefined)?'':(''+t[c]); return '"'+v.replace(/"/g,'""')+'"';}).join(','))).join('\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='prosper_v3_trades.csv'; a.click();
+}
+if(SHEET_WEBHOOK_URL){document.getElementById('syncNote').textContent='Cross-device sync ON — every saved trade also writes to your Google Sheet.';}
+render();
+</script>
+</body>
+</html>
