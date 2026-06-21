@@ -1,7 +1,7 @@
 {
-  "name": "PROSPER v3 — Index Mean-Reversion School",
-  "short_name": "PROSPER v3",
-  "description": "Index mean-reversion trading school: lessons, spaced-repetition flashcards, GO/WAIT drills, and the validated backtest evidence. Offline-capable.",
+  "name": "PROSPER — Swing Momentum School",
+  "short_name": "PROSPER Swing",
+  "description": "NAS100 swing-momentum trading school: the 5-part setup, spaced-repetition flashcards, GO/WAIT drills, accurate FTMO rules, and the validated backtest evidence. Offline-capable.",
   "start_url": "./course.html",
   "scope": "./",
   "display": "standalone",

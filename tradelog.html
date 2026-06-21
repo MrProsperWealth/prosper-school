@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0f13">
-<title>PROSPER v3 — Trade Log</title>
+<title>PROSPER — Swing Trade Log</title>
 <style>
 :root{--bg:#0b0f13;--panel:#141a21;--panel2:#1b232c;--line:#27313c;--ink:#e8eef5;
   --dim:#9fb0c0;--faint:#6b7c8c;--gold:#f0b429;--green:#2fd07a;--red:#ff5c5c;--amber:#ffb020;--cyan:#39c0d8}
@@ -52,7 +52,7 @@ input,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--l
 <body>
 <header>
   <div class="logo">P</div>
-  <div class="t">Trade Log <span class="gold">v3</span></div>
+  <div class="t">Trade Log <span class="gold">Swing</span></div>
   <a class="back" href="./course.html">← Course</a>
 </header>
 
@@ -85,23 +85,24 @@ input,select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--l
 
   <label>System</label>
   <select id="fSystem">
-    <option value="v3 mean-rev">v3 mean-reversion</option>
-    <option value="momentum">momentum</option>
+    <option value="NAS100 swing">NAS100 swing momentum</option>
+    <option value="XAU swing">XAU swing (2nd, demo)</option>
   </select>
 
-  <label>All 4 gates green?</label>
+  <label>Setup clean? (all 5 parts)</label>
   <div class="seg" id="fGates">
     <button data-v="Y">✓ Yes — all clean</button><button data-v="N">✗ No — I broke a rule</button>
   </div>
 
   <div id="brokeBlock" class="hide">
-    <label>Which gate broke?</label>
+    <label>Which part broke?</label>
     <div class="seg danger" id="fBroke">
-      <button data-v="G1 trend">G1 trend</button><button data-v="G2 dip">G2 dip</button>
-      <button data-v="G3 entry">G3 entry</button><button data-v="G4 exit">G4 exit</button>
+      <button data-v="P1 trend">P1 trend</button><button data-v="P2 pullback">P2 pullback</button>
+      <button data-v="P3 trigger">P3 trigger</button><button data-v="P4 stop">P4 stop</button>
+      <button data-v="P5 target">P5 target</button>
     </div>
     <label>Why? (one honest line)</label>
-    <input id="fWhy" placeholder="e.g. jumped in before RSI(2) hit 5">
+    <input id="fWhy" placeholder="e.g. chased — entered extended with no pullback">
   </div>
 
   <label>State going in</label>
