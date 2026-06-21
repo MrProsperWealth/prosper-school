@@ -104,8 +104,8 @@ a{color:var(--gold)}
     hidden 2026 hold-out it was never tuned on.</p>
     <div class="kpis">
       <div class="kpi"><div class="v gold">1.4<span style="font-size:.8rem">/wk</span></div><div class="l">trades</div></div>
-      <div class="kpi"><div class="v grn">+0.12R</div><div class="l">per trade</div></div>
-      <div class="kpi"><div class="v">84%</div><div class="l">FTMO pass</div></div>
+      <div class="kpi"><div class="v grn">+0.09R</div><div class="l">per trade · net</div></div>
+      <div class="kpi"><div class="v">75%</div><div class="l">FTMO pass</div></div>
     </div>
     <p class="note">This is the model the lab actually validated — a calm <strong>swing</strong>
     momentum system, not a screen-watching scalp. ~1.4 trades a week: most check-ins, you do nothing.
@@ -193,13 +193,14 @@ a{color:var(--gold)}
     spot. The honest trade-off, from 10,000 simulated challenges:</p>
     <table>
       <tr><th>Risk/trade</th><th>Pass +10%</th><th>Blow −10%</th></tr>
-      <tr><td>0.50%</td><td class="grn">84%</td><td class="amb">16%</td></tr>
-      <tr><td>0.75%</td><td>72%</td><td>28%</td></tr>
-      <tr><td>1.00%</td><td>65%</td><td class="red">35%</td></tr>
+      <tr><td>0.50%</td><td class="grn">75%</td><td class="amb">25%</td></tr>
+      <tr><td>0.75%</td><td>65%</td><td>35%</td></tr>
+      <tr><td>1.00%</td><td>58%</td><td class="red">42%</td></tr>
     </table>
-    <p class="note">£37/month on a £10k account at 0.5% is <em>modest in pounds</em> — the real money
-    is the path: pass (84%) → trade <strong>their</strong> capital → scale the funded account over
-    time. The edge is the hard part. You now have one.</p>
+    <p class="note">These pass-rates are <strong>net of financing</strong> (the real ~−6%/yr swap you
+    pay to hold NAS100 long overnight). ~£27/month on a £10k account at 0.5% — <em>modest in
+    pounds</em>. The real money is the path: pass (75%) → trade <strong>their</strong> capital →
+    scale the funded account over time. The edge is the hard part. You now have one.</p>
   </div>
 
   <div class="card">
@@ -275,9 +276,24 @@ a{color:var(--gold)}
       <tr><td>2025 (out-of-sample)</td><td class="grn">+0.15R</td></tr>
       <tr><td>2026 (hidden hold-out)</td><td class="grn">+0.16R</td></tr>
     </table>
-    <p class="note"><strong>36 out of 36</strong> nearby settings stayed profitable out-of-sample —
-    a broad plateau, not one lucky combination. It also survived doubled slippage. That's the
-    difference between a real edge and a curve-fit.</p>
+    <p class="note">Those are <strong>gross</strong> (before financing). <strong>36 out of 36</strong>
+    nearby settings stayed profitable out-of-sample — a broad plateau, not one lucky combination. It
+    also survived doubled slippage. That's the difference between a real edge and a curve-fit.</p>
+  </div>
+
+  <div class="card">
+    <h3>Real-world frictions — stress-tested</h3>
+    <p>A skeptical reviewer attacks the costs first. We modelled them and the edge holds:</p>
+    <table>
+      <tr><th>Friction</th><th>Effect</th></tr>
+      <tr><td>Overnight financing (real −6%/yr swap)</td><td>+0.12R → <strong class="grn">+0.09R net</strong></td></tr>
+      <tr><td>FTMO −5% daily-loss rule</td><td class="grn">0 breaches / 2,173 days</td></tr>
+      <tr><td>Gap through the stop</td><td class="amb">15% of trades · worst −4.2R</td></tr>
+      <tr><td>Bear markets (QQQ 2000–26)</td><td class="grn">filter stands aside</td></tr>
+    </table>
+    <p class="note">Net of financing it's still positive in every year incl 2026. The daily-loss rule
+    is never the problem (one trade at a time) — the −10% max is. The real weak spot is choppy
+    post-crash <em>recoveries</em>, not crashes. Honest, and survivable.</p>
   </div>
 
   <div class="card">
@@ -298,15 +314,15 @@ a{color:var(--gold)}
   </div>
 
   <div class="card">
-    <h3>Can it pass FTMO? (Monte-Carlo, 10,000 runs)</h3>
+    <h3>Can it pass FTMO? (Monte-Carlo, net of financing)</h3>
     <table>
       <tr><th>Risk</th><th>Pass +10%</th><th>Blow −10%</th></tr>
-      <tr><td>0.50%</td><td class="grn">84%</td><td class="amb">16%</td></tr>
-      <tr><td>0.75%</td><td>72%</td><td>28%</td></tr>
-      <tr><td>1.00%</td><td>65%</td><td class="red">35%</td></tr>
+      <tr><td>0.50%</td><td class="grn">75%</td><td class="amb">25%</td></tr>
+      <tr><td>0.75%</td><td>65%</td><td>35%</td></tr>
+      <tr><td>1.00%</td><td>58%</td><td class="red">42%</td></tr>
     </table>
-    <p>Best odds at 0.5% risk. Not a certainty — about 1 in 6 challenges still blow — but a real,
-    repeatable, positive-expectancy edge that hits your 1–3 trades/week target.</p>
+    <p>Best odds at 0.5% risk. Not a certainty — about 1 in 4 challenges still blow — but a real,
+    repeatable, positive-expectancy edge (after costs) that hits your 1–3 trades/week target.</p>
   </div>
 
   <div class="card tight">
@@ -375,16 +391,17 @@ const DECK=[
  ["Part 4 — the stop?","Just <b>below the pullback low</b> (~1×ATR of room). Out small if it was really a reversal."],
  ["Part 5 — target &amp; time?","Take profit at <b>2× risk (2R)</b>; back-stop exit after ~5 days. Average hold ~2 days."],
  ["Why longs only?","Shorts averaged <b>−0.02R</b> across the whole sample — pure drag. Dropping them lifted every fold."],
- ["The headline numbers?","<b>1.4 trades/wk</b>, <b>+0.12R</b>, PF <b>1.20</b>, win ~42% — positive in 2018–23, 2024, 2025 and the hidden 2026."],
+ ["The headline numbers?","<b>1.4 trades/wk</b>, <b>+0.12R</b> gross / <b>+0.09R net</b> of financing, PF ~1.2, win ~42% — positive in 2018–23, 2024, 2025 and the hidden 2026."],
+ ["What does overnight financing cost?","The real NAS100 long swap is ~<b>−6%/yr</b>. It costs ~<b>0.03R per trade</b> and takes +0.12R → <b>+0.09R net</b> — still positive every year."],
  ["How do we know it's not curve-fit?","<b>36/36</b> nearby settings stayed OOS-positive, and it survived doubled slippage. A plateau, not a spike."],
  ["Do BOS / sweeps / POIs help?","They raise trade quality but cut frequency so hard <b>cash flow falls</b> (£37→£8/mo). Keep it simple."],
- ["Risk per trade?","<b>0.5%</b> — the sweet spot (84% FTMO pass). 1% is faster but 35% blow."],
+ ["Risk per trade?","<b>0.5%</b> — the sweet spot (75% FTMO pass, net of financing). 1% is faster but 42% blow."],
  ["FTMO 2-Step Swing targets?","<b>+10%</b> Phase 1, <b>+5%</b> Phase 2. Min 4 trading days each, no time limit."],
  ["FTMO loss limits?","<b>−5% daily</b> (resets midnight Prague) and <b>−10% overall</b>. 80% split, up to 90% scaling."],
  ["Swing account perks?","<b>Hold over weekends</b> and <b>trade through news</b> — both allowed. Skipping events is your choice."],
  ["The tentative second market?","<b>Gold (XAU) long-only</b> — uncorrelated to NAS100, profitable out-of-sample, but recent-only → paper-trade it."],
  ["The real edge?","<b>Discipline.</b> No forced trades — if there's no setup, you sit. Log every trade honestly."],
- ["The income path?","Pass FTMO (84%) → trade <b>their</b> capital → <b>scale</b> the funded account over time. Modest at first, compounding."]
+ ["The income path?","Pass FTMO (75%) → trade <b>their</b> capital → <b>scale</b> the funded account over time. Modest at first, compounding."]
 ];
 const W=[0.5,1.2,3.0,8.0];
 const KEY='prosper_sm_fsrs';
@@ -487,7 +504,7 @@ function svgPart(n){return '<div style="width:84px;height:84px;border-radius:18p
  'border:2px solid #f0b429;display:flex;align-items:center;justify-content:center;'+
  'font-size:2.4rem;font-weight:800;color:#f0b429">'+n+'</div>';}
 function svgGlyph(e){return '<div style="font-size:3rem">'+e+'</div>';}
-function svgPass(){return '<div style="font-size:2.2rem;font-weight:800;color:#2fd07a">84%<div style="font-size:.7rem;color:#6b7c8c;font-weight:600;letter-spacing:.05em">FTMO PASS @ 0.5% RISK</div></div>';}
+function svgPass(){return '<div style="font-size:2.2rem;font-weight:800;color:#2fd07a">75%<div style="font-size:.7rem;color:#6b7c8c;font-weight:600;letter-spacing:.05em">FTMO PASS @ 0.5% RISK</div></div>';}
 function svgMkt(){return '<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:230px">'+
  ['NAS100','XAU(2nd)'].map(function(t,i){return '<span style="font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:999px;background:#1b232c;border:1px solid #27313c;color:'+(i<1?'#f0b429':'#ffb020')+'">'+t+'</span>';}).join('')+'</div>';}
 
@@ -500,7 +517,7 @@ const SLIDES=[
  {t:"Part 4 · Stop",p:"Below the pullback low. Out small if it was a reversal.",v:function(){return svgPart('4');}},
  {t:"Part 5 · Target",p:"Take 2× your risk; back-stop after ~5 days. ~2-day hold.",v:function(){return svgPart('5');}},
  {t:"Risk",p:"0.5% per trade — best FTMO odds. Never force a trade.",v:function(){return svgGlyph('🛡️');}},
- {t:"Does it pass?",p:"84% pass at 0.5% risk; ~1 in 6 still blow. Real, not certain.",v:svgPass},
+ {t:"Does it pass?",p:"75% pass at 0.5% risk (net); ~1 in 4 still blow. Real, not certain.",v:svgPass},
  {t:"Your routine",p:"4 quick checks a day · place or pass · log it · stay disciplined.",v:function(){return svgGlyph('🎯');}}
 ];
 const CAPS=["Swing momentum: one market, one setup, a couple of 2-minute checks around your work day.",
@@ -511,7 +528,7 @@ const CAPS=["Swing momentum: one market, one setup, a couple of 2-minute checks 
  "Part four: the stop sits just below the pullback low. If the dip was really a reversal, you're out small.",
  "Part five: take profit at twice your risk, and exit anyway after about five days. Average hold, two days.",
  "Risk keeps you in the game: half a percent per trade is the sweet spot, and you never force a trade that isn't there.",
- "Ten thousand simulated challenges: at half a percent it passes about 84% of the time. Real, repeatable — not a guarantee.",
+ "Ten thousand simulated challenges: at half a percent it passes about 75% of the time, after financing. Real, repeatable — not a guarantee.",
  "Your job: four quick check-ins, place the order or pass, and log every trade honestly. Discipline is the edge."];
 
 let wi=0, wTimer=null;
