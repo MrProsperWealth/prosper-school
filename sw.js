@@ -1,9 +1,10 @@
 // PROSPER Service Worker — offline-first cache for tube/commute
-const CACHE = 'prosper-xau-v22-20260708-profiles';
+const CACHE = 'prosper-xau-v22-20260708-legacy-redirect';
 const ASSETS = [
   './course.html',
   './tradelog.html',
   './course_v2.html',
+  './course_swing_v3.html',
   './manifest.json',
   './icon-192.svg',
   './icon-512.svg',
