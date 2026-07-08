@@ -1,7 +1,7 @@
 {
-  "name": "PROSPER — Swing Momentum School",
-  "short_name": "PROSPER Swing",
-  "description": "NAS100 swing-momentum trading school: the 5-part setup, spaced-repetition flashcards, GO/WAIT drills, accurate FTMO rules, and the validated backtest evidence. Offline-capable.",
+  "name": "PROSPER — Gold H1 School",
+  "short_name": "PROSPER XAU",
+  "description": "XAU/USD H1 Asian Range Breakout course for David and Gemma: visual memory, phone mini-bytes, flashcards, drills, journalling, and validated-rule discipline. Offline-capable.",
   "start_url": "./course.html",
   "scope": "./",
   "display": "standalone",

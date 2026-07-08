@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f13">
+<link rel="manifest" href="./manifest.json">
+<title>PROSPER — Swing Momentum School</title>
+<style>
+:root{
+  --bg:#0b0f13; --panel:#141a21; --panel2:#1b232c; --line:#27313c;
+  --ink:#e8eef5; --dim:#9fb0c0; --faint:#6b7c8c;
+  --gold:#f0b429; --green:#2fd07a; --red:#ff5c5c; --amber:#ffb020; --cyan:#39c0d8;
+  --r:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{padding:0 16px 110px;max-width:760px;margin:0 auto;-webkit-font-smoothing:antialiased}
+h1,h2,h3{line-height:1.25;margin:0 0 .5em}
+h1{font-size:1.5rem;letter-spacing:-.02em}
+h2{font-size:1.15rem;color:var(--gold);margin-top:1.6em}
+h3{font-size:1rem;color:var(--cyan)}
+p{margin:.5em 0;color:var(--dim)}
+strong{color:var(--ink)}
+.gold{color:var(--gold)} .grn{color:var(--green)} .red{color:var(--red)} .amb{color:var(--amber)}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 70%,transparent);
+  padding:14px 0 10px;display:flex;align-items:center;gap:10px}
+header .logo{width:34px;height:34px;border-radius:9px;background:
+  conic-gradient(from 210deg,var(--gold),#7a5a12);display:grid;place-items:center;
+  font-weight:800;color:#0b0f13;font-size:15px}
+header .t{font-weight:700;font-size:1.02rem}
+header .s{font-size:.72rem;color:var(--faint);letter-spacing:.04em;text-transform:uppercase}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;
+  gap:2px;padding:7px 6px calc(7px + env(safe-area-inset-bottom));
+  background:rgba(11,15,19,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+nav button,nav a{flex:1;max-width:120px;background:none;border:0;color:var(--faint);
+  font:600 .62rem/1 inherit;letter-spacing:.03em;padding:6px 2px;border-radius:10px;text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;text-transform:uppercase}
+nav button .i,nav a .i{font-size:1.18rem;line-height:1}
+nav button.on{color:var(--gold)}
+section{display:none;animation:f .25s ease} section.on{display:block}
+@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:12px 0}
+.card.tight{padding:13px 15px}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;
+  background:var(--panel2);color:var(--dim);border:1px solid var(--line)}
+.pill.go{color:#0b0f13;background:var(--green);border-color:var(--green)}
+.pill.wait{color:#0b0f13;background:var(--amber);border-color:var(--amber)}
+.pill.no{color:#fff;background:var(--red);border-color:var(--red)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 8px;text-align:center}
+.kpi .v{font-size:1.32rem;font-weight:800}.kpi .l{font-size:.66rem;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+table{width:100%;border-collapse:collapse;font-size:.83rem;margin:8px 0}
+th,td{padding:7px 6px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;color:var(--dim)}
+th{color:var(--faint);font-weight:600;font-size:.72rem;text-transform:uppercase}
+.gate{display:flex;gap:11px;align-items:flex-start;margin:11px 0}
+.gate .n{flex:none;width:30px;height:30px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);
+  display:grid;place-items:center;font-weight:800;color:var(--gold)}
+.gate .b{font-size:.92rem}.gate .b small{color:var(--faint);display:block;font-size:.8rem;margin-top:2px}
+.btn{display:block;width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--ink);font:700 .95rem inherit;cursor:pointer;margin:7px 0}
+.btn.gold{background:var(--gold);color:#0b0f13;border-color:var(--gold)}
+.btn:disabled{opacity:.5}
+.row{display:flex;gap:8px}.row .btn{margin:7px 0}
+.fc{min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer}
+.fc .q{font-size:1.18rem;font-weight:700}
+.fc .a{font-size:1rem;color:var(--dim);margin-top:14px;border-top:1px dashed var(--line);padding-top:14px}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}
+.rate button{padding:11px 4px;border-radius:11px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--ink);font:700 .8rem inherit;cursor:pointer}
+.rate small{font-weight:500;color:var(--faint)}
+.rate .again{color:var(--red)}.rate .hard{color:var(--amber)}.rate .good{color:var(--green)}.rate .easy{color:var(--cyan)}
+.prog{height:6px;border-radius:99px;background:var(--panel2);overflow:hidden;margin:6px 0}
+.prog>i{display:block;height:100%;background:var(--gold);transition:width .3s}
+.note{font-size:.85rem;color:var(--faint);border-left:2px solid var(--line);padding:2px 0 2px 11px;margin:10px 0}
+.scn{font-size:.95rem}
+.muted{color:var(--faint)}
+ul{margin:.4em 0;padding-left:1.1em}li{margin:.3em 0;color:var(--dim)}
+.tag{font-size:.7rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+a{color:var(--gold)}
+.center{text-align:center}
+.big{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">P</div>
+  <div><div class="t">PROSPER <span class="gold">Swing</span></div>
+  <div class="s">NAS100 Momentum School</div></div>
+</header>
+
+<!-- ============ HOME ============ -->
+<section id="home" class="on">
+  <img src="./art/hero.png" alt="" style="width:100%;border-radius:14px;display:block;
+    margin:12px 0;border:1px solid var(--line)">
+  <div class="card">
+    <span class="pill">THE EDGE</span>
+    <h1 style="margin-top:10px">Buy the pullback in a<br>strong uptrend. Ride the leg.</h1>
+    <p>The Nasdaq trends up. After a short <strong>1–2 day pullback</strong> it usually resumes.
+    We buy that resumption with defined risk, aim for <strong>2× our risk</strong>, and we're out
+    in a couple of days. One market, longs only, fully rule-based. Validated on 8.5 years with a
+    hidden 2026 hold-out it was never tuned on.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v gold">1.4<span style="font-size:.8rem">/wk</span></div><div class="l">trades</div></div>
+      <div class="kpi"><div class="v grn">+0.09R</div><div class="l">per trade · net</div></div>
+      <div class="kpi"><div class="v">75%</div><div class="l">FTMO pass</div></div>
+    </div>
+    <p class="note">This is the model the lab actually validated — a calm <strong>swing</strong>
+    momentum system, not a screen-watching scalp. ~1.4 trades a week: most check-ins, you do nothing.
+    That's the discipline, and it's the point.</p>
+  </div>
+  <div class="card tight">
+    <div class="tag">your progress</div>
+    <div id="homeProg"></div>
+  </div>
+  <div class="card tight">
+    <h3>How to use this</h3>
+    <p style="font-size:.9rem"><strong class="gold">Learn</strong> the 5-part setup →
+    <strong class="gold">Cards</strong> daily (5 min) → <strong class="gold">Drills</strong> to
+    train your eye → <strong class="gold">Proof</strong> for the real numbers → place buy-stop
+    orders around your work day and <strong class="gold">Log</strong> every trade.</p>
+  </div>
+</section>
+
+<!-- ============ LEARN ============ -->
+<section id="learn">
+  <div class="card">
+    <span class="pill">LESSON 1</span><h2 style="margin-top:8px">The big idea</h2>
+    <p>The Nasdaq 100 is a long-term <strong>uptrend machine</strong>. Inside that trend it pauses
+    and pulls back for a day or two — profit-taking, a small shake-out — and then the bigger buyers
+    step back in and it <strong>resumes higher</strong>.</p>
+    <p>We don't predict tops or bottoms. We confirm the trend is up, wait for a pullback, and buy
+    only when price <strong>turns back up</strong> and proves the leg is resuming. Risk is fixed,
+    the target is twice the risk, and we hold for a couple of days. <strong>Longs only —
+    momentum continuation.</strong></p>
+  </div>
+
+  <div class="card">
+    <span class="pill">LESSON 2</span><h2 style="margin-top:8px">The setup — 5 parts</h2>
+    <p>One market, one setup. Read it on the <strong>4-hour close</strong>, set a pending order,
+    walk away.</p>
+    <div class="gate"><div class="n">1</div><div class="b"><strong class="gold">Trend (daily)</strong> —
+      daily close above the 200-day average, and the 50-day above the 200-day.
+      <small>The Nasdaq must be proven up. No daily uptrend = no trade. We never short this model.</small></div></div>
+    <div class="gate"><div class="n">2</div><div class="b"><strong class="gold">Pullback (4H)</strong> —
+      price dips back to the 20-period EMA, or the 4-hour RSI rolls down.
+      <small>A normal pause inside the trend — the discount we want to buy.</small></div></div>
+    <div class="gate"><div class="n">3</div><div class="b"><strong class="gold">Trigger</strong> —
+      a buy-STOP just above the pullback bar's high.
+      <small>It only fills if price turns back up and breaks higher. No resumption, no fill — that's
+      the confirmation built in.</small></div></div>
+    <div class="gate"><div class="n">4</div><div class="b"><strong class="gold">Stop</strong> —
+      below the pullback low (about 1×ATR of room).
+      <small>Your disaster guard. If the pullback was actually a reversal, you're out small.</small></div></div>
+    <div class="gate"><div class="n">5</div><div class="b"><strong class="gold">Target &amp; time</strong> —
+      take profit at <strong>2× your risk</strong>; back-stop exit after ~5 days.
+      <small>Average hold ~2 days. Win ~42% — but at 2R, four wins pay for six losses and then some.</small></div></div>
+  </div>
+
+  <div class="card">
+    <span class="pill">LESSON 3</span><h2 style="margin-top:8px">The market</h2>
+    <p>We tested this exact setup on many markets across 8.5 years with a hidden 2026 hold-out.
+    <strong>NAS100 is the one that holds up everywhere</strong> — positive in every period.</p>
+    <ul>
+      <li><strong class="gold">NAS100</strong> (the core) — 1.4 trades/wk, +0.12R, PF 1.20, positive
+      in 2018–23, 2024, 2025 <em>and</em> the hidden 2026.</li>
+      <li><strong class="amb">Gold (XAU)</strong> — a <em>tentative</em> second to paper-trade: it's
+      profitable out-of-sample and <strong>uncorrelated</strong> to the Nasdaq (so it smooths the
+      curve and could roughly double your trade count), but its edge only shows up in recent years —
+      so lower conviction. Demo it; don't rely on it yet.</li>
+    </ul>
+    <p class="note"><strong>What failed:</strong> GBP/JPY, oil, EUR/USD, GBP/USD, USD/JPY, and even
+    the DAX (it failed the 2026 hold-out). Discipline means trading what the data supports — one
+    market done well beats five done loosely.</p>
+  </div>
+
+  <div class="card">
+    <span class="pill">LESSON 4</span><h2 style="margin-top:8px">Risk &amp; FTMO (accurate)</h2>
+    <p>FTMO <strong>2-Step Swing, £10k</strong> (confirmed on ftmo.com, 2026):</p>
+    <ul>
+      <li>Make <strong>+10%</strong> in Phase 1 (Challenge), then <strong>+5%</strong> in Phase 2 (Verification).</li>
+      <li>Never lose <strong>−5% in a single day</strong> (resets at midnight Prague time).</li>
+      <li>Never lose <strong>−10% overall</strong> (max loss).</li>
+      <li>Trade on at least <strong>4 days</strong> each phase. <strong>No time limit.</strong></li>
+      <li>Keep <strong>80%</strong> of profits (rising to <strong>90%</strong> via the Scaling Plan).</li>
+    </ul>
+    <p class="note"><strong>Swing account perks:</strong> you may <em>hold over weekends</em> and
+    <em>trade through news</em> — both allowed. So skipping event days is <em>your</em> optional
+    discipline, not a rule.</p>
+    <p>Position size by <strong>risk, not lots</strong>: <strong>0.5% per trade</strong> is the sweet
+    spot. The honest trade-off, from 10,000 simulated challenges:</p>
+    <table>
+      <tr><th>Risk/trade</th><th>Pass +10%</th><th>Blow −10%</th></tr>
+      <tr><td>0.50%</td><td class="grn">75%</td><td class="amb">25%</td></tr>
+      <tr><td>0.75%</td><td>65%</td><td>35%</td></tr>
+      <tr><td>1.00%</td><td>58%</td><td class="red">42%</td></tr>
+    </table>
+    <p class="note">These pass-rates are <strong>net of financing</strong> (the real ~−6%/yr swap you
+    pay to hold NAS100 long overnight). ~£27/month on a £10k account at 0.5% — <em>modest in
+    pounds</em>. The real money is the path: pass (75%) → trade <strong>their</strong> capital →
+    scale the funded account over time. The edge is the hard part. You now have one.</p>
+  </div>
+
+  <div class="card">
+    <span class="pill">LESSON 5</span><h2 style="margin-top:8px">The working-day routine</h2>
+    <p>You work 8:30–4:30 with lunch 12–1. The Nasdaq 4-hour candle closes a few times across your
+    day — glance at <strong>4 of them</strong>, 2 minutes each:</p>
+    <ul>
+      <li><strong>Before work (~07:00)</strong> · <strong>lunch (12–1)</strong> ·
+      <strong>after work (~17:30)</strong> · <strong>evening (~21:30)</strong>.</li>
+      <li>Setup forming? Place the <span class="pill go">buy-stop + stop + 2R</span> pending order. Walk away.</li>
+      <li>Nothing there? <strong>Place nothing.</strong> ~1.4 trades a week means most glances = do nothing.</li>
+      <li>Log every trade — entry, exit, R, and <strong>did I follow the rules? (Y/N)</strong>.</li>
+    </ul>
+    <p class="note">No forced trades. If there's no setup, you sit. The phone alert (when it's wired)
+    will ping you the exact order so you never have to watch the screen.</p>
+  </div>
+</section>
+
+<!-- ============ CARDS (FSRS) ============ -->
+<section id="cards">
+  <div class="card tight">
+    <div class="tag">spaced repetition · FSRS-lite</div>
+    <div class="prog"><i id="cardBar" style="width:0%"></i></div>
+    <div id="cardCount" style="font-size:.8rem;color:var(--faint)"></div>
+  </div>
+  <div class="card fc" id="fcard" onclick="flip()">
+    <div class="q" id="fcQ">Loading…</div>
+    <div class="a" id="fcA" style="display:none"></div>
+  </div>
+  <div class="rate" id="rateRow" style="display:none">
+    <button class="again" onclick="rate(1)">Again<br><small>&lt;1d</small></button>
+    <button class="hard" onclick="rate(2)">Hard</button>
+    <button class="good" onclick="rate(3)">Good</button>
+    <button class="easy" onclick="rate(4)">Easy</button>
+  </div>
+  <button class="btn" id="flipBtn" onclick="flip()">Show answer</button>
+  <div class="card tight center" id="doneCard" style="display:none">
+    <div class="big grn">✓</div><p>Deck clear for now. Come back later — each card returns just as
+    you're about to forget it.</p>
+    <button class="btn" onclick="resetToday()">Review all again anyway</button>
+  </div>
+</section>
+
+<!-- ============ DRILLS ============ -->
+<section id="drills">
+  <div class="card tight">
+    <div class="tag">train your eye · GO / WAIT / NO</div>
+    <div id="drillScore" style="font-size:.85rem"></div>
+  </div>
+  <div class="card" id="drillCard">
+    <div class="scn" id="drillScn"></div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn" onclick="answer('GO')">🟢 BUY</button>
+      <button class="btn" onclick="answer('WAIT')">🟠 WAIT</button>
+      <button class="btn" onclick="answer('NO')">🔴 NO TRADE</button>
+    </div>
+    <div id="drillFb" style="display:none"></div>
+    <button class="btn gold" id="drillNext" style="display:none" onclick="nextDrill()">Next →</button>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section id="proof">
+  <div class="card">
+    <span class="pill">THE EVIDENCE</span>
+    <h2 style="margin-top:8px">What the lab actually found</h2>
+    <p>NAS100, 8.5 years (2018–2026) of real 4-hour data, real spread &amp; slippage, with 2026 kept
+    hidden until the very end. The setup was profitable <strong>in every period</strong>:</p>
+    <table>
+      <tr><th>Period</th><th>Per trade</th></tr>
+      <tr><td>2018–2023 (in-sample)</td><td class="grn">+0.11R</td></tr>
+      <tr><td>2024 (out-of-sample)</td><td class="grn">+0.14R</td></tr>
+      <tr><td>2025 (out-of-sample)</td><td class="grn">+0.15R</td></tr>
+      <tr><td>2026 (hidden hold-out)</td><td class="grn">+0.16R</td></tr>
+    </table>
+    <p class="note">Those are <strong>gross</strong> (before financing). <strong>36 out of 36</strong>
+    nearby settings stayed profitable out-of-sample — a broad plateau, not one lucky combination. It
+    also survived doubled slippage. That's the difference between a real edge and a curve-fit.</p>
+  </div>
+
+  <div class="card">
+    <h3>Real-world frictions — stress-tested</h3>
+    <p>A skeptical reviewer attacks the costs first. We modelled them and the edge holds:</p>
+    <table>
+      <tr><th>Friction</th><th>Effect</th></tr>
+      <tr><td>Overnight financing (real −6%/yr swap)</td><td>+0.12R → <strong class="grn">+0.09R net</strong></td></tr>
+      <tr><td>FTMO −5% daily-loss rule</td><td class="grn">0 breaches / 2,173 days</td></tr>
+      <tr><td>Gap through the stop</td><td class="amb">15% of trades · worst −4.2R</td></tr>
+      <tr><td>Bear markets (QQQ 2000–26)</td><td class="grn">filter stands aside</td></tr>
+    </table>
+    <p class="note">Net of financing it's still positive in every year incl 2026. The daily-loss rule
+    is never the problem (one trade at a time) — the −10% max is. The real weak spot is choppy
+    post-crash <em>recoveries</em>, not crashes. Honest, and survivable.</p>
+  </div>
+
+  <div class="card">
+    <h3>Does adding "smart-money" structure help?</h3>
+    <p>We built Break-of-Structure, liquidity sweeps and order-block POIs as real, no-look-ahead
+    code and layered them on one at a time. They <em>do</em> raise trade quality — but they cut the
+    number of trades so hard that <strong>cash flow falls</strong>:</p>
+    <table>
+      <tr><th>Version</th><th>Trades/wk</th><th>Win</th><th>Per trade</th></tr>
+      <tr><td>Base (longs)</td><td>1.42</td><td>42%</td><td class="grn">+0.12R</td></tr>
+      <tr><td>+ BOS</td><td>0.94</td><td>44%</td><td class="grn">+0.14R</td></tr>
+      <tr><td>+ sweep</td><td>0.35</td><td>43%</td><td class="grn">+0.18R</td></tr>
+      <tr><td>+ POI (full)</td><td>0.13</td><td class="grn">51%</td><td class="grn">+0.27R</td></tr>
+    </table>
+    <p class="note">The full structure setup wins 51% with a 1.60 profit factor — genuinely better
+    trades — but at 0.13/week it earns less per month (~£8 vs ~£37) and the sample gets too thin to
+    trust. <strong>The simple base out-earns the fancy version.</strong> Keep it simple.</p>
+  </div>
+
+  <div class="card">
+    <h3>Can it pass FTMO? (Monte-Carlo, net of financing)</h3>
+    <table>
+      <tr><th>Risk</th><th>Pass +10%</th><th>Blow −10%</th></tr>
+      <tr><td>0.50%</td><td class="grn">75%</td><td class="amb">25%</td></tr>
+      <tr><td>0.75%</td><td>65%</td><td>35%</td></tr>
+      <tr><td>1.00%</td><td>58%</td><td class="red">42%</td></tr>
+    </table>
+    <p>Best odds at 0.5% risk. Not a certainty — about 1 in 4 challenges still blow — but a real,
+    repeatable, positive-expectancy edge (after costs) that hits your 1–3 trades/week target.</p>
+  </div>
+
+  <div class="card tight">
+    <h3>The honest summary</h3>
+    <p><strong class="grn">Real, robust, repeatable — and yours.</strong> Modest in pounds at first;
+    the income comes from passing, trading funded capital, and scaling. Drill it, demo it, log it,
+    and build the track record.</p>
+  </div>
+</section>
+
+<!-- ============ WATCH ============ -->
+<section id="watch">
+  <div class="card tight">
+    <div class="tag">🎬 visual walkthrough · 10 slides</div>
+  </div>
+  <p class="note">Step through the model end to end. (Voiced narration is being re-recorded for the
+  momentum model — for now it's a silent visual walkthrough; tap Play to auto-advance.)</p>
+  <div class="card tight">
+    <div class="tag">slide <span id="wIdx">1</span>/10</div>
+    <div class="prog"><i id="wBar" style="width:0%"></i></div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div id="wStage" style="background:var(--panel2);padding:24px 16px;min-height:210px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <div id="wVis" style="height:96px;display:flex;align-items:center;justify-content:center"></div>
+      <div id="wTitle" style="font-size:1.18rem;font-weight:800;margin-top:14px"></div>
+      <div id="wPoint" style="color:var(--dim);font-size:.92rem;margin-top:6px;max-width:34ch"></div>
+    </div>
+    <div id="wCap" style="padding:13px 16px;font-size:.88rem;color:var(--faint);min-height:62px;
+      border-top:1px solid var(--line);font-style:italic"></div>
+  </div>
+  <div class="row">
+    <button class="btn" onclick="wGo(-1)" style="max-width:64px">◀</button>
+    <button class="btn gold" id="wPlay" onclick="wToggle()">▶  Play</button>
+    <button class="btn" onclick="wGo(1)" style="max-width:64px">▶</button>
+  </div>
+</section>
+
+<nav>
+  <button class="on" data-s="home"><span class="i">◆</span>Home</button>
+  <button data-s="learn"><span class="i">📘</span>Learn</button>
+  <button data-s="cards"><span class="i">🃏</span>Cards</button>
+  <button data-s="drills"><span class="i">🎯</span>Drills</button>
+  <button data-s="proof"><span class="i">📊</span>Proof</button>
+  <button data-s="watch"><span class="i">🎬</span>Watch</button>
+  <a href="./tradelog.html"><span class="i">📓</span>Log</a>
+</nav>
+
+<script>
+/* ---------- nav ---------- */
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.s).classList.add('on');
+  window.scrollTo(0,0);
+  if(b.dataset.s==='cards') showCard();
+});
+
+/* ---------- flashcards: lightweight FSRS scheduler ---------- */
+const DECK=[
+ ["What market does this model trade?","<b>NAS100</b> (Nasdaq 100) — the one market that held up in every test. <b>Longs only.</b>"],
+ ["The one-line edge?","Buy the <b>pullback in a strong uptrend</b>; ride the resumption to a 2R target."],
+ ["Part 1 — the trend filter?","Daily <b>close &gt; SMA200</b> AND <b>SMA50 &gt; SMA200</b>. No daily uptrend = no trade. Never short."],
+ ["Part 2 — the pullback?","On the <b>4-hour</b>, price dips to the <b>20-EMA</b> or the 4H RSI rolls down — a normal pause in the trend."],
+ ["Part 3 — the entry trigger?","A <b>buy-STOP just above the pullback bar's high</b>. It only fills if price turns back up — confirmation built in."],
+ ["Part 4 — the stop?","Just <b>below the pullback low</b> (~1×ATR of room). Out small if it was really a reversal."],
+ ["Part 5 — target &amp; time?","Take profit at <b>2× risk (2R)</b>; back-stop exit after ~5 days. Average hold ~2 days."],
+ ["Why longs only?","Shorts averaged <b>−0.02R</b> across the whole sample — pure drag. Dropping them lifted every fold."],
+ ["The headline numbers?","<b>1.4 trades/wk</b>, <b>+0.12R</b> gross / <b>+0.09R net</b> of financing, PF ~1.2, win ~42% — positive in 2018–23, 2024, 2025 and the hidden 2026."],
+ ["What does overnight financing cost?","The real NAS100 long swap is ~<b>−6%/yr</b>. It costs ~<b>0.03R per trade</b> and takes +0.12R → <b>+0.09R net</b> — still positive every year."],
+ ["How do we know it's not curve-fit?","<b>36/36</b> nearby settings stayed OOS-positive, and it survived doubled slippage. A plateau, not a spike."],
+ ["Do BOS / sweeps / POIs help?","They raise trade quality but cut frequency so hard <b>cash flow falls</b> (£37→£8/mo). Keep it simple."],
+ ["Risk per trade?","<b>0.5%</b> — the sweet spot (75% FTMO pass, net of financing). 1% is faster but 42% blow."],
+ ["FTMO 2-Step Swing targets?","<b>+10%</b> Phase 1, <b>+5%</b> Phase 2. Min 4 trading days each, no time limit."],
+ ["FTMO loss limits?","<b>−5% daily</b> (resets midnight Prague) and <b>−10% overall</b>. 80% split, up to 90% scaling."],
+ ["Swing account perks?","<b>Hold over weekends</b> and <b>trade through news</b> — both allowed. Skipping events is your choice."],
+ ["The tentative second market?","<b>Gold (XAU) long-only</b> — uncorrelated to NAS100, profitable out-of-sample, but recent-only → paper-trade it."],
+ ["The real edge?","<b>Discipline.</b> No forced trades — if there's no setup, you sit. Log every trade honestly."],
+ ["The income path?","Pass FTMO (75%) → trade <b>their</b> capital → <b>scale</b> the funded account over time. Modest at first, compounding."]
+];
+const W=[0.5,1.2,3.0,8.0];
+const KEY='prosper_sm_fsrs';
+let mem=JSON.parse(localStorage.getItem(KEY)||'{}');
+let queue=[],cur=null,shown=false;
+function nowD(){return Date.now()/86400000}
+function due(i){const c=mem[i];return !c||c.due<=nowD()}
+function buildQueue(){queue=DECK.map((_,i)=>i).filter(due);}
+function schedule(i,r){
+  let c=mem[i]||{S:0,D:5,reps:0};
+  c.reps++;
+  if(c.reps===1){c.S=W[r-1];}
+  else{const f=r===1?0.4:r===2?0.9:r===3?1.6:2.4; c.S=Math.max(0.2,c.S*f);}
+  c.D=Math.min(10,Math.max(1,c.D+(r===1?1:r===2?.3:r===4?-.6:-.1)));
+  c.due=nowD()+(r===1?0.3:c.S);
+  mem[i]=c; localStorage.setItem(KEY,JSON.stringify(mem));
+}
+function showCard(){
+  document.getElementById('doneCard').style.display='none';
+  if(!queue.length) buildQueue();
+  if(!queue.length){finishDeck();return;}
+  cur=queue[0]; shown=false;
+  document.getElementById('fcard').style.display='flex';
+  document.getElementById('fcQ').innerHTML=DECK[cur][0];
+  const a=document.getElementById('fcA'); a.style.display='none'; a.innerHTML=DECK[cur][1];
+  document.getElementById('rateRow').style.display='none';
+  document.getElementById('flipBtn').style.display='block';
+  const done=DECK.length-queue.length;
+  document.getElementById('cardBar').style.width=(done/DECK.length*100)+'%';
+  document.getElementById('cardCount').textContent=queue.length+' due · '+DECK.length+' cards';
+}
+function flip(){
+  if(shown)return; shown=true;
+  document.getElementById('fcA').style.display='block';
+  document.getElementById('rateRow').style.display='grid';
+  document.getElementById('flipBtn').style.display='none';
+}
+function rate(r){ if(!shown)return; schedule(cur,r); queue.shift(); showCard(); homeProg(); }
+function finishDeck(){
+  document.getElementById('fcard').style.display='none';
+  document.getElementById('rateRow').style.display='none';
+  document.getElementById('flipBtn').style.display='none';
+  document.getElementById('doneCard').style.display='block';
+  document.getElementById('cardCount').textContent='all reviewed';
+  document.getElementById('cardBar').style.width='100%';
+}
+function resetToday(){queue=DECK.map((_,i)=>i);showCard();}
+
+/* ---------- drills ---------- */
+const DRILLS=[
+ {scn:"<b>NAS100 4H.</b> Daily close above the 200-day, 50-day above 200-day. Price has pulled back to the 20-EMA, and this bar <b>breaks back above</b> the pullback high.",a:"GO",why:"All five parts line up: daily uptrend + a 4H pullback that's now resuming. Your buy-stop fills on the break. Place stop below the pullback low, target 2R."},
+ {scn:"<b>NAS100 4H.</b> Daily close is <b>below</b> the 200-day. Sharp 2-day drop, now bouncing.",a:"NO",why:"No daily uptrend — Part 1 fails. This is a long-only momentum model; we never buy in a downtrend and we never short. Sit out."},
+ {scn:"<b>NAS100 4H.</b> Strong uptrend, price <b>ripping straight up</b>, well above the 20-EMA, RSI ~68. No pullback.",a:"WAIT",why:"Uptrend is fine but there's nothing to buy — no pullback. Don't chase an extended move. Wait for it to dip back to the EMA."},
+ {scn:"<b>NAS100 4H.</b> Daily uptrend. Price has pulled back to the 20-EMA but is <b>still drifting down</b> — no turn back up yet.",a:"WAIT",why:"The pullback is there but not resuming. The buy-stop sits above the high and simply won't fill until price turns back up. Patience — let the trigger do its job."},
+ {scn:"<b>NAS100 4H.</b> Daily uptrend confirmed. Clean pullback to the 20-EMA, then a strong bar closes back up through the pullback high. Normal volatility.",a:"GO",why:"Textbook continuation. Buy-stop fills, stop below the pullback low, 2R target. ~2-day hold."},
+ {scn:"You're <b>already long NAS100</b> and price just tagged your <b>2R target</b>.",a:"NO",why:"That's the exit doing its job — bank it. It's not a new entry. Reset and wait for the next pullback."},
+ {scn:"<b>NAS100 4H.</b> Daily uptrend, a clean pullback resuming — but it's <b>30 minutes before a major Fed decision</b> and volatility is flagged HIGH.",a:"WAIT",why:"The setup is valid and Swing rules even allow news — but jumping in right before a Fed print risks a whipsaw against your stop. Optional discipline: let the event pass, take the next clean one."},
+ {scn:"<b>NAS100 4H.</b> Daily uptrend. Price barely dipped — it's still well above the 20-EMA and RSI never rolled down.",a:"WAIT",why:"No genuine pullback yet. Don't manufacture a setup. Wait for a real dip to the EMA before arming the buy-stop."}
+];
+let dIdx=0,dScore=JSON.parse(localStorage.getItem('prosper_sm_drill')||'{"c":0,"n":0}');
+function showDrill(){
+  const d=DRILLS[dIdx];
+  document.getElementById('drillScn').innerHTML=d.scn;
+  document.getElementById('drillFb').style.display='none';
+  document.getElementById('drillNext').style.display='none';
+  document.querySelectorAll('#drillCard .row .btn').forEach(b=>b.disabled=false);
+  document.getElementById('drillScore').innerHTML='Score <b>'+dScore.c+'/'+dScore.n+'</b> · card '+(dIdx+1)+'/'+DRILLS.length;
+}
+function answer(a){
+  const d=DRILLS[dIdx],ok=a===d.a;
+  dScore.n++; if(ok)dScore.c++;
+  localStorage.setItem('prosper_sm_drill',JSON.stringify(dScore));
+  document.querySelectorAll('#drillCard .row .btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('drillFb');
+  fb.style.display='block';
+  fb.innerHTML='<div class="card tight" style="margin-top:12px;border-color:'+(ok?'var(--green)':'var(--red)')+'">'+
+    '<b class="'+(ok?'grn':'red')+'">'+(ok?'✓ Correct':'✗ Not quite')+' — answer: '+d.a+'</b>'+
+    '<p style="margin-top:6px;font-size:.9rem">'+d.why+'</p></div>';
+  document.getElementById('drillNext').style.display='block';
+  document.getElementById('drillScore').innerHTML='Score <b>'+dScore.c+'/'+dScore.n+'</b> · card '+(dIdx+1)+'/'+DRILLS.length;
+  homeProg();
+}
+function nextDrill(){dIdx=(dIdx+1)%DRILLS.length;showDrill();}
+
+/* ---------- home progress ---------- */
+function homeProg(){
+  const seen=Object.keys(mem).length;
+  document.getElementById('homeProg').innerHTML=
+    '<div class="prog"><i style="width:'+(seen/DECK.length*100)+'%"></i></div>'+
+    '<p style="font-size:.85rem;margin:6px 0 0">'+seen+'/'+DECK.length+' cards learned · '+
+    dScore.n+' drills attempted ('+(dScore.n?Math.round(dScore.c/dScore.n*100):0)+'% right)</p>';
+}
+
+/* ---------- walkthrough player (silent auto-advance) ---------- */
+function svgChart(){return '<svg width="160" height="90" viewBox="0 0 160 90">'+
+ '<path d="M8 70 L34 50 L52 58 L66 44 L80 56 L96 30 L120 40 L150 14" stroke="#f0b429" stroke-width="2.5" fill="none"/>'+
+ '<circle cx="80" cy="56" r="5" fill="#2fd07a"/><polygon points="150,12 142,18 152,22" fill="#f0b429"/>'+
+ '<text x="80" y="80" fill="#6b7c8c" font-size="9" text-anchor="middle">pullback → buy → leg</text></svg>';}
+function svgPart(n){return '<div style="width:84px;height:84px;border-radius:18px;background:#1b232c;'+
+ 'border:2px solid #f0b429;display:flex;align-items:center;justify-content:center;'+
+ 'font-size:2.4rem;font-weight:800;color:#f0b429">'+n+'</div>';}
+function svgGlyph(e){return '<div style="font-size:3rem">'+e+'</div>';}
+function svgPass(){return '<div style="font-size:2.2rem;font-weight:800;color:#2fd07a">75%<div style="font-size:.7rem;color:#6b7c8c;font-weight:600;letter-spacing:.05em">FTMO PASS @ 0.5% RISK</div></div>';}
+function svgMkt(){return '<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:230px">'+
+ ['NAS100','XAU(2nd)'].map(function(t,i){return '<span style="font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:999px;background:#1b232c;border:1px solid #27313c;color:'+(i<1?'#f0b429':'#ffb020')+'">'+t+'</span>';}).join('')+'</div>';}
+
+const SLIDES=[
+ {t:"Swing Momentum",p:"One market, one setup, run around your work day.",v:svgChart},
+ {t:"What we trade",p:"NAS100 — the one market that held up everywhere. Longs only.",v:svgMkt},
+ {t:"Part 1 · Trend",p:"Daily: price > 200-day, 50-day > 200-day. No uptrend, no trade.",v:function(){return svgPart('1');}},
+ {t:"Part 2 · Pullback",p:"On the 4H, a dip back to the 20-EMA — the discount.",v:function(){return svgPart('2');}},
+ {t:"Part 3 · Trigger",p:"Buy-stop above the pullback high — only fills if it resumes up.",v:function(){return svgPart('3');}},
+ {t:"Part 4 · Stop",p:"Below the pullback low. Out small if it was a reversal.",v:function(){return svgPart('4');}},
+ {t:"Part 5 · Target",p:"Take 2× your risk; back-stop after ~5 days. ~2-day hold.",v:function(){return svgPart('5');}},
+ {t:"Risk",p:"0.5% per trade — best FTMO odds. Never force a trade.",v:function(){return svgGlyph('🛡️');}},
+ {t:"Does it pass?",p:"75% pass at 0.5% risk (net); ~1 in 4 still blow. Real, not certain.",v:svgPass},
+ {t:"Your routine",p:"4 quick checks a day · place or pass · log it · stay disciplined.",v:function(){return svgGlyph('🎯');}}
+];
+const CAPS=["Swing momentum: one market, one setup, a couple of 2-minute checks around your work day.",
+ "We trade the Nasdaq — the one market that stayed profitable in every test, including the hidden 2026. Longs only. Gold is a tentative second to paper-trade.",
+ "Part one: a proven daily uptrend. Price above the 200-day, and the 50-day above the 200-day. If not, we do nothing.",
+ "Part two: wait for a pullback on the 4-hour — a dip back to the 20-EMA. That's our discount inside the trend.",
+ "Part three: place a buy-stop just above the pullback's high. It only fills if price turns back up — the confirmation is built into the order.",
+ "Part four: the stop sits just below the pullback low. If the dip was really a reversal, you're out small.",
+ "Part five: take profit at twice your risk, and exit anyway after about five days. Average hold, two days.",
+ "Risk keeps you in the game: half a percent per trade is the sweet spot, and you never force a trade that isn't there.",
+ "Ten thousand simulated challenges: at half a percent it passes about 75% of the time, after financing. Real, repeatable — not a guarantee.",
+ "Your job: four quick check-ins, place the order or pass, and log every trade honestly. Discipline is the edge."];
+
+let wi=0, wTimer=null;
+function wPad(n){return (n+1<10?'0':'')+(n+1);}
+function wShow(){
+  const s=SLIDES[wi];
+  document.getElementById('wVis').innerHTML=s.v();
+  document.getElementById('wTitle').textContent=s.t;
+  document.getElementById('wPoint').textContent=s.p;
+  document.getElementById('wCap').textContent=CAPS[wi];
+  document.getElementById('wIdx').textContent=wi+1;
+  document.getElementById('wBar').style.width=((wi+1)/SLIDES.length*100)+'%';
+}
+function wToggle(){
+  if(wTimer){clearInterval(wTimer);wTimer=null;document.getElementById('wPlay').textContent='▶  Play';}
+  else{document.getElementById('wPlay').textContent='❚❚ Pause';
+    wTimer=setInterval(function(){ if(wi<SLIDES.length-1){wGo(1);} else {clearInterval(wTimer);wTimer=null;document.getElementById('wPlay').textContent='↻  Replay';} },6000);}
+}
+function wGo(d){wi=(wi+d+SLIDES.length)%SLIDES.length;wShow();}
+wShow();
+
+buildQueue(); showDrill(); homeProg();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){});}
+</script>
+</body>
+</html>

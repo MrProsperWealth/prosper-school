@@ -1,0 +1,22 @@
+WEBVTT
+
+00:00.000 --> 00:06.000
+Open OANDA:XAUUSD on the one hour chart with the PROSPER marker visible.
+
+00:06.000 --> 00:12.000
+Read the marker state first. It slows you down, but the checklist still decides.
+
+00:12.000 --> 00:18.000
+Box the Asian range from 0000 to 0700 UK time. Mark high, low, and midline.
+
+00:18.000 --> 00:25.000
+Judge the quality. More than eight updates or one candle dominating the box means no trade.
+
+00:25.000 --> 00:32.000
+Wait for the H1 candle close outside the range. A wick outside the box is not enough.
+
+00:32.000 --> 00:39.000
+After the close, plan entry, opposite-box stop, and the 2R target before any action.
+
+00:39.000 --> 00:46.000
+Journal the marker state, range quality, news check, decision, result in R, and lesson learned.

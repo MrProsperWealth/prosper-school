@@ -5,552 +5,981 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0f13">
 <link rel="manifest" href="./manifest.json">
-<title>PROSPER — Swing Momentum School</title>
+<title>PROSPER Gold H1 School</title>
 <style>
 :root{
   --bg:#0b0f13; --panel:#141a21; --panel2:#1b232c; --line:#27313c;
   --ink:#e8eef5; --dim:#9fb0c0; --faint:#6b7c8c;
   --gold:#f0b429; --green:#2fd07a; --red:#ff5c5c; --amber:#ffb020; --cyan:#39c0d8;
-  --r:14px;
+  --blue:#7aa2ff; --r:14px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--ink);
   font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-body{padding:0 16px 110px;max-width:760px;margin:0 auto;-webkit-font-smoothing:antialiased}
-h1,h2,h3{line-height:1.25;margin:0 0 .5em}
-h1{font-size:1.5rem;letter-spacing:-.02em}
-h2{font-size:1.15rem;color:var(--gold);margin-top:1.6em}
-h3{font-size:1rem;color:var(--cyan)}
-p{margin:.5em 0;color:var(--dim)}
-strong{color:var(--ink)}
-.gold{color:var(--gold)} .grn{color:var(--green)} .red{color:var(--red)} .amb{color:var(--amber)}
-header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 70%,transparent);
-  padding:14px 0 10px;display:flex;align-items:center;gap:10px}
-header .logo{width:34px;height:34px;border-radius:9px;background:
-  conic-gradient(from 210deg,var(--gold),#7a5a12);display:grid;place-items:center;
-  font-weight:800;color:#0b0f13;font-size:15px}
-header .t{font-weight:700;font-size:1.02rem}
-header .s{font-size:.72rem;color:var(--faint);letter-spacing:.04em;text-transform:uppercase}
-nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;
-  gap:2px;padding:7px 6px calc(7px + env(safe-area-inset-bottom));
-  background:rgba(11,15,19,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
-nav button,nav a{flex:1;max-width:120px;background:none;border:0;color:var(--faint);
-  font:600 .62rem/1 inherit;letter-spacing:.03em;padding:6px 2px;border-radius:10px;text-decoration:none;
+body{padding:0 16px 112px;max-width:780px;margin:0 auto;-webkit-font-smoothing:antialiased}
+h1,h2,h3{line-height:1.22;margin:0 0 .5em;letter-spacing:0}
+h1{font-size:1.7rem} h2{font-size:1.18rem;color:var(--gold);margin-top:.2em} h3{font-size:1rem;color:var(--cyan)}
+p{margin:.55em 0;color:var(--dim)} strong{color:var(--ink)}
+a{color:var(--gold)} button,input,textarea,select{font:inherit}
+.gold{color:var(--gold)} .grn{color:var(--green)} .red{color:var(--red)} .amb{color:var(--amber)} .cyan{color:var(--cyan)}
+	header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--bg) 72%,transparent);
+	  padding:14px 0 10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+	.logo{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 210deg,var(--gold),#7a5a12);
+	  display:grid;place-items:center;font-weight:900;color:#0b0f13}
+	header .t{font-weight:800;font-size:1.02rem} header .s{font-size:.72rem;color:var(--faint);letter-spacing:.04em;text-transform:uppercase}
+	.learnerSwitch{margin-left:auto;display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:4px}
+	.learnerSwitch button{border:0;border-radius:8px;background:transparent;color:var(--faint);font-weight:900;padding:7px 10px;cursor:pointer}
+	.learnerSwitch button.on{background:var(--gold);color:#0b0f13}
+	@media(max-width:520px){.learnerSwitch{width:100%;margin-left:0}.learnerSwitch button{flex:1}}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:flex-start;gap:2px;
+  padding:7px 6px calc(7px + env(safe-area-inset-bottom));background:rgba(11,15,19,.94);
+  backdrop-filter:blur(12px);border-top:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 68px;background:none;border:0;color:var(--faint);
+  font:700 .58rem/1 inherit;letter-spacing:.03em;padding:7px 2px;border-radius:10px;
   display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;text-transform:uppercase}
-nav button .i,nav a .i{font-size:1.18rem;line-height:1}
-nav button.on{color:var(--gold)}
-section{display:none;animation:f .25s ease} section.on{display:block}
+nav button .i{font-size:1.16rem;line-height:1} nav button.on{color:var(--gold);background:rgba(240,180,41,.08)}
+section{display:none;animation:f .24s ease} section.on{display:block}
 @keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:12px 0}
-.card.tight{padding:13px 15px}
-.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;
-  background:var(--panel2);color:var(--dim);border:1px solid var(--line)}
-.pill.go{color:#0b0f13;background:var(--green);border-color:var(--green)}
-.pill.wait{color:#0b0f13;background:var(--amber);border-color:var(--amber)}
-.pill.no{color:#fff;background:var(--red);border-color:var(--red)}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.tight{padding:13px 15px}.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}.heroGrid{grid-template-columns:1.15fr .85fr}}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--panel2);
+  color:var(--dim);border:1px solid var(--line);text-transform:uppercase;letter-spacing:.04em}
+.pill.go{color:#07110b;background:var(--green);border-color:var(--green)} .pill.wait{color:#120c00;background:var(--amber);border-color:var(--amber)}
+.pill.no{color:#fff;background:var(--red);border-color:var(--red)} .pill.info{color:#071014;background:var(--cyan);border-color:var(--cyan)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+@media(min-width:560px){.kpis{grid-template-columns:repeat(4,1fr)}}
 .kpi{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 8px;text-align:center}
-.kpi .v{font-size:1.32rem;font-weight:800}.kpi .l{font-size:.66rem;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
-table{width:100%;border-collapse:collapse;font-size:.83rem;margin:8px 0}
-th,td{padding:7px 6px;text-align:right;border-bottom:1px solid var(--line)}
-th:first-child,td:first-child{text-align:left;color:var(--dim)}
-th{color:var(--faint);font-weight:600;font-size:.72rem;text-transform:uppercase}
-.gate{display:flex;gap:11px;align-items:flex-start;margin:11px 0}
-.gate .n{flex:none;width:30px;height:30px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);
-  display:grid;place-items:center;font-weight:800;color:var(--gold)}
-.gate .b{font-size:.92rem}.gate .b small{color:var(--faint);display:block;font-size:.8rem;margin-top:2px}
-.btn{display:block;width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);
-  background:var(--panel2);color:var(--ink);font:700 .95rem inherit;cursor:pointer;margin:7px 0}
-.btn.gold{background:var(--gold);color:#0b0f13;border-color:var(--gold)}
-.btn:disabled{opacity:.5}
-.row{display:flex;gap:8px}.row .btn{margin:7px 0}
-.fc{min-height:230px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer}
-.fc .q{font-size:1.18rem;font-weight:700}
-.fc .a{font-size:1rem;color:var(--dim);margin-top:14px;border-top:1px dashed var(--line);padding-top:14px}
-.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}
-.rate button{padding:11px 4px;border-radius:11px;border:1px solid var(--line);background:var(--panel2);
-  color:var(--ink);font:700 .8rem inherit;cursor:pointer}
-.rate small{font-weight:500;color:var(--faint)}
-.rate .again{color:var(--red)}.rate .hard{color:var(--amber)}.rate .good{color:var(--green)}.rate .easy{color:var(--cyan)}
-.prog{height:6px;border-radius:99px;background:var(--panel2);overflow:hidden;margin:6px 0}
-.prog>i{display:block;height:100%;background:var(--gold);transition:width .3s}
-.note{font-size:.85rem;color:var(--faint);border-left:2px solid var(--line);padding:2px 0 2px 11px;margin:10px 0}
-.scn{font-size:.95rem}
-.muted{color:var(--faint)}
-ul{margin:.4em 0;padding-left:1.1em}li{margin:.3em 0;color:var(--dim)}
-.tag{font-size:.7rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
-a{color:var(--gold)}
-.center{text-align:center}
-.big{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+.kpi .v{font-size:1.18rem;font-weight:900}.kpi .l{font-size:.65rem;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.note{font-size:.86rem;color:var(--faint);border-left:2px solid var(--line);padding:2px 0 2px 11px;margin:10px 0}
+.rule{background:rgba(47,208,122,.08);border:1px solid rgba(47,208,122,.28);border-radius:12px;padding:12px;color:var(--ink);font-weight:800}
+.warn{background:rgba(255,92,92,.09);border:1px solid rgba(255,92,92,.36);border-radius:12px;padding:12px;color:var(--ink);font-weight:800;margin:10px 0}
+.amberBox{background:rgba(255,176,32,.09);border:1px solid rgba(255,176,32,.32);border-radius:12px;padding:12px;color:var(--ink);margin:10px 0}
+.step{display:flex;gap:11px;align-items:flex-start;margin:11px 0}.step .n{flex:none;width:30px;height:30px;border-radius:9px;background:var(--panel2);
+  border:1px solid var(--line);display:grid;place-items:center;font-weight:900;color:var(--gold)}
+.step small{display:block;color:var(--faint);font-size:.82rem;margin-top:2px}.tag{font-size:.7rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+.btn{display:block;width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--ink);font-weight:800;cursor:pointer;margin:7px 0;text-align:center}.btn.gold{background:var(--gold);color:#0b0f13;border-color:var(--gold)}
+.btn.good{background:rgba(47,208,122,.12);border-color:rgba(47,208,122,.45)} .btn.bad{background:rgba(255,92,92,.10);border-color:rgba(255,92,92,.35)}
+.row{display:flex;gap:8px}.row .btn{margin:7px 0}.muted{color:var(--faint)} ul{margin:.4em 0;padding-left:1.1em} li{margin:.3em 0;color:var(--dim)}
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin:8px 0} th,td{padding:7px 6px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;color:var(--dim)} th{color:var(--faint);font-weight:700;font-size:.72rem;text-transform:uppercase}
+.chart{position:relative;height:270px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:
+  linear-gradient(to bottom,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 34px,
+  linear-gradient(to right,rgba(255,255,255,.025) 1px,transparent 1px) 0 0/44px 100%,#101720}
+.asia{position:absolute;left:7%;right:40%;top:32%;height:31%;border:2px solid rgba(57,192,216,.72);background:rgba(57,192,216,.12)}
+.asia:before{content:"ASIAN RANGE";position:absolute;top:-24px;left:0;color:var(--cyan);font-size:.68rem;font-weight:900;letter-spacing:.06em}
+.mid{position:absolute;left:7%;right:40%;top:47.5%;border-top:1px dashed rgba(57,192,216,.75)}
+.level{position:absolute;left:4%;right:4%;height:1px;background:rgba(240,180,41,.65)}.level.high{top:32%}.level.low{top:63%}
+.level.high:after{content:"high";position:absolute;right:5px;top:-18px;color:var(--gold);font-size:.72rem;font-weight:800}
+.level.low:after{content:"low";position:absolute;right:5px;top:4px;color:var(--gold);font-size:.72rem;font-weight:800}
+.path{position:absolute;left:8%;right:8%;top:18%;height:65%;background:
+  linear-gradient(110deg,transparent 0 11%,#738295 11.5% 12.2%,transparent 12.8% 19%,#738295 19.5% 20.2%,transparent 20.8% 28%,#738295 28.5% 29.3%,transparent 30% 39%,#738295 39.5% 40.3%,transparent 41% 51%,var(--green) 51.5% 52.7%,transparent 53.5% 60%,var(--green) 60.5% 61.8%,transparent 62.5% 71%,var(--green) 71.5% 72.8%,transparent 73.5% 82%,var(--green) 82.5% 83.6%,transparent 84%);
+  opacity:.95}
+.breakLabel{position:absolute;right:8%;top:24%;background:var(--green);color:#07110b;padding:5px 8px;border-radius:8px;font-weight:900;font-size:.72rem}
+.stopLabel,.targetLabel{position:absolute;right:8%;padding:4px 7px;border-radius:7px;font-weight:900;font-size:.7rem}.targetLabel{top:8%;background:rgba(47,208,122,.16);color:var(--green);border:1px solid rgba(47,208,122,.4)}.stopLabel{top:70%;background:rgba(255,92,92,.14);color:var(--red);border:1px solid rgba(255,92,92,.38)}
+.stateTable{display:grid;gap:6px}.state{display:flex;justify-content:space-between;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px 10px}.state b{font-size:.86rem}.state span{color:var(--faint);font-size:.84rem;text-align:right}
+.lesson{border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin:9px 0;overflow:hidden}.lesson button{width:100%;border:0;background:transparent;color:var(--ink);padding:13px 14px;text-align:left;font-weight:900;cursor:pointer}.lesson .body{display:none;padding:0 14px 14px}.lesson.open .body{display:block}
+.fc{min-height:220px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer}.fc .q{font-size:1.16rem;font-weight:900}.fc .a{display:none;font-size:1rem;color:var(--dim);margin-top:14px;border-top:1px dashed var(--line);padding-top:14px}.fc.show .a{display:block}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}.rate button{padding:10px 3px;border-radius:11px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);font:800 .78rem inherit;cursor:pointer}.rate small{display:block;font-weight:600;color:var(--faint)}
+.drillBox{min-height:220px}.choice{display:grid;grid-template-columns:1fr;gap:7px;margin-top:10px}.choice button{padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--panel2);color:var(--ink);font-weight:800;text-align:left}
+	.feedback{display:none;border-radius:12px;padding:12px;margin-top:10px}.feedback.good{display:block;background:rgba(47,208,122,.1);border:1px solid rgba(47,208,122,.35)}.feedback.bad{display:block;background:rgba(255,92,92,.1);border:1px solid rgba(255,92,92,.35)}
+	.ruleChecks{display:grid;gap:6px;margin-top:10px}.ruleCheck{border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.03);padding:7px 9px;font-size:.84rem}.ruleCheck.pass{border-color:rgba(47,208,122,.35);color:var(--green)}.ruleCheck.block{border-color:rgba(255,92,92,.35);color:var(--red)}
+	.practiceHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.practiceHead .pill{white-space:nowrap}
+	video{width:100%;border-radius:13px;border:1px solid var(--line);background:#000;display:block;margin:10px 0}
+	.videoMeta{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+	@media(min-width:640px){.videoMeta{grid-template-columns:repeat(3,1fr)}}
+	.videoMeta div{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px}
+	.videoMeta b{display:block;color:var(--gold);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+	.videoList{display:grid;grid-template-columns:1fr;gap:12px}.videoList h3{margin-top:6px}
+	@media(min-width:720px){.videoList{grid-template-columns:1fr 1fr}}
+	.transcript{border:1px solid var(--line);border-radius:10px;background:var(--panel2);padding:10px;margin-top:8px}.transcript summary{cursor:pointer;font-weight:900;color:var(--gold)}.cue{border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}.cue b{display:block;color:var(--ink)}
+	.miniChart{position:relative;height:190px;border:1px solid var(--line);border-radius:13px;overflow:hidden;background:
+  linear-gradient(to bottom,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 32px,
+  linear-gradient(to right,rgba(255,255,255,.025) 1px,transparent 1px) 0 0/48px 100%,#101720;margin:10px 0}
+.miniBox{position:absolute;left:8%;right:42%;top:34%;height:31%;border:2px solid rgba(57,192,216,.75);background:rgba(57,192,216,.1)}
+.miniLine{position:absolute;left:4%;right:4%;height:1px;background:rgba(240,180,41,.65)}.miniLine.h{top:34%}.miniLine.l{top:65%}
+.miniCandle{position:absolute;width:9px;border-radius:4px;background:#738295;bottom:45%;height:40px;box-shadow:18px -8px 0 #738295,36px 5px 0 #738295,54px -3px 0 #738295,72px 7px 0 #738295}
+.miniCandle.break{left:62%;bottom:62%;height:56px;background:var(--green);box-shadow:22px -8px 0 var(--green),44px -18px 0 var(--green)}
+.miniCandle.messy{left:18%;bottom:25%;height:96px;background:var(--red);box-shadow:32px 20px 0 #738295,64px -18px 0 var(--amber),96px 32px 0 #738295}
+.miniChart.messy .miniBox{border-color:rgba(255,92,92,.72);background:rgba(255,92,92,.08)}
+.miniChart.short .miniCandle.break{bottom:20%;background:var(--red);box-shadow:22px 8px 0 var(--red),44px 18px 0 var(--red)}
+	.calcGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.calcGrid label{margin-top:0}
+	.calcResult{background:rgba(47,208,122,.08);border:1px solid rgba(47,208,122,.28);border-radius:12px;padding:12px;margin-top:10px;font-weight:800}
+	.tutorBox{border:1px solid var(--line);border-radius:13px;background:var(--panel2);padding:13px;margin:10px 0}
+	.tutorBox h3{font-size:1.08rem;margin:.15em 0 .35em}.tutorScript{white-space:pre-wrap;color:var(--dim);font-size:.94rem;border-left:2px solid var(--gold);padding-left:11px;margin:10px 0}
+	.tutorAsk{background:rgba(57,192,216,.08);border:1px solid rgba(57,192,216,.28);border-radius:11px;padding:10px;margin:10px 0;color:var(--ink);font-weight:800}
+	.tutorNav{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tutorNav .btn{margin:0}
+label{display:block;font-size:.76rem;color:var(--faint);font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin:9px 0 4px}
+	input,textarea,select{width:100%;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;padding:10px} textarea{min-height:82px;resize:vertical}
+	.checkline{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}.checkline input{width:auto;margin-top:4px}.checkline span{color:var(--dim)}
+	.journalList{display:grid;gap:8px;margin-top:10px}.entry{border:1px solid var(--line);border-radius:11px;background:var(--panel2);padding:10px}.entry b{color:var(--gold)}
+	.prog{height:7px;border-radius:99px;background:var(--panel2);overflow:hidden;margin:7px 0}.prog i{display:block;height:100%;background:var(--gold);width:0}
+	.qaTable{font-size:.78rem}.qaTable th,.qaTable td{text-align:left}.studyGrid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:720px){.studyGrid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <header>
   <div class="logo">P</div>
-  <div><div class="t">PROSPER <span class="gold">Swing</span></div>
-  <div class="s">NAS100 Momentum School</div></div>
+  <div><div class="t">PROSPER <span class="gold">Gold H1</span></div><div class="s">Asian Range Breakout School</div></div>
+  <div class="learnerSwitch" aria-label="Learner profile">
+    <button type="button" data-learner="david" onclick="setLearner('david')">David</button>
+    <button type="button" data-learner="gemma" onclick="setLearner('gemma')">Gemma</button>
+  </div>
 </header>
 
-<!-- ============ HOME ============ -->
 <section id="home" class="on">
-  <img src="./art/hero.png" alt="" style="width:100%;border-radius:14px;display:block;
-    margin:12px 0;border:1px solid var(--line)">
-  <div class="card">
-    <span class="pill">THE EDGE</span>
-    <h1 style="margin-top:10px">Buy the pullback in a<br>strong uptrend. Ride the leg.</h1>
-    <p>The Nasdaq trends up. After a short <strong>1–2 day pullback</strong> it usually resumes.
-    We buy that resumption with defined risk, aim for <strong>2× our risk</strong>, and we're out
-    in a couple of days. One market, longs only, fully rule-based. Validated on 8.5 years with a
-    hidden 2026 hold-out it was never tuned on.</p>
-    <div class="kpis">
-      <div class="kpi"><div class="v gold">1.4<span style="font-size:.8rem">/wk</span></div><div class="l">trades</div></div>
-      <div class="kpi"><div class="v grn">+0.09R</div><div class="l">per trade · net</div></div>
-      <div class="kpi"><div class="v">75%</div><div class="l">FTMO pass</div></div>
+  <div class="grid2 heroGrid">
+    <div class="card">
+      <span class="pill info">the whole game</span>
+      <h1 style="margin-top:10px">One box. One breakout. No marker, no trade.</h1>
+      <p>XAU/USD builds an Asian range overnight. Your job is to judge whether the box is clean, wait for an H1 close outside it with daily bias and H1 EMA alignment, then plan risk mechanically. DXY stays visible as context unless a separate test proves it as a filter.</p>
+      <p><strong>R means one unit of risk.</strong> A +2R win returns twice what you risked. A -1R loss costs exactly what you risked.</p>
+      <div class="rule">If the marker and checklist do not show the trade, the correct trade is no trade.</div>
+	      <div class="kpis">
+	        <div class="kpi"><div class="v gold">183</div><div class="l">tested trades</div></div>
+	        <div class="kpi"><div class="v grn">58.8%</div><div class="l">OOS win</div></div>
+	        <div class="kpi"><div class="v grn">+0.479R</div><div class="l">OOS avg</div></div>
+	        <div class="kpi"><div class="v cyan">2.56</div><div class="l">OOS PF</div></div>
+	      </div>
+	      <p class="note">This is a positive-expectancy 2R model, not a promise of winning every day. Full-history win rate is about 50.3%; out-of-sample win rate is about 58.8%; 2026/HOLD has only 3 trades so far.</p>
+	      <div class="amberBox"><strong>Small-sample warning:</strong> the 2026 figure is 3 trades. This is not a live track record. The 183-trade backtest is the evidence base, and the first goal is skill, screenshots, and a 60-day journal.</div>
     </div>
-    <p class="note">This is the model the lab actually validated — a calm <strong>swing</strong>
-    momentum system, not a screen-watching scalp. ~1.4 trades a week: most check-ins, you do nothing.
-    That's the discipline, and it's the point.</p>
+    <div class="chart" aria-label="Visual model of the XAU H1 Asian range breakout">
+      <div class="level high"></div><div class="level low"></div><div class="asia"></div><div class="mid"></div><div class="path"></div>
+      <div class="targetLabel">2R target</div><div class="breakLabel">H1 close breakout</div><div class="stopLabel">stop opposite range</div>
+    </div>
   </div>
   <div class="card tight">
-    <div class="tag">your progress</div>
+    <div class="tag">today's learning sprint</div>
     <div id="homeProg"></div>
-  </div>
-  <div class="card tight">
-    <h3>How to use this</h3>
-    <p style="font-size:.9rem"><strong class="gold">Learn</strong> the 5-part setup →
-    <strong class="gold">Cards</strong> daily (5 min) → <strong class="gold">Drills</strong> to
-    train your eye → <strong class="gold">Proof</strong> for the real numbers → place buy-stop
-    orders around your work day and <strong class="gold">Log</strong> every trade.</p>
+    <div class="step"><div class="n">1</div><div><strong>Watch the picture</strong><small>Asian box, clean range, breakout close, stop, 2R.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Do retrieval before rereading</strong><small>Cards first. Your brain has to pull the rules out, not just recognise them.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>Run mixed drills</strong><small>Clean/messy, bias, news, and 2R calculation are mixed because live charts are mixed.</small></div></div>
+    <div class="step"><div class="n">4</div><div><strong>Journal the decision</strong><small>Allowed or blocked. A skipped bad trade counts as progress.</small></div></div>
   </div>
 </section>
 
-<!-- ============ LEARN ============ -->
 <section id="learn">
   <div class="card">
-    <span class="pill">LESSON 1</span><h2 style="margin-top:8px">The big idea</h2>
-    <p>The Nasdaq 100 is a long-term <strong>uptrend machine</strong>. Inside that trend it pauses
-    and pulls back for a day or two — profit-taking, a small shake-out — and then the bigger buyers
-    step back in and it <strong>resumes higher</strong>.</p>
-    <p>We don't predict tops or bottoms. We confirm the trend is up, wait for a pullback, and buy
-    only when price <strong>turns back up</strong> and proves the leg is resuming. Risk is fixed,
-    the target is twice the risk, and we hold for a couple of days. <strong>Longs only —
-    momentum continuation.</strong></p>
+    <span class="pill">step by step</span>
+    <h2>Learn The Model</h2>
+    <p>Short lessons first, then active recall. Open one, teach it back out loud, then close it and answer the cards.</p>
+    <div id="lessons"></div>
   </div>
-
   <div class="card">
-    <span class="pill">LESSON 2</span><h2 style="margin-top:8px">The setup — 5 parts</h2>
-    <p>One market, one setup. Read it on the <strong>4-hour close</strong>, set a pending order,
-    walk away.</p>
-    <div class="gate"><div class="n">1</div><div class="b"><strong class="gold">Trend (daily)</strong> —
-      daily close above the 200-day average, and the 50-day above the 200-day.
-      <small>The Nasdaq must be proven up. No daily uptrend = no trade. We never short this model.</small></div></div>
-    <div class="gate"><div class="n">2</div><div class="b"><strong class="gold">Pullback (4H)</strong> —
-      price dips back to the 20-period EMA, or the 4-hour RSI rolls down.
-      <small>A normal pause inside the trend — the discount we want to buy.</small></div></div>
-    <div class="gate"><div class="n">3</div><div class="b"><strong class="gold">Trigger</strong> —
-      a buy-STOP just above the pullback bar's high.
-      <small>It only fills if price turns back up and breaks higher. No resumption, no fill — that's
-      the confirmation built in.</small></div></div>
-    <div class="gate"><div class="n">4</div><div class="b"><strong class="gold">Stop</strong> —
-      below the pullback low (about 1×ATR of room).
-      <small>Your disaster guard. If the pullback was actually a reversal, you're out small.</small></div></div>
-    <div class="gate"><div class="n">5</div><div class="b"><strong class="gold">Target &amp; time</strong> —
-      take profit at <strong>2× your risk</strong>; back-stop exit after ~5 days.
-      <small>Average hold ~2 days. Win ~42% — but at 2R, four wins pay for six losses and then some.</small></div></div>
+    <span class="pill go">funded model path</span>
+    <h2>Eight Modules</h2>
+    <div class="step"><div class="n">1</div><div><strong>What counts as a trade</strong><small>Only the tested breakout-close model can move toward funded use.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Asian box</strong><small>High, low, midline, updates, and spike quality.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>Breakout close</strong><small>H1 close first, then next-candle/open execution plan.</small></div></div>
+    <div class="step"><div class="n">4</div><div><strong>Skip rules</strong><small>Messy range, news, work interruption, optional shock overlay, rollover.</small></div></div>
+    <div class="step"><div class="n">5</div><div><strong>Risk</strong><small>0.25% start, 2R daily stop, no revenge trades.</small></div></div>
+    <div class="step"><div class="n">6</div><div><strong>Journal</strong><small>TradeNote-ready proof, screenshots, and lesson learned.</small></div></div>
+    <div class="step"><div class="n">7</div><div><strong>Replay</strong><small>TradingView reps before demo and funded fees.</small></div></div>
+    <div class="step"><div class="n">8</div><div><strong>Readiness</strong><small>60 days, 20 documented decisions, 10 marker QA sessions.</small></div></div>
   </div>
-
   <div class="card">
-    <span class="pill">LESSON 3</span><h2 style="margin-top:8px">The market</h2>
-    <p>We tested this exact setup on many markets across 8.5 years with a hidden 2026 hold-out.
-    <strong>NAS100 is the one that holds up everywhere</strong> — positive in every period.</p>
-    <ul>
-      <li><strong class="gold">NAS100</strong> (the core) — 1.4 trades/wk, +0.12R, PF 1.20, positive
-      in 2018–23, 2024, 2025 <em>and</em> the hidden 2026.</li>
-      <li><strong class="amb">Gold (XAU)</strong> — a <em>tentative</em> second to paper-trade: it's
-      profitable out-of-sample and <strong>uncorrelated</strong> to the Nasdaq (so it smooths the
-      curve and could roughly double your trade count), but its edge only shows up in recent years —
-      so lower conviction. Demo it; don't rely on it yet.</li>
-    </ul>
-    <p class="note"><strong>What failed:</strong> GBP/JPY, oil, EUR/USD, GBP/USD, USD/JPY, and even
-    the DAX (it failed the 2026 hold-out). Discipline means trading what the data supports — one
-    market done well beats five done loosely.</p>
-  </div>
-
-  <div class="card">
-    <span class="pill">LESSON 4</span><h2 style="margin-top:8px">Risk &amp; FTMO (accurate)</h2>
-    <p>FTMO <strong>2-Step Swing, £10k</strong> (confirmed on ftmo.com, 2026):</p>
-    <ul>
-      <li>Make <strong>+10%</strong> in Phase 1 (Challenge), then <strong>+5%</strong> in Phase 2 (Verification).</li>
-      <li>Never lose <strong>−5% in a single day</strong> (resets at midnight Prague time).</li>
-      <li>Never lose <strong>−10% overall</strong> (max loss).</li>
-      <li>Trade on at least <strong>4 days</strong> each phase. <strong>No time limit.</strong></li>
-      <li>Keep <strong>80%</strong> of profits (rising to <strong>90%</strong> via the Scaling Plan).</li>
-    </ul>
-    <p class="note"><strong>Swing account perks:</strong> you may <em>hold over weekends</em> and
-    <em>trade through news</em> — both allowed. So skipping event days is <em>your</em> optional
-    discipline, not a rule.</p>
-    <p>Position size by <strong>risk, not lots</strong>: <strong>0.5% per trade</strong> is the sweet
-    spot. The honest trade-off, from 10,000 simulated challenges:</p>
-    <table>
-      <tr><th>Risk/trade</th><th>Pass +10%</th><th>Blow −10%</th></tr>
-      <tr><td>0.50%</td><td class="grn">75%</td><td class="amb">25%</td></tr>
-      <tr><td>0.75%</td><td>65%</td><td>35%</td></tr>
-      <tr><td>1.00%</td><td>58%</td><td class="red">42%</td></tr>
-    </table>
-    <p class="note">These pass-rates are <strong>net of financing</strong> (the real ~−6%/yr swap you
-    pay to hold NAS100 long overnight). ~£27/month on a £10k account at 0.5% — <em>modest in
-    pounds</em>. The real money is the path: pass (75%) → trade <strong>their</strong> capital →
-    scale the funded account over time. The edge is the hard part. You now have one.</p>
-  </div>
-
-  <div class="card">
-    <span class="pill">LESSON 5</span><h2 style="margin-top:8px">The working-day routine</h2>
-    <p>You work 8:30–4:30 with lunch 12–1. The Nasdaq 4-hour candle closes a few times across your
-    day — glance at <strong>4 of them</strong>, 2 minutes each:</p>
-    <ul>
-      <li><strong>Before work (~07:00)</strong> · <strong>lunch (12–1)</strong> ·
-      <strong>after work (~17:30)</strong> · <strong>evening (~21:30)</strong>.</li>
-      <li>Setup forming? Place the <span class="pill go">buy-stop + stop + 2R</span> pending order. Walk away.</li>
-      <li>Nothing there? <strong>Place nothing.</strong> ~1.4 trades a week means most glances = do nothing.</li>
-      <li>Log every trade — entry, exit, R, and <strong>did I follow the rules? (Y/N)</strong>.</li>
-    </ul>
-    <p class="note">No forced trades. If there's no setup, you sit. The phone alert (when it's wired)
-    will ping you the exact order so you never have to watch the screen.</p>
+    <span class="pill wait">context is not signal</span>
+    <h2>Keep The Edge Clean</h2>
+    <p>PO3, gap closure, DXY, UKDT-style levels, and red news can help you understand the day. They do not become funded entry rules until they beat the baseline in testing.</p>
+    <div class="rule">Signal = clean Asian range + daily bias + H1 EMA stack + H1 breakout close + no lockout. Context can explain. It cannot override.</div>
   </div>
 </section>
 
-<!-- ============ CARDS (FSRS) ============ -->
-<section id="cards">
-  <div class="card tight">
-    <div class="tag">spaced repetition · FSRS-lite</div>
-    <div class="prog"><i id="cardBar" style="width:0%"></i></div>
-    <div id="cardCount" style="font-size:.8rem;color:var(--faint)"></div>
+<section id="marker">
+  <div class="card">
+    <span class="pill info">tradingview setup</span>
+    <h2>Marker Setup</h2>
+    <div class="amberBox"><strong>Marker QA gate:</strong> before live or funded use, verify the Asian box, EMA labels, Action row, DXY context, news lockout, breakout-close labels, execution price labels, and stop/TP zones manually on at least 10 historical sessions.</div>
+    <div class="step"><div class="n">1</div><div><strong>Symbol</strong><small>Open <code>OANDA:XAUUSD</code>.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Timeframe</strong><small>Use <code>1h</code>. The strategy is not M5, M15, or H4.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>Indicator</strong><small>Load <code>PROSPER XAU H1 Asian Range Marker v2.2</code>.</small></div></div>
+    <div class="step"><div class="n">4</div><div><strong>Inputs</strong><small>Asian session <code>2300-0600</code> (TradingView sessions use bar OPENS — this makes the box the H1 candles <strong>closing 00:00–06:00 UK</strong>, exactly what was backtested). Watch session <code>0700-1900</code> (signal closes 08:00–19:00 UK). RR 2, max updates 8, max spike 0.65, range/ATR 0.30–3.00, max hold bars 18, keep past marks ON, DXY trade filter off, retest study labels off, shock overlay off unless deliberately enabled.</small></div></div>
+    <div class="amberBox"><strong>Why 2300-0600 and not 0000-0700:</strong> the validated backtest builds the box from H1 candles closing 00:00–06:00 UK. The window-shift test (<code>lab/exp_xau_window_shift.py</code>) shows the tested window carries OOS +0.48R vs +0.26R for the naive midnight box. The marker v2.2 also now enforces the daily SMA50/200 trend filter and the range/ATR gate that the backtest always had — if your old marker showed signals the new one skips, the new one is right. v2.2 additionally auto-marks every signal with a shaded red STOP zone and green TP zone (prices printed in the zone) and keeps past marks on the chart for review — zone length = the 18-hour max hold, so if price is still inside the zone when it ends, you're out.</div>
   </div>
-  <div class="card fc" id="fcard" onclick="flip()">
-    <div class="q" id="fcQ">Loading…</div>
-    <div class="a" id="fcA" style="display:none"></div>
-  </div>
-  <div class="rate" id="rateRow" style="display:none">
-    <button class="again" onclick="rate(1)">Again<br><small>&lt;1d</small></button>
-    <button class="hard" onclick="rate(2)">Hard</button>
-    <button class="good" onclick="rate(3)">Good</button>
-    <button class="easy" onclick="rate(4)">Easy</button>
-  </div>
-  <button class="btn" id="flipBtn" onclick="flip()">Show answer</button>
-  <div class="card tight center" id="doneCard" style="display:none">
-    <div class="big grn">✓</div><p>Deck clear for now. Come back later — each card returns just as
-    you're about to forget it.</p>
-    <button class="btn" onclick="resetToday()">Review all again anyway</button>
-  </div>
-</section>
-
-<!-- ============ DRILLS ============ -->
-<section id="drills">
-  <div class="card tight">
-    <div class="tag">train your eye · GO / WAIT / NO</div>
-    <div id="drillScore" style="font-size:.85rem"></div>
-  </div>
-  <div class="card" id="drillCard">
-    <div class="scn" id="drillScn"></div>
-    <div class="row" style="margin-top:14px">
-      <button class="btn" onclick="answer('GO')">🟢 BUY</button>
-      <button class="btn" onclick="answer('WAIT')">🟠 WAIT</button>
-      <button class="btn" onclick="answer('NO')">🔴 NO TRADE</button>
+  <div class="card">
+    <span class="pill">state table</span>
+    <h2>Read The Marker</h2>
+    <div class="stateTable">
+      <div class="state"><b>WAIT RANGE</b><span>Asian box is still building.</span></div>
+      <div class="state"><b>MESSY RANGE</b><span>Too many updates, one candle dominates, or the range is outside 0.30-3.00 x ATR.</span></div>
+      <div class="state"><b>WAIT SESSION</b><span>Range ready, but watch window not open.</span></div>
+      <div class="state"><b>WAIT DAILY</b><span>Daily SMA50/200 bias and H1 EMA stack are not aligned yet.</span></div>
+      <div class="state"><b>WATCH BREAKOUT</b><span>Clean range and bias are acceptable. Wait for H1 close.</span></div>
+      <div class="state"><b>BREAKOUT CLOSE</b><span>The tested signal has printed. Plan next-candle/open execution or journal the skip.</span></div>
+      <div class="state"><b>RETEST STUDY ONLY <span class="pill no">no funded</span></b><span>Hidden by default. Blue dotted study lines only. No funded trade until separately tested.</span></div>
+      <div class="warn">RETEST STUDY ONLY has no backtest coverage for funded use. Studying the pattern on demo is fine; placing a funded trade on it is a rule breach.</div>
+      <div class="state"><b>COOLDOWN</b><span>Shock candle recently fired. Duration is marker-defined. If unsure, skip the session.</span></div>
+      <div class="state"><b>ROLLOVER</b><span>Late-session warning. Spreads widen. Your broker's rollover time may differ; check the exact server-time window before live use.</span></div>
+      <div class="state"><b>LOCKED NEWS</b><span>Manual red-news lockout is on. Cross-check Forex Factory or another live calendar; this is not automatic.</span></div>
+      <div class="amberBox"><strong>v2.2 visuals:</strong> the Asian box is a clear teal outline. EMA 20, EMA 50, and EMA 200 are labelled at the right edge. On a signal, the execution label shows <code>EXEC @ price</code>. The shaded red STOP zone shows the entry-to-stop risk (-1R), and the shaded green TP zone shows entry-to-target (+2R). Prices are printed inside the zones.</div>
+      <div class="amberBox"><strong>18h time exit:</strong> the STOP and TP zones run 18 H1 bars to the right of entry. If price is still inside the zones when they end, the trade is closed. The right edge of the zones is the time exit.</div>
+      <div class="warn"><strong>Action row rule:</strong> the Action row is a plain-English summary of the checklist output, not a replacement for the checklist. <code>BUY next H1 open</code> or <code>SELL next H1 open</code> means the marker has summarised a valid pending execution. <code>WAIT - watch BUY/SELL break</code> means no signal yet. <code>TRADE TAKEN - no re-entry</code> means the day's trade is already used. <code>DON'T TRADE</code> means stand down.</div>
+      <div class="amberBox"><strong>News routine:</strong> check the calendar before London open and again before any planned entry. FOMC/NFP-class red events create a 4h lockout. Do not enter after the event to catch a move that already happened.</div>
     </div>
-    <div id="drillFb" style="display:none"></div>
-    <button class="btn gold" id="drillNext" style="display:none" onclick="nextDrill()">Next →</button>
+  </div>
+  <div class="card">
+    <span class="pill go">qa worksheet</span>
+    <h2>10-Session Marker QA</h2>
+    <p>Use this before funded trading. Every row needs chart evidence, not memory.</p>
+    <table class="qaTable">
+      <tr><th>Check</th><th>Pass Standard</th></tr>
+      <tr><td>Asian box</td><td>High, low, and midline of the H1 candles closing 00:00-06:00 UK match TradingView.</td></tr>
+      <tr><td>Range quality</td><td>Updates <= 8, spike <= 0.65, range 0.30-3.00 x ATR.</td></tr>
+      <tr><td>Breakout candle</td><td>H1 close outside high/low (closes 08:00-19:00 UK only), not wick-only.</td></tr>
+      <tr><td>Trend state</td><td>Daily bias (close>SMA200, SMA50>SMA200) AND H1 EMA stack agree with direction.</td></tr>
+      <tr><td>DXY context</td><td>Recorded as context only unless a later test validates it.</td></tr>
+      <tr><td>Lockouts</td><td>News, optional shock overlay, rollover, and work interruption checked.</td></tr>
+      <tr><td>Risk plan</td><td>Entry, opposite-box stop, 2R target, zone prices, and 18h zone right-edge time exit are clear before action.</td></tr>
+      <tr><td>Action row</td><td>Action text matches the checklist result. It never replaces the checklist.</td></tr>
+    </table>
+    <button class="btn" onclick="exportMarkerQaTemplate()">Export 10-row QA CSV</button>
+  </div>
+  <div class="card">
+    <span class="pill wait">work pattern</span>
+    <h2>Your Day</h2>
+    <p><strong>Before work:</strong> screenshot the box and state table. If messy, log no trade.</p>
+    <p><strong>Lunch 12:15-13:00:</strong> check top-of-hour close and alert state. No trade during calls.</p>
+    <p><strong>State changed?</strong> If it changes to <code>MESSY</code>, <code>LOCKED NEWS</code>, or <code>COOLDOWN</code> between checks, treat the session as no-trade.</p>
+    <p><strong>After work:</strong> journal the decision. Good process first, payouts later.</p>
   </div>
 </section>
 
-<!-- ============ PROOF ============ -->
+<section id="cards">
+  <div class="card">
+    <span class="pill">retrieval practice</span>
+    <h2>Flashcards</h2>
+    <p>Tap to reveal. Rate honestly. Hard cards come back sooner.</p>
+    <div class="prog"><i id="cardProg"></i></div>
+    <div id="flashcard" class="fc"></div>
+    <div class="rate">
+      <button onclick="rateCard(0)" class="red">Again<small>today</small></button>
+      <button onclick="rateCard(1)" class="amb">Hard<small>tomorrow</small></button>
+      <button onclick="rateCard(2)" class="grn">Good<small>3 days</small></button>
+      <button onclick="rateCard(3)" class="cyan">Easy<small>7 days</small></button>
+    </div>
+  </div>
+</section>
+
+<section id="drills">
+  <div class="card drillBox">
+    <span class="pill">phone mini-bytes</span>
+    <h2>Memory And Candle Drills</h2>
+    <p>Phone drills are recall and visual-recognition only. No chart markup, no screenshot questions, no drawing boxes. Answer from the rules and the candle behaviour you would need to recognise live.</p>
+    <div id="drill"></div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="card">
+    <span class="pill info">tradingview demo</span>
+    <h2>Setup To Execution Walkthrough</h2>
+    <p>This is a narrated TradingView training replay using the PROSPER XAU H1 marker. It talks through the rule path from chart setup to execution plan and journaling. It is not a live trade call.</p>
+    <video controls preload="metadata" poster="./media/xau_demos/tradingview_xau_base.png">
+      <source src="./media/xau_demos/xau_h1_setup_to_execution_narrated.mp4" type="video/mp4">
+      <track kind="captions" src="./media/xau_demos/xau_h1_setup_to_execution.vtt" srclang="en" label="English">
+    </video>
+    <div class="videoMeta">
+      <div><b>Watch For</b><span class="muted">Marker state, Action row, Asian box outline, clean/messy filter.</span></div>
+      <div><b>Execution</b><span class="muted">H1 close breakout, EXEC @ price label, red STOP zone, green TP zone.</span></div>
+      <div><b>Afterwards</b><span class="muted">Journal the decision in R, including skipped trades.</span></div>
+    </div>
+    <details class="transcript"><summary>Transcript</summary>
+      <div class="cue"><b>Start with the chart</b> Open OANDA:XAUUSD on H1 with the PROSPER marker visible.</div>
+      <div class="cue"><b>Read the marker</b> The marker slows you down, but the checklist still makes the decision.</div>
+      <div class="cue"><b>Mark the box</b> Draw the H1 candles closing 00:00-06:00 UK. In TradingView that is session <code>2300-0600</code> because sessions use bar opens.</div>
+      <div class="cue"><b>Confirm the close</b> A wick is not enough. The tested model needs the H1 close outside the range.</div>
+      <div class="cue"><b>Read the zones</b> Red is planned stop risk, green is planned target. The right edge of both zones is the 18-hour time exit.</div>
+      <div class="cue"><b>Plan and journal</b> Entry after close, stop opposite range, target 2R, Action row text, then record the decision.</div>
+    </details>
+    <button class="btn" onclick="switchTab('practice')">Do the linked practice rep</button>
+  </div>
+  <div class="card">
+    <span class="pill wait">recording protocol</span>
+    <h2>How We Record New Setups</h2>
+    <div class="step"><div class="n">1</div><div><strong>Before breakout</strong><small>Record the chart with XAUUSD H1 and the marker visible.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>At H1 close</strong><small>Pause and state: clean/messy, daily bias, H1 EMA stack, DXY context, news lockout, allowed or blocked.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>Execution plan</strong><small>Record EXEC @ price, red STOP zone, green TP zone, Action row, and 18h right-edge time exit. Demo only until the readiness gate is complete.</small></div></div>
+  </div>
+  <div class="card">
+    <span class="pill go">visual memory shorts</span>
+    <h2>Video Topics To Record</h2>
+    <p>These videos are for visual recognition, not new rules. Each clip should show one pattern, pause before the answer, then say what the frozen checklist would do.</p>
+    <div class="step"><div class="n">1</div><div><strong>Wick vs close</strong><small>Show a wick outside the box that closes back inside, then a real close outside. Train the eye to wait for the body close.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Clean vs messy candles</strong><small>Show tight contained candles, repeated range expansion, and one giant dominance candle. Name which visual blocks the day.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>False-break rejection</strong><small>Show a candle that stabs through the level and rejects. The memory cue is: long wick plus close back inside equals no signal.</small></div></div>
+    <div class="step"><div class="n">4</div><div><strong>Breakout candle</strong><small>Show a candle body closing beyond the Asian high/low with the buffer. Then show EXEC @ price, STOP zone, TP zone, and the 18h right edge.</small></div></div>
+    <div class="step"><div class="n">5</div><div><strong>Trend stack glance</strong><small>Show daily direction and the H1 EMA 20/50/200 labels. Train the phrase: daily and H1 agree, or stand down.</small></div></div>
+  </div>
+  <div class="card">
+    <span class="pill">scenario library</span>
+    <h2>Focused Replays</h2>
+    <p>Short scenario videos are added as the course grows. Each one isolates one decision so you can practise it before combining everything live.</p>
+    <div class="videoList">
+      <div><h3>Clean vs Messy</h3><video controls preload="metadata" poster="./media/xau_demos/tradingview_xau_base.png"><source src="./media/xau_demos/xau_case_clean_vs_messy.mp4" type="video/mp4"><track kind="captions" src="./media/xau_demos/xau_case_clean_vs_messy.vtt" srclang="en" label="English"></video><details class="transcript"><summary>Transcript</summary><div class="cue">Recognise the Asian range first. One giant candle or repeated expansion blocks the setup.</div></details></div>
+      <div><h3>Wick Is Not Close</h3><video controls preload="metadata" poster="./media/xau_demos/tradingview_xau_base.png"><source src="./media/xau_demos/xau_case_wick_false_breakout.mp4" type="video/mp4"><track kind="captions" src="./media/xau_demos/xau_case_wick_false_breakout.vtt" srclang="en" label="English"></video><details class="transcript"><summary>Transcript</summary><div class="cue">A wick outside the box is not the signal. The H1 candle must close outside the range.</div></details></div>
+      <div><h3>EMA + DXY Context</h3><video controls preload="metadata" poster="./media/xau_demos/tradingview_xau_base.png"><source src="./media/xau_demos/xau_case_ema_dxy_block.mp4" type="video/mp4"><track kind="captions" src="./media/xau_demos/xau_case_ema_dxy_block.vtt" srclang="en" label="English"></video><details class="transcript"><summary>Transcript</summary><div class="cue">EMA is part of the tested filter. DXY is recorded as context unless later testing proves it.</div></details></div>
+      <div><h3>Risk And Journal</h3><video controls preload="metadata" poster="./media/xau_demos/tradingview_xau_base.png"><source src="./media/xau_demos/xau_case_risk_journal.mp4" type="video/mp4"><track kind="captions" src="./media/xau_demos/xau_case_risk_journal.vtt" srclang="en" label="English"></video><details class="transcript"><summary>Transcript</summary><div class="cue">Know R before entry. Journal screenshots, marker state, Action row, zone prices, decision, result, and lesson learned.</div></details></div>
+    </div>
+  </div>
+</section>
+
+<section id="tutor">
+  <div class="card">
+    <span class="pill info">human tutor mode</span>
+    <h2>Speak The Rules Back</h2>
+    <p>Use this like a calm one-to-one lesson. Read the tutor script, answer the question out loud, then save one note on what felt unclear. This is study only, not live trade advice.</p>
+    <div id="tutorBox"></div>
+    <label>Your teach-back note</label>
+    <textarea id="tutorNote" placeholder="Explain the rule in your own words. If it feels fuzzy, say exactly where."></textarea>
+    <button class="btn gold" onclick="saveTutorNote()">Save Tutor Note</button>
+    <div class="tutorNav">
+      <button class="btn" onclick="prevTutor()">Previous</button>
+      <button class="btn" onclick="nextTutor()">Next</button>
+    </div>
+  </div>
+  <div class="card">
+    <span class="pill wait">voice build pack</span>
+    <h2>OpenAI / Gemini Narration Export</h2>
+    <p>The voice stays build-time only. Export these scripts, generate audio locally, then publish the finished MP3/video files. No API keys belong in this page.</p>
+    <button class="btn" onclick="exportTutorScripts()">Export Tutor Voice JSON</button>
+    <div class="amberBox"><strong>Voice rule:</strong> the tutor explains the checklist, quizzes you, and asks for teach-back. It never creates new trading rules or overrides the marker.</div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="card">
+    <div class="practiceHead"><div><span class="pill go">practice track</span><h2>Hands-On Chart Reps</h2></div><span class="pill" id="practiceCount">0/8</span></div>
+    <p>Work through these like a simulator. Look first, decide second, then read the feedback. This is where the chart language sinks in.</p>
+    <div id="practiceBox"></div>
+  </div>
+  <div class="card">
+    <span class="pill wait">readiness gate</span>
+    <h2>Before Funded Fees</h2>
+    <div class="warn">Do not buy or scale funded accounts from this course alone. Minimum gate: 60 consecutive calendar days of journaling, 20 documented decisions, 10 marker QA sessions, and no rule break in the latest 10 decisions.</div>
+    <div class="step"><div class="n">1</div><div><strong>20 historical screenshots</strong><small>Mark Asian high, low, midline, and clean/messy.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>20 practice decisions</strong><small>Trade, wait, or no trade. Write the reason before seeing outcome.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>60-day journal</strong><small>Demo and observation first. Funded attempt comes after process proof.</small></div></div>
+    <div class="step"><div class="n">4</div><div><strong>Risk cap</strong><small>Start at 0.25% risk. Daily stop is 2R or less. If you cannot verify because of work, skip.</small></div></div>
+  </div>
+</section>
+
+<section id="study">
+  <div class="card">
+    <span class="pill go">mastery plan</span>
+    <h2>Daily Study Track</h2>
+    <div class="studyGrid">
+      <div class="step"><div class="n">AM</div><div><strong>Before work, 10-15 min</strong><small>Review today's Asian box, one due card set, and one rule out loud.</small></div></div>
+      <div class="step"><div class="n">12</div><div><strong>Lunch, 20-30 min</strong><small>One replay case, visual memory rep, or live chart check. No trade if the phone work means you cannot verify the H1 close.</small></div></div>
+      <div class="step"><div class="n">PM</div><div><strong>Evening, 25-40 min</strong><small>Journal, one video or drill, and one mistake review.</small></div></div>
+      <div class="step"><div class="n">WE</div><div><strong>Weekend, 60-90 min</strong><small>Batch TradingView replay and weekly scorecard.</small></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <span class="pill wait">14 days</span>
+    <h2>Fast Sprint</h2>
+    <p><strong>Days 1-3:</strong> learn only the funded model. No PO3, gap, DXY filter, or retest entries.</p>
+    <p><strong>Days 4-7:</strong> classify clean versus messy ranges until it feels visual.</p>
+    <p><strong>Days 8-10:</strong> drill breakout-close and skip decisions.</p>
+    <p><strong>Days 11-14:</strong> complete 20 historical decisions with screenshots and journal entries.</p>
+  </div>
+  <div class="card">
+    <span class="pill">30 and 60 days</span>
+    <h2>Mastery Gate</h2>
+    <p><strong>30 days:</strong> 5 replay trades and 3 no-trade examples per week. Weekly review of missed rules, emotional state, and R outcome.</p>
+    <p><strong>60 days:</strong> funded attempt remains blocked until the assessment is complete, latest 10 decisions have no rule break, and the journal proves process stability.</p>
+  </div>
+  <div class="card">
+    <span class="pill wait">candidate lane</span>
+    <h2>H4 London Breakout — Study/Demo Only</h2>
+    <p>Promoted from the lab on 2026-07-04 (<code>lab/exp_breakout_h4.py</code>, pre-registered gates). It is <strong>not</strong> the funded model. It runs beside the H1 Asian model as a demo-forward candidate because it fixes the cadence problem: about <strong>8 signals a month across XAU + NAS100</strong> versus 1.9 on H1 alone.</p>
+    <p><strong>Tested rules (frozen for study):</strong></p>
+    <p>1. Mark the <strong>London morning range 08:00–12:00 UK</strong> (same box discipline as the Asian range).<br>
+    2. Wait for an <strong>H4 candle CLOSE outside the range</strong> — closes land 13:00 / 17:00 / 21:00 UK. A wick is not a signal, same as H1.<br>
+    3. Daily trend + EMA stack must agree with the break direction (same filter family as the funded model).<br>
+    4. Stop: 1.0 × H4 ATR from entry. Target: 1.5R. Max hold 2 days. One new trade per market per day. 4h news block.<br>
+    5. Skip shock candles (H4 range &gt; 3 × ATR) and micro ranges (&lt; 0.5 × ATR).</p>
+    <p><strong>Backtest (8.5y, both markets, net of costs):</strong> 816 trades · OOS +0.33R · OOS PF 1.71 · 2026 holdout n=48 at +0.15R · FTMO sim ~99% pass, 0% breach at 0.25% risk.</p>
+    <div class="amberBox"><strong>Honest flags:</strong> XAU's own 2026 leg is <em>negative</em> (−0.16R, the holdout is carried by NAS100), and out-of-sample beat in-sample, which usually means recent regimes flatter it. Treat every live signal as evidence collection, not income.</div>
+    <div class="warn">Promotion to funded core requires: 3 months of demo-forward signals journalled, realized expectancy ≥ 50% of backtest, and the XAU leg proving itself in the current year. Until then it is a rule breach to fund this lane.</div>
+  </div>
+</section>
+
+<section id="assess">
+  <div class="card">
+    <span class="pill go">final gate</span>
+    <h2>Mastery Assessment</h2>
+    <p>This is the bridge from course learning to serious demo work. Tick items only when there is evidence in your journal or screenshots.</p>
+    <div id="assessmentList"></div>
+    <div class="prog"><i id="assessProg"></i></div>
+    <p id="assessText" class="note"></p>
+  </div>
+  <div class="card">
+    <span class="pill no">risk rule gap</span>
+    <h2>Define Before Funded</h2>
+    <p>The strategy is tested, but your operational guardrails are fixed before funded use.</p>
+    <div class="amberBox"><strong>Prop-firm rule type matters:</strong> static drawdown, trailing drawdown, daily loss, payout target, and minimum trading days can change the same 0.25% risk plan. Match the simulation row to the exact firm before buying a challenge.</div>
+    <div class="step"><div class="n">1</div><div><strong>Maximum daily loss</strong><small>2R or less. Stop for the day before the prop-firm limit matters.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Maximum trades per day</strong><small>One verified breakout-close attempt per day during the first 30 live/demo days.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>Spread threshold</strong><small>Skip if spread is more than 10% of planned stop distance.</small></div></div>
+  </div>
+</section>
+
+<section id="journal">
+  <div class="card">
+    <span class="pill">hands on</span>
+    <h2>Daily Journal</h2>
+    <p>Log every setup, including skipped trades. This is how the edge becomes yours.</p>
+    <form id="journalForm">
+      <div class="grid2">
+        <div><label>Date</label><input id="jDate" type="date"></div>
+        <div><label>Setup tag</label><select id="jSetup"><option>XAU_H1_ASIAN_BREAKOUT_CLOSE</option><option>H4_LONDON_BREAKOUT_STUDY</option><option>RETEST_STUDY_ONLY</option><option>CONTEXT_REVIEW_ONLY</option></select></div>
+        <div><label>Marker state</label><select id="jState"><option>WATCH BREAKOUT</option><option>BREAKOUT CLOSE</option><option>RETEST STUDY ONLY</option><option>MESSY RANGE</option><option>WAIT SESSION</option><option>LOCKED NEWS</option><option>COOLDOWN</option><option>ROLLOVER</option><option>NO SETUP</option></select></div>
+        <div><label>Action row</label><select id="jAction"><option>DON'T TRADE</option><option>WAIT - watch BUY break</option><option>WAIT - watch SELL break</option><option>BUY next H1 open</option><option>SELL next H1 open</option><option>TRADE TAKEN - no re-entry</option><option>Not visible / not used</option></select></div>
+        <div><label>Bias</label><select id="jBias"><option>BULL</option><option>BEAR</option><option>MIXED</option></select></div>
+        <div><label>Decision</label><select id="jDecision"><option>No trade</option><option>Demo long</option><option>Demo short</option><option>Study: long setup seen</option><option>Study: short setup seen</option><option>Skipped because work</option></select></div>
+        <div><label>Signal time</label><input id="jSignal" placeholder="2026-06-30 14:00 UK"></div>
+        <div><label>Fill time</label><input id="jFill" placeholder="next candle/open or skipped"></div>
+        <div><label>EXEC @ price</label><input id="jExec" inputmode="decimal" placeholder="3364.330 or n/a"></div>
+        <div><label>STOP zone price</label><input id="jStopZone" inputmode="decimal" placeholder="4199.97 or n/a"></div>
+        <div><label>TP zone price</label><input id="jTpZone" inputmode="decimal" placeholder="4337.92 or n/a"></div>
+        <div><label>18h time exit</label><input id="jTimeExit" placeholder="zone right edge / close time"></div>
+        <div><label>Result R</label><input id="jR" inputmode="decimal" placeholder="0, +2, -1, skipped"></div>
+        <div><label>Rules followed?</label><select id="jRules"><option>Yes</option><option>No</option><option>Review</option></select></div>
+        <div><label>News check</label><select id="jNews"><option>Clear</option><option>Locked red news</option><option>Not checked</option></select></div>
+        <div><label>Emotion/state</label><select id="jEmotion"><option>Calm</option><option>Rushed</option><option>Distracted by work</option><option>FOMO</option><option>Tired</option></select></div>
+        <div><label>Before screenshot</label><input id="jShotBefore" placeholder="file/link"></div>
+        <div><label>After screenshot</label><input id="jShotAfter" placeholder="file/link"></div>
+      </div>
+      <label>Screenshot / lesson notes</label><textarea id="jNotes" placeholder="What did the chart show? What did I do? What will I repeat or fix?"></textarea>
+      <label>Lesson learned</label><textarea id="jLesson" placeholder="One sentence: what should I repeat or change next time?"></textarea>
+      <button class="btn gold" type="submit">Save Journal Entry</button>
+    </form>
+    <div class="row">
+      <button class="btn" onclick="exportJournal()">Export CSV</button>
+      <button class="btn bad" onclick="clearJournal()">Clear Local Journal</button>
+    </div>
+    <div id="journalList" class="journalList"></div>
+  </div>
+</section>
+
 <section id="proof">
   <div class="card">
-    <span class="pill">THE EVIDENCE</span>
-    <h2 style="margin-top:8px">What the lab actually found</h2>
-    <p>NAS100, 8.5 years (2018–2026) of real 4-hour data, real spread &amp; slippage, with 2026 kept
-    hidden until the very end. The setup was profitable <strong>in every period</strong>:</p>
-    <table>
-      <tr><th>Period</th><th>Per trade</th></tr>
-      <tr><td>2018–2023 (in-sample)</td><td class="grn">+0.11R</td></tr>
-      <tr><td>2024 (out-of-sample)</td><td class="grn">+0.14R</td></tr>
-      <tr><td>2025 (out-of-sample)</td><td class="grn">+0.15R</td></tr>
-      <tr><td>2026 (hidden hold-out)</td><td class="grn">+0.16R</td></tr>
-    </table>
-    <p class="note">Those are <strong>gross</strong> (before financing). <strong>36 out of 36</strong>
-    nearby settings stayed profitable out-of-sample — a broad plateau, not one lucky combination. It
-    also survived doubled slippage. That's the difference between a real edge and a curve-fit.</p>
-  </div>
-
+    <span class="pill">lab evidence</span>
+    <h2>What We Tested</h2>
+    <p>Best current lane: XAU/USD H1 clean Asian range breakout close, Asian box from H1 candles closing 00:00-06:00 UK, signal closes 08:00-19:00 UK, daily plus H1 EMA trend alignment, max 8 Asian range updates, biggest Asian candle <= 65% of the range, range 0.30-3.00 x ATR, stop opposite range, 2R target. DXY is context, not a proven blocker in the baseline.</p>
+	    <table>
+	      <tr><th>Measure</th><th>Result</th></tr>
+	      <tr><td>Trades</td><td>183</td></tr>
+	      <tr><td>OOS average</td><td class="grn">+0.479R</td></tr>
+	      <tr><td>OOS profit factor</td><td class="grn">2.56</td></tr>
+	      <tr><td>Full-history win rate</td><td>50.3%</td></tr>
+	      <tr><td>OOS win rate</td><td class="grn">58.8%</td></tr>
+	      <tr><td>Worst 2026 month</td><td class="amb">-1.01R</td></tr>
+	    </table>
+	    <p class="note">Strong enough for demo and marker training. Not enough to rush funded fees without a live journal, because 2026 has only a small number of trades so far. These results are from backtested closes. Live spread, slippage, hesitation, and rule errors will reduce realised R.</p>
+	  </div>
   <div class="card">
-    <h3>Real-world frictions — stress-tested</h3>
-    <p>A skeptical reviewer attacks the costs first. We modelled them and the edge holds:</p>
-    <table>
-      <tr><th>Friction</th><th>Effect</th></tr>
-      <tr><td>Overnight financing (real −6%/yr swap)</td><td>+0.12R → <strong class="grn">+0.09R net</strong></td></tr>
-      <tr><td>FTMO −5% daily-loss rule</td><td class="grn">0 breaches / 2,173 days</td></tr>
-      <tr><td>Gap through the stop</td><td class="amb">15% of trades · worst −4.2R</td></tr>
-      <tr><td>Bear markets (QQQ 2000–26)</td><td class="grn">filter stands aside</td></tr>
-    </table>
-    <p class="note">Net of financing it's still positive in every year incl 2026. The daily-loss rule
-    is never the problem (one trade at a time) — the −10% max is. The real weak spot is choppy
-    post-crash <em>recoveries</em>, not crashes. Honest, and survivable.</p>
-  </div>
-
-  <div class="card">
-    <h3>Does adding "smart-money" structure help?</h3>
-    <p>We built Break-of-Structure, liquidity sweeps and order-block POIs as real, no-look-ahead
-    code and layered them on one at a time. They <em>do</em> raise trade quality — but they cut the
-    number of trades so hard that <strong>cash flow falls</strong>:</p>
-    <table>
-      <tr><th>Version</th><th>Trades/wk</th><th>Win</th><th>Per trade</th></tr>
-      <tr><td>Base (longs)</td><td>1.42</td><td>42%</td><td class="grn">+0.12R</td></tr>
-      <tr><td>+ BOS</td><td>0.94</td><td>44%</td><td class="grn">+0.14R</td></tr>
-      <tr><td>+ sweep</td><td>0.35</td><td>43%</td><td class="grn">+0.18R</td></tr>
-      <tr><td>+ POI (full)</td><td>0.13</td><td class="grn">51%</td><td class="grn">+0.27R</td></tr>
-    </table>
-    <p class="note">The full structure setup wins 51% with a 1.60 profit factor — genuinely better
-    trades — but at 0.13/week it earns less per month (~£8 vs ~£37) and the sample gets too thin to
-    trust. <strong>The simple base out-earns the fancy version.</strong> Keep it simple.</p>
-  </div>
-
-  <div class="card">
-    <h3>Can it pass FTMO? (Monte-Carlo, net of financing)</h3>
-    <table>
-      <tr><th>Risk</th><th>Pass +10%</th><th>Blow −10%</th></tr>
-      <tr><td>0.50%</td><td class="grn">75%</td><td class="amb">25%</td></tr>
-      <tr><td>0.75%</td><td>65%</td><td>35%</td></tr>
-      <tr><td>1.00%</td><td>58%</td><td class="red">42%</td></tr>
-    </table>
-    <p>Best odds at 0.5% risk. Not a certainty — about 1 in 4 challenges still blow — but a real,
-    repeatable, positive-expectancy edge (after costs) that hits your 1–3 trades/week target.</p>
-  </div>
-
-  <div class="card tight">
-    <h3>The honest summary</h3>
-    <p><strong class="grn">Real, robust, repeatable — and yours.</strong> Modest in pounds at first;
-    the income comes from passing, trading funded capital, and scaling. Drill it, demo it, log it,
-    and build the track record.</p>
-  </div>
-</section>
-
-<!-- ============ WATCH ============ -->
-<section id="watch">
-  <div class="card tight">
-    <div class="tag">🎬 visual walkthrough · 10 slides</div>
-  </div>
-  <p class="note">Step through the model end to end. (Voiced narration is being re-recorded for the
-  momentum model — for now it's a silent visual walkthrough; tap Play to auto-advance.)</p>
-  <div class="card tight">
-    <div class="tag">slide <span id="wIdx">1</span>/10</div>
-    <div class="prog"><i id="wBar" style="width:0%"></i></div>
-  </div>
-  <div class="card" style="padding:0;overflow:hidden">
-    <div id="wStage" style="background:var(--panel2);padding:24px 16px;min-height:210px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
-      <div id="wVis" style="height:96px;display:flex;align-items:center;justify-content:center"></div>
-      <div id="wTitle" style="font-size:1.18rem;font-weight:800;margin-top:14px"></div>
-      <div id="wPoint" style="color:var(--dim);font-size:.92rem;margin-top:6px;max-width:34ch"></div>
+    <span class="pill go">win-rate maths</span>
+    <h2>Why 50% Can Be Good</h2>
+    <p>With a 2R target, the model does not need to win every day. It needs clean losses, clean winners, and no random trades outside the rules.</p>
+    <div class="calcGrid">
+      <div><label>Win rate %</label><input id="calcWin" inputmode="decimal" value="50"></div>
+      <div><label>Average win R</label><input id="calcWinR" inputmode="decimal" value="2"></div>
+      <div><label>Average loss R</label><input id="calcLossR" inputmode="decimal" value="1"></div>
+      <div><label>Trades example</label><input id="calcTrades" inputmode="numeric" value="10"></div>
     </div>
-    <div id="wCap" style="padding:13px 16px;font-size:.88rem;color:var(--faint);min-height:62px;
-      border-top:1px solid var(--line);font-style:italic"></div>
+    <button class="btn" onclick="calcExpectancy()">Calculate expectancy</button>
+    <div id="calcResult" class="calcResult"></div>
   </div>
-  <div class="row">
-    <button class="btn" onclick="wGo(-1)" style="max-width:64px">◀</button>
-    <button class="btn gold" id="wPlay" onclick="wToggle()">▶  Play</button>
-    <button class="btn" onclick="wGo(1)" style="max-width:64px">▶</button>
+	  <div class="card">
+    <span class="pill wait">research queue</span>
+    <h2>What Must Beat The Baseline</h2>
+    <ul>
+      <li><strong>DXY:</strong> context until a DXY/proxy test improves expectancy, drawdown, trade count, and 2026 robustness.</li>
+      <li><strong>PO3/fractals:</strong> useful chart language, not a funded trigger until tested.</li>
+      <li><strong>Gap closure:</strong> context only until it adds measurable edge.</li>
+      <li><strong>Retest:</strong> separate study model, never mixed into breakout-close stats.</li>
+    </ul>
+    <div class="amberBox"><strong>First USD-proxy check:</strong> slope-aligned proxy improved OOS to about +0.724R with PF 5.02, but cut trade count to 100 and left only 1 recent HOLD trade at -0.399R. Interesting research lead, not a funded rule.</div>
+  </div>
+  <div class="card">
+    <span class="pill">learning science</span>
+    <h2>How This Course Makes It Stick</h2>
+    <ul>
+      <li><strong>Dual coding:</strong> every rule is paired with a visual chart cue.</li>
+      <li><strong>Worked examples:</strong> see the full trade plan before doing drills alone.</li>
+      <li><strong>Retrieval practice:</strong> cards force recall before rereading.</li>
+      <li><strong>Interleaving:</strong> drills mix clean range, wick traps, news blocks, work interruptions, and 2R decisions.</li>
+      <li><strong>Spacing:</strong> card ratings now schedule the next review for today, tomorrow, 3 days, or 7 days.</li>
+      <li><strong>Immediate feedback:</strong> practice reps show which rule passed or blocked the setup.</li>
+    </ul>
   </div>
 </section>
 
 <nav>
-  <button class="on" data-s="home"><span class="i">◆</span>Home</button>
-  <button data-s="learn"><span class="i">📘</span>Learn</button>
-  <button data-s="cards"><span class="i">🃏</span>Cards</button>
-  <button data-s="drills"><span class="i">🎯</span>Drills</button>
-  <button data-s="proof"><span class="i">📊</span>Proof</button>
-  <button data-s="watch"><span class="i">🎬</span>Watch</button>
-  <a href="./tradelog.html"><span class="i">📓</span>Log</a>
+  <button class="on" data-tab="home"><span class="i">⌂</span>Home</button>
+  <button data-tab="learn"><span class="i">▤</span>Learn</button>
+  <button data-tab="marker"><span class="i">◎</span>Marker</button>
+  <button data-tab="videos"><span class="i">▶</span>Videos</button>
+  <button data-tab="tutor"><span class="i">◉</span>Tutor</button>
+  <button data-tab="cards"><span class="i">?</span>Cards</button>
+  <button data-tab="drills"><span class="i">✓</span>Drills</button>
+  <button data-tab="practice"><span class="i">◫</span>Practice</button>
+  <button data-tab="study"><span class="i">▥</span>Study</button>
+  <button data-tab="assess"><span class="i">▣</span>Assess</button>
+  <button data-tab="journal"><span class="i">✎</span>Journal</button>
+  <button data-tab="proof"><span class="i">#</span>Proof</button>
 </nav>
 
 <script>
-/* ---------- nav ---------- */
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on'); document.getElementById(b.dataset.s).classList.add('on');
-  window.scrollTo(0,0);
-  if(b.dataset.s==='cards') showCard();
-});
-
-/* ---------- flashcards: lightweight FSRS scheduler ---------- */
-const DECK=[
- ["What market does this model trade?","<b>NAS100</b> (Nasdaq 100) — the one market that held up in every test. <b>Longs only.</b>"],
- ["The one-line edge?","Buy the <b>pullback in a strong uptrend</b>; ride the resumption to a 2R target."],
- ["Part 1 — the trend filter?","Daily <b>close &gt; SMA200</b> AND <b>SMA50 &gt; SMA200</b>. No daily uptrend = no trade. Never short."],
- ["Part 2 — the pullback?","On the <b>4-hour</b>, price dips to the <b>20-EMA</b> or the 4H RSI rolls down — a normal pause in the trend."],
- ["Part 3 — the entry trigger?","A <b>buy-STOP just above the pullback bar's high</b>. It only fills if price turns back up — confirmation built in."],
- ["Part 4 — the stop?","Just <b>below the pullback low</b> (~1×ATR of room). Out small if it was really a reversal."],
- ["Part 5 — target &amp; time?","Take profit at <b>2× risk (2R)</b>; back-stop exit after ~5 days. Average hold ~2 days."],
- ["Why longs only?","Shorts averaged <b>−0.02R</b> across the whole sample — pure drag. Dropping them lifted every fold."],
- ["The headline numbers?","<b>1.4 trades/wk</b>, <b>+0.12R</b> gross / <b>+0.09R net</b> of financing, PF ~1.2, win ~42% — positive in 2018–23, 2024, 2025 and the hidden 2026."],
- ["What does overnight financing cost?","The real NAS100 long swap is ~<b>−6%/yr</b>. It costs ~<b>0.03R per trade</b> and takes +0.12R → <b>+0.09R net</b> — still positive every year."],
- ["How do we know it's not curve-fit?","<b>36/36</b> nearby settings stayed OOS-positive, and it survived doubled slippage. A plateau, not a spike."],
- ["Do BOS / sweeps / POIs help?","They raise trade quality but cut frequency so hard <b>cash flow falls</b> (£37→£8/mo). Keep it simple."],
- ["Risk per trade?","<b>0.5%</b> — the sweet spot (75% FTMO pass, net of financing). 1% is faster but 42% blow."],
- ["FTMO 2-Step Swing targets?","<b>+10%</b> Phase 1, <b>+5%</b> Phase 2. Min 4 trading days each, no time limit."],
- ["FTMO loss limits?","<b>−5% daily</b> (resets midnight Prague) and <b>−10% overall</b>. 80% split, up to 90% scaling."],
- ["Swing account perks?","<b>Hold over weekends</b> and <b>trade through news</b> — both allowed. Skipping events is your choice."],
- ["The tentative second market?","<b>Gold (XAU) long-only</b> — uncorrelated to NAS100, profitable out-of-sample, but recent-only → paper-trade it."],
- ["The real edge?","<b>Discipline.</b> No forced trades — if there's no setup, you sit. Log every trade honestly."],
- ["The income path?","Pass FTMO (75%) → trade <b>their</b> capital → <b>scale</b> the funded account over time. Modest at first, compounding."]
+const lessons = [
+  ["1. What Counts As A Trade", "Only XAU/USD H1 clean Asian range breakout close is the funded-path model. Retest, PO3, gap closure, and DXY are context or study until separately tested."],
+  ["2. Asian Box", "Use OANDA:XAUUSD on H1. Mark the candles closing 00:00-06:00 UK. In TradingView that is session 2300-0600 because sessions use bar opens. The day starts with the box, not a prediction."],
+  ["3. Clean Range", "Clean has three gates: updates 8 or fewer, biggest Asian candle 65% or less of the box, and range between 0.30 and 3.00 x ATR(14). Messy means no trade."],
+  ["4. Breakout Close", "The signal is an H1 candle close outside the Asian high or low plus 0.05 x ATR buffer, during signal closes 08:00-19:00 UK. Daily SMA50/200 bias and H1 EMA stack must agree. A wick touch is not a breakout."],
+  ["5. Skip Conditions", "Skip messy ranges, 4h red-news lockout, rollover danger, and any setup you cannot verify because of work or family constraints. Shock cooldown is an optional safety overlay, not part of the baseline backtest."],
+  ["6. Risk And Prop Rules", "Start at 0.25% risk. Stop is the opposite side of the Asian box. Target is 2R. Max hold is 18 hours. Daily stop is 2R or less."],
+  ["7. Journal And Review", "Every setup needs marker state, Action row, range quality, news check, screenshots, decision, result in R, rules followed, emotion, and one lesson learned. Past marker signals can now be reviewed by scrolling back and journalling the visible setup."],
+  ["8. Readiness Gate", "Before funded fees: 60 days of journal evidence, 20 documented decisions, 10 marker QA sessions, complete assessment, and no rule break in the latest 10 decisions."]
 ];
-const W=[0.5,1.2,3.0,8.0];
-const KEY='prosper_sm_fsrs';
-let mem=JSON.parse(localStorage.getItem(KEY)||'{}');
-let queue=[],cur=null,shown=false;
-function nowD(){return Date.now()/86400000}
-function due(i){const c=mem[i];return !c||c.due<=nowD()}
-function buildQueue(){queue=DECK.map((_,i)=>i).filter(due);}
-function schedule(i,r){
-  let c=mem[i]||{S:0,D:5,reps:0};
-  c.reps++;
-  if(c.reps===1){c.S=W[r-1];}
-  else{const f=r===1?0.4:r===2?0.9:r===3?1.6:2.4; c.S=Math.max(0.2,c.S*f);}
-  c.D=Math.min(10,Math.max(1,c.D+(r===1?1:r===2?.3:r===4?-.6:-.1)));
-  c.due=nowD()+(r===1?0.3:c.S);
-  mem[i]=c; localStorage.setItem(KEY,JSON.stringify(mem));
+
+const tutorScripts = [
+  {key:"xau_t01_trade_definition", title:"1. What Counts As A Trade", script:"Start here. There is only one funded-path setup in this course: XAU/USD, one-hour chart, clean Asian range, close outside the range, then an execution plan after the close. A wick is not enough. A retest is not enough. DXY is context only. Say it back slowly: one box, one breakout close, one planned risk.", ask:"Tell me, out loud: what exact event turns a watch day into a possible trade?"},
+  {key:"xau_t02_asian_box", title:"2. Asian Box", script:"Before you think direction, you draw the box. The tested box is the H1 candles closing midnight to six AM UK time, which means TradingView session twenty-three hundred to zero six hundred because sessions use bar opens. High, low, and midline. Do not predict. The box is the day structure.", ask:"What time window builds the tested Asian box, and why does TradingView use 2300-0600?"},
+  {key:"xau_t03_clean_range", title:"3. Clean Range", script:"Now judge the quality. The tested model has three range gates. No more than eight high or low updates. The biggest Asian candle cannot be more than zero point six five of the range. The whole box must sit between zero point three and three ATR. If any gate fails, no trade.", ask:"What three range-quality checks can block the whole day?"},
+  {key:"xau_t04_breakout_close", title:"4. Breakout Close", script:"The close is the signal. During the hour, price can poke outside the range and come back in. That is noise. You wait for the one-hour candle to close outside the box with the buffer, during the eight to nineteen UK signal window. Daily SMA bias and H1 EMA stack must both agree. Only then do you plan the next candle or broker order.", ask:"Why are daily bias and H1 EMA stack both required?"},
+  {key:"xau_t05_skip_conditions", title:"5. Skip Conditions", script:"Skipping is part of the system. Messy range, four-hour red-news lockout, rollover danger, shock cooldown if you deliberately enable it, or a work call that stops you checking properly. All of those can block action. Your job is not to catch every move. Your job is to only act when the rule is visible.", ask:"Name three reasons you would skip even if price is moving."},
+  {key:"xau_t06_risk_prop_rules", title:"6. Risk And Prop Rules", script:"Risk is where beginners turn a good strategy into a bad account. Start tiny. A quarter percent per trade. Stop goes on the opposite side of the Asian box. Target is two R. The marker now draws a red stop zone and green target zone with prices printed inside them. The right edge is the eighteen-hour time exit. Daily stop is two R or less. If the first trade loses, you do not earn a second trade by feeling annoyed.", ask:"For a long breakout, what do the red zone, green zone, and right edge mean?"},
+  {key:"xau_t07_journal_review", title:"7. Journal And Review", script:"The journal is not admin. It is proof. Record marker state, Action row, range quality, news, screenshot, zone prices, decision, R result, emotion, and one lesson. A clean skip counts. A winner that broke rules is not a good trade. Past marker signals stay on the chart, so scroll back, journal one visible setup, and grade it against the frozen checklist.", ask:"Why is a green TP zone not permission to enter by itself?"},
+  {key:"xau_t08_readiness_gate", title:"8. Readiness Gate", script:"Do not buy funded accounts because you feel ready. Use evidence. Sixty days of study and demo proof. At least thirty journalled forward signals at half or more of model expectancy. Ten marker QA sessions. Course assessment complete. No rule break in the latest ten decisions. Then, and only then, you can talk about funded risk.", ask:"What evidence must exist before a funded attempt is allowed?"}
+];
+
+const cards = [
+  {id:"asian-range", q:"What is the Asian range?", a:"The high and low of the H1 candles closing 00:00-06:00 UK (price from 23:00). Marker session string: 2300-0600, because TradingView sessions use bar opens."},
+  {id:"timeframe", q:"What timeframe is the strategy?", a:"XAU/USD on H1 only."},
+  {id:"clean-range", q:"What is a clean range?", a:"Updates 8 or fewer, largest Asian candle 65% or less of range, and total range between 0.30 and 3.00 x ATR(14)."},
+  {id:"wick-close", q:"Is a wick outside the range enough?", a:"No. The tested model waits for an H1 close outside the range."},
+  {id:"body-close", q:"What should your eye look for on a real breakout?", a:"The candle body closes outside the Asian high/low after the H1 candle finishes. A live poke or wick during the hour is not enough."},
+  {id:"rejection-wick", q:"What is a rejection wick around the box edge?", a:"Price pierces the level but closes back inside. For this model, that is no confirmed breakout."},
+  {id:"dominance-candle", q:"What does one giant Asian candle warn you about?", a:"The box may be dominated by a spike. If the biggest Asian candle is more than 0.65 of the range, the day is blocked."},
+  {id:"range-expansion", q:"What does repeated Asian high/low expansion tell you?", a:"The range is not contained. More than 8 updates makes it messy and blocks the day."},
+  {id:"signal-window", q:"When can a Model 1 signal print?", a:"Only on H1 closes from 08:00-19:00 UK. TradingView watch session is 0700-1900 because sessions use bar opens."},
+  {id:"two-part-trend", q:"What trend filter is required?", a:"Daily bias and H1 EMA stack must agree with the trade direction. EMA stack alone is not enough."},
+  {id:"ema-labels", q:"What EMA order should you recognise visually for a long?", a:"Price above EMA 20, EMA 20 above or equal EMA 50, EMA 50 above or equal EMA 200, with daily bias also bullish."},
+  {id:"messy", q:"What does MESSY RANGE mean?", a:"The box failed quality checks. No trade."},
+  {id:"dxy-context", q:"Can DXY block a funded trade by itself today?", a:"No. DXY is context until a separate test proves it improves the baseline."},
+  {id:"retest", q:"Can RETEST STUDY ONLY be traded on a funded account?", a:"No. It is hidden by default and study only until separately backtested."},
+  {id:"stop-long", q:"Where is the stop on a long?", a:"At the opposite side of the box: the Asian low."},
+  {id:"target", q:"Where is the target?", a:"Two times risk from entry, also called 2R."},
+  {id:"v22-zones", q:"What do the red and green v2.2 zones mean?", a:"Red is the planned STOP zone from entry to -1R. Green is the planned TP zone from entry to +2R. They display the checklist plan; they are not a reason to enter by themselves."},
+  {id:"action-row", q:"What is the Action row?", a:"A plain-English summary of the marker state, such as BUY next H1 open, SELL next H1 open, WAIT, TRADE TAKEN - no re-entry, or DON'T TRADE. It never replaces the checklist."},
+  {id:"time-exit-zone", q:"What does the right edge of the STOP/TP zones mean?", a:"The 18-hour max-hold time exit. If price is still inside the zones when they end, the trade is closed."},
+  {id:"r-unit", q:"What does R mean?", a:"R is one unit of risk. +2R is twice the amount risked. -1R is the planned loss."},
+  {id:"fifty-win-rate", q:"Why can a 50% win rate be good here?", a:"Because winners aim for about +2R while planned losses are -1R. Five +2R wins and five -1R losses equals +5R."},
+  {id:"news", q:"When do you turn on manual news lockout?", a:"For FOMC/NFP-class red events and major shock risk. The working block is 4 hours."},
+  {id:"master-rule", q:"What is the master rule?", a:"No marker, no checklist, no trade."},
+  {id:"h4-lane", q:"Can the H4 London Breakout lane be traded on a funded account?", a:"No. It is a study/demo candidate lane. Funding it before 3 months of journalled forward signals and a positive XAU leg is a rule breach."},
+  {id:"h4-signal", q:"What is an H4 London Breakout signal?", a:"An H4 candle CLOSE outside the 08:00-12:00 UK London range, trend-aligned. Closes land 13:00, 17:00, 21:00 UK. A wick is not a signal."}
+];
+
+const drills = [
+  {q:"Asian box 2311-2326. Updates 6. Spike 0.55. Range 1.2x ATR. Daily bias bull. H1 EMA stack bull. 10:00 UK candle closes 2327.2. News none.", choices:["Demo long candidate","Study: short setup seen","No trade"], a:0, why:"Clean range, daily plus H1 trend agree, and the H1 close broke the box in the 08:00-19:00 signal window."},
+  {q:"Asian updates 11. Spike 0.38. Range 1.1x ATR. Daily bull. H1 bull. Breakout above high.", choices:["Study: long setup seen","Wait for retest","No trade"], a:2, why:"Updates above 8 make the range messy. No trade."},
+  {q:"Spike fraction 0.78. Range 1.0x ATR. One giant Asian candle built most of the box.", choices:["Clean range","Messy range","DXY issue only"], a:1, why:"Biggest candle is above 0.65 of the range, so the box is blocked."},
+  {q:"Updates 4. Spike 0.42. Range 0.25x ATR. Daily bull. H1 bull. H1 closes above the box.", choices:["Demo long candidate","No trade","Trade half size"], a:1, why:"The range is too small. Clean range requires 0.30-3.00 x ATR."},
+  {q:"Updates 5. Spike 0.50. Range 4.8x ATR. Daily bear. H1 bear. H1 closes below the box.", choices:["Demo short candidate","No trade","Retest study only"], a:1, why:"The range is too large. Panic-day boxes above 3.00 x ATR are messy."},
+  {q:"Daily bias bull. H1 EMA stack bear. 11:00 UK candle closes below the Asian low.", choices:["Demo short candidate","No trade","DXY decides"], a:1, why:"Daily bias and H1 EMA stack do not agree. EMA stack alone is not enough."},
+  {q:"Clean range, daily bull, H1 bull. Candle wicks above the box at 18:30 but closes back inside at 19:00.", choices:["Demo long candidate","No confirmed breakout","Enter on retest"], a:1, why:"A wick outside the box is not a signal. The H1 candle must close outside."},
+  {q:"Clean range, daily bull, H1 bull. 20:00 UK candle closes above the box.", choices:["Demo long candidate","No trade","Trade because trend agrees"], a:1, why:"Model 1 signals only count on H1 closes from 08:00-19:00 UK."},
+  {q:"Entry 2330. Stop 2322. Long trade. What is 2R target?", choices:["2338","2346","2314"], a:1, why:"Risk is 8 points. 2R is 16 points. 2330 + 16 = 2346."},
+  {q:"Ten trades. Five winners at +2R. Five losses at -1R. What is the net result?", choices:["+5R","0R","-5R"], a:0, why:"Five wins at +2R = +10R. Five losses at -1R = -5R. Net result is +5R."},
+  {q:"EMA bullish, DXY up, close above Asian high.", choices:["Tested model still needs journal context","DXY alone proves no trade","Study: short setup seen"], a:0, why:"DXY is context in this version, not a proven funded blocker. Record it, then let the tested checklist decide."},
+  {q:"FOMC in two hours. Marker says WATCH BREAKOUT.", choices:["Trade smaller","Manual news lockout","Ignore news"], a:1, why:"FOMC/NFP-class red news means 4h lockout first. The marker is not a reason to fight event risk."},
+  {q:"You are on the phones at work. Alert fires and you cannot check the H1 close properly.", choices:["Enter anyway","Skip and journal","Move stop wider"], a:1, why:"Your lifestyle rule matters. If you cannot verify, skip and journal."},
+  {q:"Marker has drawn a green TP zone, but you have not checked range quality, daily bias, H1 stack, signal window, or news.", choices:["Buy because green means go","Run checklist first","Only check DXY"], a:1, why:"The green zone is target display, not permission. The checklist is still the authority."},
+  {q:"Action row says TRADE TAKEN - no re-entry. Price returns to the breakout level and looks tempting.", choices:["Re-enter smaller","No re-entry; journal it","Use retest study as funded entry"], a:1, why:"One trade per day. TRADE TAKEN means the day is used; re-entry is a breach."},
+  {q:"State is MESSY RANGE. What should the Action row mean?", choices:["DON'T TRADE","BUY next H1 open","TRADE TAKEN - no re-entry"], a:0, why:"A failed range blocks the day. The Action row should summarise the checklist as DON'T TRADE."},
+  {q:"State is BREAKOUT CLOSE with a long execution pending. What Action row text fits?", choices:["BUY next H1 open","WAIT - watch SELL break","DON'T TRADE"], a:0, why:"After a valid long breakout close, the display summary points to next H1 open execution. You still check the frozen rules."},
+  {q:"Phone visual: price pierces above the Asian high, leaves a long upper wick, then the H1 candle closes back inside the box. What pattern is that?", choices:["Valid breakout close","Wick-only rejection","2R target hit"], a:1, why:"The body closed back inside. It is a rejection/wick-only fail, not the tested breakout close."},
+  {q:"Phone visual: one Asian candle makes most of the overnight box. What should you remember?", choices:["Dominance candle can make the range messy","It proves strong trend","It removes the need for news check"], a:0, why:"One giant candle can dominate the range. If it is over 0.65 of the box, no trade."},
+  {q:"Phone visual: Asian high and low keep expanding again and again before London. What is the memory cue?", choices:["Contained clean box","Repeated expansion; likely messy","Action row is enough"], a:1, why:"Repeated expansion means the range is not clean. More than 8 high/low updates blocks the day."},
+  {q:"Phone visual: for a long, price is above EMA 20, EMA 20 is above EMA 50, EMA 50 is above EMA 200. What is this?", choices:["H1 bullish stack","Daily bias by itself","DXY filter"], a:0, why:"That is the H1 bullish EMA stack. It still needs daily bias and all other rules."}
+];
+
+const practices = [
+  {title:"1. Spot The Asian Box", type:"long", scenario:"Look at the chart. The tested box is the H1 candles closing 00:00-06:00 UK.", task:"What TradingView session should the marker use?", choices:["2300-0600","0000-0700","0800-1900"], a:0, why:"TradingView sessions use bar opens, so 2300-0600 creates the H1 candles closing 00:00-06:00 UK.", checks:[["Asian box window",true],["Old midnight box",false]]},
+  {title:"2. Clean Or Messy", type:"messy", scenario:"The Asian session has one giant candle, repeated high/low expansion, and the full range is 4.2x ATR.", task:"Can this become a trade today?", choices:["Yes, if it breaks","No, messy range","Only if DXY agrees"], a:1, why:"One giant candle, too many expansions, or range outside 0.30-3.00 x ATR means the range failed quality. No trade is the correct decision.", checks:[["Spike/update/range quality",false],["DXY can rescue messy range",false]]},
+  {title:"3. Two-Part Trend", type:"long", scenario:"Daily close is above SMA200 and SMA50 is above SMA200. H1 price is above EMA20, EMA20 above EMA50, EMA50 above EMA200.", task:"What bias does this support?", choices:["Study: long setup seen","Study: short setup seen","No directional bias"], a:0, why:"Daily bias and H1 EMA stack both support longs. You still need a clean range and breakout close.", checks:[["Daily bias",true],["H1 EMA stack",true],["Breakout close still required",true]]},
+  {title:"4. DXY Context", type:"long", scenario:"The range is clean and price closes above the Asian high, but DXY is rising strongly.", task:"What is the safest training decision?", choices:["Record DXY as context and keep checking rules","Let DXY override every trade","Flip short"], a:0, why:"DXY is context unless the proxy/DXY test proves it improves the baseline. Record it; do not invent a new funded rule.", checks:[["DXY recorded",true],["DXY used as untested blocker",false]]},
+  {title:"5. Wick Is Not A Breakout", type:"long", scenario:"Price wicks above the Asian high during the hour, then closes back inside the box.", task:"What did you get?", choices:["Confirmed breakout","No confirmed breakout","Retest entry"], a:1, why:"The model requires an H1 close outside the range, inside the 08:00-19:00 UK signal window. A wick is noise until the candle closes.", checks:[["Close outside range",false],["Wick-only chase",false]]},
+  {title:"6. News Lockout", type:"short", scenario:"Marker says WATCH BREAKOUT. FOMC is due in two hours.", task:"What do you do?", choices:["Manual news lockout","Trade half size","Wait for a bigger candle"], a:0, why:"FOMC/NFP-class red news creates a 4h lockout. The course teaches process, not clever event trading.", checks:[["Red-news lockout",false],["Risk reduced to excuse trade",false]]},
+  {title:"7. 2R Plan", type:"long", scenario:"Long entry 2330. Stop 2322. Risk is 8 points.", task:"Where is the 2R target?", choices:["2338","2346","2326"], a:1, why:"2R is 16 points. 2330 + 16 = 2346.", checks:[["Risk distance known",true],["2R target calculated",true]]},
+  {title:"8. Work-Day Rule", type:"short", scenario:"Alert fires while you are on the phones and you cannot check the H1 close properly.", task:"What is the professional action?", choices:["Enter quickly","Skip and journal","Move the stop wider"], a:1, why:"If you cannot verify the setup, skip. You are building a career system, not chasing one candle.", checks:[["Verified H1 close",false],["Skip and journal",true]]},
+  {title:"9. Zone Is Not Permission", type:"long", scenario:"A past marked signal shows a green TP zone, but the trader cannot name the range quality, signal close time, daily bias, H1 stack, or news check.", task:"What is the grade?", choices:["Pass because target zone exists","Fail: checklist not run","Pass if it won"], a:1, why:"The zones show the planned risk/target after the marker state. They do not replace the checklist. A winner that skipped the checklist is still a bad rep.", checks:[["Green zone equals permission",false],["Checklist authority",true]]},
+  {title:"10. No Re-entry", type:"short", scenario:"The Action row says TRADE TAKEN - no re-entry. Later price retests the level and the setup looks clean again.", task:"What is allowed?", choices:["Re-enter half size","No trade; journal only","Funded retest entry"], a:1, why:"One trade per day. TRADE TAKEN - no re-entry means the day is used. Review it as study, not as a new funded trade.", checks:[["One trade per day",true],["Re-entry breach",false]]}
+];
+
+const assessmentItems = [
+  "I can load OANDA:XAUUSD on H1 with the v2.2 marker visible.",
+  "I manually QA'd the marker on 10 historical sessions.",
+  "I can explain the red STOP zone, green TP zone, printed prices, and 18h right-edge time exit.",
+  "I can read the Action row without treating it as a replacement for the checklist.",
+  "I can use past marked signals as scroll-back journal reps.",
+  "I can draw Asian high, low, and midline without help.",
+  "I can reject messy ranges using updates, spike, and 0.30-3.00 x ATR rules.",
+  "I can explain why the TradingView Asian session is 2300-0600.",
+  "I can explain why daily SMA50/200 bias and H1 EMA stack must both agree.",
+  "I can reject a signal that closes outside 08:00-19:00 UK.",
+  "I can explain why RETEST STUDY ONLY is not a funded signal.",
+  "I can explain why DXY is context until tested as a filter.",
+  "I cross-check red news manually before any demo entry.",
+  "I can calculate stop, 1R, and 2R from entry and range.",
+  "I can explain why 50% win rate can still be profitable with a 2R model.",
+  "I have completed the tutor teach-back notes for all eight modules.",
+  "I have 20 documented historical decisions with screenshots.",
+  "I have completed 60 consecutive calendar days of journaling.",
+  "I have defined max daily loss, max trades/day, and spread threshold.",
+  "My latest 10 decisions contain no rule break."
+];
+
+const learners = {david:"David", gemma:"Gemma"};
+let activeLearner = localStorage.prosper_xau_active_learner || "david";
+let cardIndex = 0;
+let drillIndex = 0;
+let practiceIndex = 0;
+let tutorIndex = 0;
+let currentCardIdx = 0;
+
+function learnerKey(name, learner = activeLearner){
+  return `prosper_xau_${learner}_${name}`;
+}
+function legacyKey(name){
+  return `prosper_xau_${name}`;
+}
+function migrateLegacyToDavid(){
+  if(localStorage.prosper_xau_profiles_migrated_v1) return;
+  ["lessons","card_schedule","assessment","journal","card_index","drill_index","practice_index","tutor_index","tutor_notes","cards_done","drills_done","practice_done","last_tab"].forEach(name => {
+    const oldValue = localStorage.getItem(legacyKey(name));
+    const newKey = learnerKey(name, "david");
+    if(oldValue !== null && localStorage.getItem(newKey) === null) localStorage.setItem(newKey, oldValue);
+  });
+  localStorage.prosper_xau_profiles_migrated_v1 = "1";
+}
+function readJson(name, fallback){
+  try { return JSON.parse(localStorage.getItem(learnerKey(name)) || JSON.stringify(fallback)); }
+  catch { return fallback; }
+}
+function writeJson(name, value){
+  localStorage.setItem(learnerKey(name), JSON.stringify(value));
+}
+function readNumber(name){
+  return Number(localStorage.getItem(learnerKey(name)) || 0);
+}
+function writeNumber(name, value){
+  localStorage.setItem(learnerKey(name), String(value));
+}
+function loadLearnerState(){
+  cardIndex = readNumber("card_index");
+  drillIndex = readNumber("drill_index");
+  practiceIndex = readNumber("practice_index");
+  tutorIndex = readNumber("tutor_index");
+}
+function refreshLearnerButtons(){
+  document.querySelectorAll("[data-learner]").forEach(btn => btn.classList.toggle("on", btn.dataset.learner === activeLearner));
+}
+function setLearner(learner){
+  if(!learners[learner]) return;
+  activeLearner = learner;
+  localStorage.prosper_xau_active_learner = learner;
+  loadLearnerState();
+  refreshLearnerButtons();
+  initLessons();
+  showCard();
+  showDrill();
+  showPractice();
+  renderTutor();
+  updateProgress();
+  renderJournal();
+  renderAssessment();
+}
+
+function switchTab(tab){
+  const btn = document.querySelector(`nav button[data-tab="${tab}"]`);
+  if(!btn) return;
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("on"));
+  document.querySelectorAll("section").forEach(s => s.classList.remove("on"));
+  btn.classList.add("on");
+  document.getElementById(btn.dataset.tab).classList.add("on");
+  localStorage.setItem(learnerKey("last_tab"), btn.dataset.tab);
+}
+document.querySelectorAll("nav button").forEach(btn => btn.addEventListener("click", () => switchTab(btn.dataset.tab)));
+
+function initLessons(){
+  const wrap = document.getElementById("lessons");
+  wrap.innerHTML = lessons.map((l,i) => `<div class="lesson ${i===0 ? "open" : ""}"><button onclick="toggleLesson(this)">${l[0]}</button><div class="body"><p>${l[1]}</p><button class="btn good" onclick="completeLesson(${i})">Mark lesson done</button></div></div>`).join("");
+}
+function toggleLesson(btn){ btn.parentElement.classList.toggle("open"); }
+function completeLesson(i){
+  const done = readJson("lessons", []);
+  if(!done.includes(i)) done.push(i);
+  writeJson("lessons", done);
+  updateProgress();
+}
+function updateProgress(){
+  const done = readJson("lessons", []).length;
+  const cardDone = readNumber("cards_done");
+  const drillDone = readNumber("drills_done");
+  const practiceDone = readNumber("practice_done");
+  const tutorDone = new Set(readJson("tutor_notes", []).map(n => n.key)).size;
+  const due = dueCardIndexes().length;
+  const pct = Math.min(100, Math.round(((done/lessons.length)*32)+Math.min(cardDone,20)*1.2+Math.min(drillDone,20)*1.2+Math.min(practiceDone,16)*1.4+Math.min(tutorDone,8)*1.4));
+  document.getElementById("homeProg").innerHTML = `<div class="prog"><i style="width:${pct}%"></i></div><p><strong>${learners[activeLearner]}</strong> · <strong>${pct}%</strong> training momentum today. Lessons ${done}/${lessons.length}. Cards ${cardDone}. Due today ${due}. Drills ${drillDone}. Practice ${practiceDone}. Tutor ${tutorDone}/${tutorScripts.length}.</p>`;
+  const pc = document.getElementById("practiceCount");
+  if(pc) pc.textContent = `${Math.min(practiceDone, practices.length)}/${practices.length}`;
+}
+function todayKey(){
+  return new Date().toISOString().slice(0,10);
+}
+function addDays(days){
+  const d = new Date();
+  d.setHours(0,0,0,0);
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0,10);
+}
+function cardSchedule(){
+  return readJson("card_schedule", {});
+}
+function saveCardSchedule(schedule){
+  writeJson("card_schedule", schedule);
+}
+function dueCardIndexes(){
+  const schedule = cardSchedule();
+  const today = todayKey();
+  const due = cards.map((c,i) => ({i, due:schedule[c.id] || "1970-01-01"})).filter(x => x.due <= today).map(x => x.i);
+  return due;
+}
+function reviewCardIndexes(){
+  const due = dueCardIndexes();
+  return due.length ? due : cards.map((c,i) => i);
 }
 function showCard(){
-  document.getElementById('doneCard').style.display='none';
-  if(!queue.length) buildQueue();
-  if(!queue.length){finishDeck();return;}
-  cur=queue[0]; shown=false;
-  document.getElementById('fcard').style.display='flex';
-  document.getElementById('fcQ').innerHTML=DECK[cur][0];
-  const a=document.getElementById('fcA'); a.style.display='none'; a.innerHTML=DECK[cur][1];
-  document.getElementById('rateRow').style.display='none';
-  document.getElementById('flipBtn').style.display='block';
-  const done=DECK.length-queue.length;
-  document.getElementById('cardBar').style.width=(done/DECK.length*100)+'%';
-  document.getElementById('cardCount').textContent=queue.length+' due · '+DECK.length+' cards';
+  const actualDue = dueCardIndexes();
+  const reviewSet = reviewCardIndexes();
+  currentCardIdx = reviewSet[cardIndex % reviewSet.length];
+  const c = cards[currentCardIdx];
+  const schedule = cardSchedule();
+  const dueDate = schedule[c.id] || "new";
+  document.getElementById("flashcard").className = "fc";
+  document.getElementById("flashcard").innerHTML = `<div class="tag">${actualDue.length} due today · next due ${dueDate}</div><div class="q">${c.q}</div><div class="a">${c.a}</div>`;
+  document.getElementById("flashcard").onclick = e => e.currentTarget.classList.toggle("show");
+  document.getElementById("cardProg").style.width = `${Math.round(((cardIndex % reviewSet.length)+1)/reviewSet.length*100)}%`;
 }
-function flip(){
-  if(shown)return; shown=true;
-  document.getElementById('fcA').style.display='block';
-  document.getElementById('rateRow').style.display='grid';
-  document.getElementById('flipBtn').style.display='none';
+function rateCard(score){
+  const intervals = [0, 1, 3, 7];
+  const schedule = cardSchedule();
+  const card = cards[currentCardIdx];
+  schedule[card.id] = addDays(intervals[score] || 0);
+  saveCardSchedule(schedule);
+  writeNumber("cards_done", readNumber("cards_done") + 1);
+  cardIndex += 1;
+  writeNumber("card_index", cardIndex);
+  showCard(); updateProgress();
 }
-function rate(r){ if(!shown)return; schedule(cur,r); queue.shift(); showCard(); homeProg(); }
-function finishDeck(){
-  document.getElementById('fcard').style.display='none';
-  document.getElementById('rateRow').style.display='none';
-  document.getElementById('flipBtn').style.display='none';
-  document.getElementById('doneCard').style.display='block';
-  document.getElementById('cardCount').textContent='all reviewed';
-  document.getElementById('cardBar').style.width='100%';
-}
-function resetToday(){queue=DECK.map((_,i)=>i);showCard();}
-
-/* ---------- drills ---------- */
-const DRILLS=[
- {scn:"<b>NAS100 4H.</b> Daily close above the 200-day, 50-day above 200-day. Price has pulled back to the 20-EMA, and this bar <b>breaks back above</b> the pullback high.",a:"GO",why:"All five parts line up: daily uptrend + a 4H pullback that's now resuming. Your buy-stop fills on the break. Place stop below the pullback low, target 2R."},
- {scn:"<b>NAS100 4H.</b> Daily close is <b>below</b> the 200-day. Sharp 2-day drop, now bouncing.",a:"NO",why:"No daily uptrend — Part 1 fails. This is a long-only momentum model; we never buy in a downtrend and we never short. Sit out."},
- {scn:"<b>NAS100 4H.</b> Strong uptrend, price <b>ripping straight up</b>, well above the 20-EMA, RSI ~68. No pullback.",a:"WAIT",why:"Uptrend is fine but there's nothing to buy — no pullback. Don't chase an extended move. Wait for it to dip back to the EMA."},
- {scn:"<b>NAS100 4H.</b> Daily uptrend. Price has pulled back to the 20-EMA but is <b>still drifting down</b> — no turn back up yet.",a:"WAIT",why:"The pullback is there but not resuming. The buy-stop sits above the high and simply won't fill until price turns back up. Patience — let the trigger do its job."},
- {scn:"<b>NAS100 4H.</b> Daily uptrend confirmed. Clean pullback to the 20-EMA, then a strong bar closes back up through the pullback high. Normal volatility.",a:"GO",why:"Textbook continuation. Buy-stop fills, stop below the pullback low, 2R target. ~2-day hold."},
- {scn:"You're <b>already long NAS100</b> and price just tagged your <b>2R target</b>.",a:"NO",why:"That's the exit doing its job — bank it. It's not a new entry. Reset and wait for the next pullback."},
- {scn:"<b>NAS100 4H.</b> Daily uptrend, a clean pullback resuming — but it's <b>30 minutes before a major Fed decision</b> and volatility is flagged HIGH.",a:"WAIT",why:"The setup is valid and Swing rules even allow news — but jumping in right before a Fed print risks a whipsaw against your stop. Optional discipline: let the event pass, take the next clean one."},
- {scn:"<b>NAS100 4H.</b> Daily uptrend. Price barely dipped — it's still well above the 20-EMA and RSI never rolled down.",a:"WAIT",why:"No genuine pullback yet. Don't manufacture a setup. Wait for a real dip to the EMA before arming the buy-stop."}
-];
-let dIdx=0,dScore=JSON.parse(localStorage.getItem('prosper_sm_drill')||'{"c":0,"n":0}');
 function showDrill(){
-  const d=DRILLS[dIdx];
-  document.getElementById('drillScn').innerHTML=d.scn;
-  document.getElementById('drillFb').style.display='none';
-  document.getElementById('drillNext').style.display='none';
-  document.querySelectorAll('#drillCard .row .btn').forEach(b=>b.disabled=false);
-  document.getElementById('drillScore').innerHTML='Score <b>'+dScore.c+'/'+dScore.n+'</b> · card '+(dIdx+1)+'/'+DRILLS.length;
+  const d = drills[drillIndex % drills.length];
+  document.getElementById("drill").innerHTML = `<p><strong>${d.q}</strong></p><div class="choice">${d.choices.map((c,i)=>`<button onclick="answerDrill(${i})">${c}</button>`).join("")}</div><div id="drillFb" class="feedback"></div>`;
 }
-function answer(a){
-  const d=DRILLS[dIdx],ok=a===d.a;
-  dScore.n++; if(ok)dScore.c++;
-  localStorage.setItem('prosper_sm_drill',JSON.stringify(dScore));
-  document.querySelectorAll('#drillCard .row .btn').forEach(b=>b.disabled=true);
-  const fb=document.getElementById('drillFb');
-  fb.style.display='block';
-  fb.innerHTML='<div class="card tight" style="margin-top:12px;border-color:'+(ok?'var(--green)':'var(--red)')+'">'+
-    '<b class="'+(ok?'grn':'red')+'">'+(ok?'✓ Correct':'✗ Not quite')+' — answer: '+d.a+'</b>'+
-    '<p style="margin-top:6px;font-size:.9rem">'+d.why+'</p></div>';
-  document.getElementById('drillNext').style.display='block';
-  document.getElementById('drillScore').innerHTML='Score <b>'+dScore.c+'/'+dScore.n+'</b> · card '+(dIdx+1)+'/'+DRILLS.length;
-  homeProg();
+function answerDrill(i){
+  const d = drills[drillIndex % drills.length];
+  const fb = document.getElementById("drillFb");
+  fb.className = "feedback " + (i === d.a ? "good" : "bad");
+  fb.innerHTML = `<strong>${i === d.a ? "Correct." : "Review."}</strong> ${d.why}<button class="btn" onclick="nextDrill()">Next drill</button>`;
 }
-function nextDrill(){dIdx=(dIdx+1)%DRILLS.length;showDrill();}
-
-/* ---------- home progress ---------- */
-function homeProg(){
-  const seen=Object.keys(mem).length;
-  document.getElementById('homeProg').innerHTML=
-    '<div class="prog"><i style="width:'+(seen/DECK.length*100)+'%"></i></div>'+
-    '<p style="font-size:.85rem;margin:6px 0 0">'+seen+'/'+DECK.length+' cards learned · '+
-    dScore.n+' drills attempted ('+(dScore.n?Math.round(dScore.c/dScore.n*100):0)+'% right)</p>';
+function nextDrill(){
+  writeNumber("drills_done", readNumber("drills_done") + 1);
+  drillIndex++; writeNumber("drill_index", drillIndex);
+  showDrill(); updateProgress();
 }
-
-/* ---------- walkthrough player (silent auto-advance) ---------- */
-function svgChart(){return '<svg width="160" height="90" viewBox="0 0 160 90">'+
- '<path d="M8 70 L34 50 L52 58 L66 44 L80 56 L96 30 L120 40 L150 14" stroke="#f0b429" stroke-width="2.5" fill="none"/>'+
- '<circle cx="80" cy="56" r="5" fill="#2fd07a"/><polygon points="150,12 142,18 152,22" fill="#f0b429"/>'+
- '<text x="80" y="80" fill="#6b7c8c" font-size="9" text-anchor="middle">pullback → buy → leg</text></svg>';}
-function svgPart(n){return '<div style="width:84px;height:84px;border-radius:18px;background:#1b232c;'+
- 'border:2px solid #f0b429;display:flex;align-items:center;justify-content:center;'+
- 'font-size:2.4rem;font-weight:800;color:#f0b429">'+n+'</div>';}
-function svgGlyph(e){return '<div style="font-size:3rem">'+e+'</div>';}
-function svgPass(){return '<div style="font-size:2.2rem;font-weight:800;color:#2fd07a">75%<div style="font-size:.7rem;color:#6b7c8c;font-weight:600;letter-spacing:.05em">FTMO PASS @ 0.5% RISK</div></div>';}
-function svgMkt(){return '<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:230px">'+
- ['NAS100','XAU(2nd)'].map(function(t,i){return '<span style="font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:999px;background:#1b232c;border:1px solid #27313c;color:'+(i<1?'#f0b429':'#ffb020')+'">'+t+'</span>';}).join('')+'</div>';}
-
-const SLIDES=[
- {t:"Swing Momentum",p:"One market, one setup, run around your work day.",v:svgChart},
- {t:"What we trade",p:"NAS100 — the one market that held up everywhere. Longs only.",v:svgMkt},
- {t:"Part 1 · Trend",p:"Daily: price > 200-day, 50-day > 200-day. No uptrend, no trade.",v:function(){return svgPart('1');}},
- {t:"Part 2 · Pullback",p:"On the 4H, a dip back to the 20-EMA — the discount.",v:function(){return svgPart('2');}},
- {t:"Part 3 · Trigger",p:"Buy-stop above the pullback high — only fills if it resumes up.",v:function(){return svgPart('3');}},
- {t:"Part 4 · Stop",p:"Below the pullback low. Out small if it was a reversal.",v:function(){return svgPart('4');}},
- {t:"Part 5 · Target",p:"Take 2× your risk; back-stop after ~5 days. ~2-day hold.",v:function(){return svgPart('5');}},
- {t:"Risk",p:"0.5% per trade — best FTMO odds. Never force a trade.",v:function(){return svgGlyph('🛡️');}},
- {t:"Does it pass?",p:"75% pass at 0.5% risk (net); ~1 in 4 still blow. Real, not certain.",v:svgPass},
- {t:"Your routine",p:"4 quick checks a day · place or pass · log it · stay disciplined.",v:function(){return svgGlyph('🎯');}}
-];
-const CAPS=["Swing momentum: one market, one setup, a couple of 2-minute checks around your work day.",
- "We trade the Nasdaq — the one market that stayed profitable in every test, including the hidden 2026. Longs only. Gold is a tentative second to paper-trade.",
- "Part one: a proven daily uptrend. Price above the 200-day, and the 50-day above the 200-day. If not, we do nothing.",
- "Part two: wait for a pullback on the 4-hour — a dip back to the 20-EMA. That's our discount inside the trend.",
- "Part three: place a buy-stop just above the pullback's high. It only fills if price turns back up — the confirmation is built into the order.",
- "Part four: the stop sits just below the pullback low. If the dip was really a reversal, you're out small.",
- "Part five: take profit at twice your risk, and exit anyway after about five days. Average hold, two days.",
- "Risk keeps you in the game: half a percent per trade is the sweet spot, and you never force a trade that isn't there.",
- "Ten thousand simulated challenges: at half a percent it passes about 75% of the time, after financing. Real, repeatable — not a guarantee.",
- "Your job: four quick check-ins, place the order or pass, and log every trade honestly. Discipline is the edge."];
-
-let wi=0, wTimer=null;
-function wPad(n){return (n+1<10?'0':'')+(n+1);}
-function wShow(){
-  const s=SLIDES[wi];
-  document.getElementById('wVis').innerHTML=s.v();
-  document.getElementById('wTitle').textContent=s.t;
-  document.getElementById('wPoint').textContent=s.p;
-  document.getElementById('wCap').textContent=CAPS[wi];
-  document.getElementById('wIdx').textContent=wi+1;
-  document.getElementById('wBar').style.width=((wi+1)/SLIDES.length*100)+'%';
+function showPractice(){
+  const p = practices[practiceIndex % practices.length];
+  document.getElementById("practiceBox").innerHTML = `<div class="miniChart ${p.type}"><div class="miniLine h"></div><div class="miniLine l"></div><div class="miniBox"></div><div class="miniCandle ${p.type === "messy" ? "messy" : "break"}"></div></div><h3>${p.title}</h3><p><strong>${p.scenario}</strong></p><p>${p.task}</p><div class="choice">${p.choices.map((c,i)=>`<button onclick="answerPractice(${i})">${c}</button>`).join("")}</div><div id="practiceFb" class="feedback"></div>`;
+  updateProgress();
 }
-function wToggle(){
-  if(wTimer){clearInterval(wTimer);wTimer=null;document.getElementById('wPlay').textContent='▶  Play';}
-  else{document.getElementById('wPlay').textContent='❚❚ Pause';
-    wTimer=setInterval(function(){ if(wi<SLIDES.length-1){wGo(1);} else {clearInterval(wTimer);wTimer=null;document.getElementById('wPlay').textContent='↻  Replay';} },6000);}
+function answerPractice(i){
+  const p = practices[practiceIndex % practices.length];
+  const fb = document.getElementById("practiceFb");
+  const checks = (p.checks || []).map(c => `<div class="ruleCheck ${c[1] ? "pass" : "block"}">${c[1] ? "PASS" : "BLOCK"} · ${c[0]}</div>`).join("");
+  fb.className = "feedback " + (i === p.a ? "good" : "bad");
+  fb.innerHTML = `<strong>${i === p.a ? "Correct." : "Review."}</strong> ${p.why}<div class="ruleChecks">${checks}</div><button class="btn" onclick="nextPractice()">Next practice rep</button>`;
 }
-function wGo(d){wi=(wi+d+SLIDES.length)%SLIDES.length;wShow();}
-wShow();
-
-buildQueue(); showDrill(); homeProg();
+function nextPractice(){
+  writeNumber("practice_done", readNumber("practice_done") + 1);
+  practiceIndex++; writeNumber("practice_index", practiceIndex);
+  showPractice(); updateProgress();
+}
+function escapeHtml(value){
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
+}
+function tutorNotes(){
+  return readJson("tutor_notes", []);
+}
+function currentTutor(){
+  return tutorScripts[tutorIndex % tutorScripts.length];
+}
+function renderTutor(){
+  const box = document.getElementById("tutorBox");
+  const noteBox = document.getElementById("tutorNote");
+  if(!box || !noteBox) return;
+  const t = currentTutor();
+  const saved = tutorNotes().find(n => n.key === t.key);
+  noteBox.value = saved ? saved.note : "";
+  box.innerHTML = `<div class="tutorBox"><div class="tag">${(tutorIndex % tutorScripts.length) + 1}/${tutorScripts.length} · ${learners[activeLearner]}</div><h3>${escapeHtml(t.title)}</h3><div class="tutorScript">${escapeHtml(t.script)}</div><div class="tutorAsk">${escapeHtml(t.ask)}</div>${saved ? `<p class="note"><strong>Saved note:</strong> ${escapeHtml(saved.note)}</p>` : `<p class="note">No saved teach-back note for this module yet.</p>`}</div>`;
+}
+function saveTutorNote(){
+  const t = currentTutor();
+  const clean = String(tutorNote.value || "").replace(/[<>]/g,"").trim();
+  const notes = tutorNotes().filter(n => n.key !== t.key);
+  if(clean) notes.push({key:t.key, title:t.title, note:clean, saved_at:new Date().toISOString()});
+  writeJson("tutor_notes", notes);
+  renderTutor();
+  updateProgress();
+}
+function nextTutor(){
+  tutorIndex = (tutorIndex + 1) % tutorScripts.length;
+  writeNumber("tutor_index", tutorIndex);
+  renderTutor();
+}
+function prevTutor(){
+  tutorIndex = (tutorIndex - 1 + tutorScripts.length) % tutorScripts.length;
+  writeNumber("tutor_index", tutorIndex);
+  renderTutor();
+}
+function exportTutorScripts(){
+  const payload = {
+    _meta: {
+      course: "PROSPER XAU H1 Asian Range Breakout Close",
+      use: "Build-time narration only. No API keys in course_xau.html.",
+      voice: "Warm, calm British English trading tutor. Human, practical, not salesy.",
+      safety: "Study only. Do not create new trading rules or override marker/checklist/backtest contract."
+    }
+  };
+  tutorScripts.forEach(t => {
+    payload[t.key] = `${t.script}\n\nTeach-back prompt: ${t.ask}`;
+  });
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "prosper_xau_h1_tutor_voice_scripts.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function renderAssessment(){
+  const done = readJson("assessment", []);
+  const list = document.getElementById("assessmentList");
+  if(!list) return;
+  list.innerHTML = assessmentItems.map((item,i) => `<label class="checkline"><input type="checkbox" ${done.includes(i) ? "checked" : ""} onchange="toggleAssessment(${i}, this.checked)"><span>${item}</span></label>`).join("");
+  const pct = Math.round((done.length / assessmentItems.length) * 100);
+  document.getElementById("assessProg").style.width = `${pct}%`;
+  document.getElementById("assessText").innerHTML = `<strong>${done.length}/${assessmentItems.length}</strong> readiness checks complete. Funded use stays blocked until every item is evidenced.`;
+}
+function toggleAssessment(i, checked){
+  const done = readJson("assessment", []).filter(x => x !== i);
+  if(checked) done.push(i);
+  writeJson("assessment", done);
+  renderAssessment();
+}
+function journalEntries(){ return readJson("journal", []); }
+function renderJournal(){
+  const entries = journalEntries();
+  document.getElementById("journalList").innerHTML = entries.slice().reverse().map(e => `<div class="entry"><b>${e.date}</b> · ${e.setup || "XAU_H1_ASIAN_BREAKOUT_CLOSE"} · ${e.state} · ${e.decision}<br><span class="muted">${e.bias} · Action: ${e.action || "n/a"} · R: ${e.r || "n/a"} · Rules: ${e.rules} · News: ${e.news || "n/a"} · State: ${e.emotion || "n/a"}</span><p class="muted">EXEC: ${e.exec_price || "n/a"} · STOP zone: ${e.stop_zone || "n/a"} · TP zone: ${e.tp_zone || "n/a"} · Time exit: ${e.time_exit || "n/a"}</p><p>${e.notes || ""}</p><p class="muted">${e.lesson ? "Lesson: " + e.lesson : ""}</p></div>`).join("") || `<p class="muted">No local entries yet.</p>`;
+}
+document.getElementById("journalForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const clean = v => String(v || "").replace(/[<>]/g,"");
+  const entry = {
+    date:jDate.value || new Date().toISOString().slice(0,10),
+    setup:jSetup.value,
+    state:jState.value,
+    action:jAction.value,
+    bias:jBias.value,
+    decision:jDecision.value,
+    signal:jSignal.value,
+    fill:jFill.value,
+    exec_price:jExec.value,
+    stop_zone:jStopZone.value,
+    tp_zone:jTpZone.value,
+    time_exit:jTimeExit.value,
+    r:jR.value,
+    rules:jRules.value,
+    news:jNews.value,
+    emotion:jEmotion.value,
+    screenshot_before:clean(jShotBefore.value),
+    screenshot_after:clean(jShotAfter.value),
+    notes:clean(jNotes.value),
+    lesson:clean(jLesson.value)
+  };
+  const entries = journalEntries(); entries.push(entry);
+  writeJson("journal", entries);
+  e.target.reset(); jDate.value = new Date().toISOString().slice(0,10); renderJournal(); updateProgress();
+});
+function downloadCsv(rows, filename){
+  const csv = rows.map(r => r.map(x => `"${String(x || "").replaceAll('"','""')}"`).join(",")).join("\n");
+  const blob = new Blob([csv], {type:"text/csv"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+  URL.revokeObjectURL(a.href);
+}
+function exportJournal(){
+  const rows = [[
+    "date","market","setup_tag","entry_model","marker_state","action_row","bias","decision",
+    "signal_time","fill_time","exec_price","stop_zone","tp_zone","time_exit","result_r","rules_followed","news_check",
+    "emotion_state","screenshot_before","screenshot_after","lesson_learned","notes"
+  ], ...journalEntries().map(e => [
+    e.date,"XAU_USD",e.setup || "XAU_H1_ASIAN_BREAKOUT_CLOSE",
+    (e.setup || "").includes("RETEST") ? "retest_study_only" : "breakout_close",
+    e.state,e.action,e.bias,e.decision,e.signal,e.fill,e.exec_price,e.stop_zone,e.tp_zone,e.time_exit,e.r,e.rules,e.news,e.emotion,
+    e.screenshot_before,e.screenshot_after,e.lesson,e.notes
+  ])];
+  downloadCsv(rows, `prosper_xau_h1_${activeLearner}_tradenote_journal.csv`);
+}
+function exportMarkerQaTemplate(){
+  const rows = [[
+    "session_no","date","symbol","timeframe","asian_box_ok","range_quality_ok",
+    "breakout_close_ok","ema_state_ok","action_row_ok","dxy_context_recorded","news_lockout_ok",
+    "stop_tp_zones_ok","time_exit_ok","screenshot_before","screenshot_after","notes"
+  ]];
+  for(let i=1;i<=10;i++) rows.push([i,"","OANDA:XAUUSD","H1","","","","","","","","","","","",""]);
+  downloadCsv(rows, "prosper_xau_h1_marker_qa_10_sessions.csv");
+}
+function clearJournal(){
+  if(confirm(`Clear ${learners[activeLearner]}'s local journal stored in this browser?`)){ localStorage.removeItem(learnerKey("journal")); renderJournal(); }
+}
+function calcExpectancy(){
+  const win = Math.max(0, Math.min(100, Number(calcWin.value || 0))) / 100;
+  const avgWin = Math.max(0, Number(calcWinR.value || 0));
+  const avgLoss = Math.max(0, Number(calcLossR.value || 0));
+  const trades = Math.max(1, Math.round(Number(calcTrades.value || 10)));
+  const expectancy = (win * avgWin) - ((1 - win) * avgLoss);
+  const expectedR = expectancy * trades;
+  const expClass = expectancy >= 0 ? "grn" : "red";
+  const totalClass = expectedR >= 0 ? "grn" : "red";
+  calcResult.innerHTML = `Expectancy: <span class="${expClass}">${expectancy.toFixed(2)}R</span> per trade. Over ${trades} trades, that is about <span class="${totalClass}">${expectedR.toFixed(2)}R</span>.`;
+}
+function init(){
+  migrateLegacyToDavid();
+  if(!learners[activeLearner]) activeLearner = "david";
+  localStorage.prosper_xau_active_learner = activeLearner;
+  loadLearnerState();
+  refreshLearnerButtons();
+  initLessons(); showCard(); showDrill(); showPractice(); renderTutor(); updateProgress(); renderJournal(); renderAssessment();
+  calcExpectancy();
+  jDate.value = new Date().toISOString().slice(0,10);
+  const last = localStorage.getItem(learnerKey("last_tab"));
+  if(last && document.getElementById(last)) document.querySelector(`nav button[data-tab="${last}"]`).click();
+}
+init();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){});}
 </script>
 </body>

@@ -1,5 +1,5 @@
 // PROSPER Service Worker — offline-first cache for tube/commute
-const CACHE = 'prosper-v14-net';
+const CACHE = 'prosper-xau-v22-20260708';
 const ASSETS = [
   './course.html',
   './tradelog.html',
@@ -7,6 +7,17 @@ const ASSETS = [
   './manifest.json',
   './icon-192.svg',
   './icon-512.svg',
+  './media/xau_demos/tradingview_xau_base.png',
+  './media/xau_demos/xau_h1_setup_to_execution_narrated.mp4',
+  './media/xau_demos/xau_h1_setup_to_execution.vtt',
+  './media/xau_demos/xau_case_clean_vs_messy.mp4',
+  './media/xau_demos/xau_case_clean_vs_messy.vtt',
+  './media/xau_demos/xau_case_wick_false_breakout.mp4',
+  './media/xau_demos/xau_case_wick_false_breakout.vtt',
+  './media/xau_demos/xau_case_ema_dxy_block.mp4',
+  './media/xau_demos/xau_case_ema_dxy_block.vtt',
+  './media/xau_demos/xau_case_risk_journal.mp4',
+  './media/xau_demos/xau_case_risk_journal.vtt',
   './art/hero.png',
   './art/icon.png'
 ];
