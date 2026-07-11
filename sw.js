@@ -1,6 +1,7 @@
 // PROSPER Service Worker — offline-first cache for tube/commute
-const CACHE = 'prosper-xau-v25-20260711-video-lessons';
+const CACHE = 'prosper-xau-v26-20260711-evidence-pack';
 const ASSETS = [
+  './course_xau.html',
   './course.html',
   './tradelog.html',
   './course_v2.html',
@@ -25,6 +26,11 @@ const ASSETS = [
   './media/video_lessons/lesson04_breakout_close_uk_voice.png',
   './media/video_lessons/lesson04_breakout_close_uk_voice.mp4',
   './media/video_lessons/lesson04_breakout_close_uk_voice.vtt',
+  './media/evidence_pack/case01_current_rollover_messy_dont_trade.png',
+  './evidence_pack/README.md',
+  './evidence_pack/case_register.csv',
+  './evidence_pack/cases/case01_current_rollover_messy_dont_trade.md',
+  './GPT_VIDEO_LESSON_PACKAGES_2026_07_11.md',
   './art/hero.png',
   './art/icon.png'
 ];

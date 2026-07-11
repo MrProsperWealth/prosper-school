@@ -153,6 +153,10 @@ label{display:block;font-size:.76rem;color:var(--faint);font-weight:800;text-tra
     </div>
   </div>
   <div class="card tight">
+    <div class="tag">new here? gemma's path</div>
+    <p style="margin:.3em 0"><strong>Basics → Key → Candles → Indicators</strong>, then come back to Learn. Every shorthand in the course is decoded on the Key tab — if a word isn't there, ask.</p>
+  </div>
+  <div class="card tight">
     <div class="tag">today's learning sprint</div>
     <div id="homeProg"></div>
     <div class="step"><div class="n">1</div><div><strong>Watch the picture</strong><small>Asian box, clean range, breakout close, stop, 2R.</small></div></div>
@@ -186,6 +190,361 @@ label{display:block;font-size:.76rem;color:var(--faint);font-weight:800;text-tra
     <h2>Keep The Edge Clean</h2>
     <p>PO3, gap closure, DXY, UKDT-style levels, and red news can help you understand the day. They do not become funded entry rules until they beat the baseline in testing.</p>
     <div class="rule">Signal = clean Asian range + daily bias + H1 EMA stack + H1 breakout close + no lockout. Context can explain. It cannot override.</div>
+  </div>
+</section>
+
+<section id="basics">
+  <div class="card">
+    <span class="pill info">start here</span>
+    <h2>Trading Basics — Zero To The Model</h2>
+    <p>This tab is the plain-English floor under everything else. No jargon — any shorthand you meet elsewhere in the course is decoded on the <strong>Key</strong> tab.</p>
+  </div>
+  <div class="card">
+    <h3>1 · What are we actually doing?</h3>
+    <p>We trade <strong>XAU/USD</strong> — the price of one ounce of gold, quoted in US dollars. We never own any gold. We bet on whether that number goes <strong>up or down</strong>, and we can profit in either direction:</p>
+    <div class="stateTable">
+      <div class="state"><b class="grn">BUY (go "long")</b><span>you profit if the price RISES after you enter</span></div>
+      <div class="state"><b class="red">SELL (go "short")</b><span>you profit if the price FALLS after you enter</span></div>
+    </div>
+    <p class="note">Selling something you don't own feels odd at first. The broker handles the mechanics — all you decide is direction, size, and exit points.</p>
+  </div>
+  <div class="card">
+    <h3>2 · How price moves, and the spread</h3>
+    <p>Gold moving from 4,040 to 4,050 is a <strong>$10 move</strong>. All our stops and targets are measured in these dollars of gold price.</p>
+    <p>Your platform always shows <strong>two prices</strong> — e.g. SELL 4,038.5 / BUY 4,039.3. The gap (the <strong>spread</strong>) is the broker's cut, so every trade starts slightly negative. That's one reason we only take trades aiming for big moves (2R), never tiny scalps.</p>
+  </div>
+  <div class="card">
+    <h3>3 · The three orders every trade uses</h3>
+    <div class="step"><div class="n">1</div><div><strong>Entry</strong><small>We enter at the open of the next H1 candle after a valid signal. No chasing, no early entries.</small></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Stop-loss</strong><small>A pre-set order that closes the trade automatically at our maximum acceptable loss. Placed at the opposite side of the box. It is NEVER moved further away.</small></div></div>
+    <div class="step"><div class="n">3</div><div><strong>Take-profit</strong><small>A pre-set order that banks the win automatically at the 2R target.</small></div></div>
+    <div class="rule">Set all three, then hands off. If neither exit is hit within 18 hours, the trade is closed manually. The marker draws all of this for you as red and green zones.</div>
+  </div>
+  <div class="card">
+    <h3>4 · R — the only unit that matters</h3>
+    <p>Every trade risks the same fixed slice of the account: <strong>0.25%</strong>. That amount is called <strong>1R</strong>. Wins and losses are counted in R, not pounds, so every trade is comparable.</p>
+    <p><strong>Worked example:</strong> account £10,000 → 1R = £25. Say the stop is $8 of gold price away from entry. You size the position so that an $8 move against you loses exactly £25. Hit the 2R target: <span class="grn">+£50</span>. Hit the stop: <span class="red">−£25</span>.</p>
+    <table>
+      <tr><th>10 trades</th><th>Result</th></tr>
+      <tr><td>4 winners at +2R</td><td class="grn">+8R</td></tr>
+      <tr><td>6 losers at −1R</td><td class="red">−6R</td></tr>
+      <tr><td><strong>Month total</strong></td><td class="grn"><strong>+2R (profitable)</strong></td></tr>
+    </table>
+    <p class="note">Read that table again: we lost MORE trades than we won and still made money. That's the whole secret — winners are twice the size of losers, so a roughly 50% win rate is enough. Losing streaks are normal and survivable because each loss is only 0.25%.</p>
+  </div>
+  <div class="card">
+    <h3>5 · Why time of day is part of the system</h3>
+    <p>All times UK:</p>
+    <div class="stateTable">
+      <div class="state"><b>23:00–06:00</b><span>Asia trades quietly overnight — gold drifts in a range. This builds "the box".</span></div>
+      <div class="state"><b>08:00–19:00</b><span>London then New York wake up with real volume. Only H1 closes in this window can be signals.</span></div>
+      <div class="state"><b>21:00 onwards</b><span>Market rollover — spreads widen, moves are unreliable. No new trades.</span></div>
+    </div>
+    <p class="note">Big scheduled news (US interest-rate decisions, the monthly US jobs report) makes price jump randomly through levels — we sit out a 4-hour window around those.</p>
+  </div>
+  <div class="card">
+    <h3>6 · What a prop firm is (the actual plan)</h3>
+    <p>A proprietary-trading ("prop") firm rents you a large trading account. You pay a one-off <strong>challenge fee</strong> (~£100–£500), pass their <strong>evaluation</strong> — hit a modest profit target without breaking their loss rules — and then trade their capital, keeping ~80% of profits as <strong>payouts</strong>.</p>
+    <p>Their rules (daily loss limit, max drawdown) reward exactly one skill: <strong>discipline</strong>. That's why this course drills rules, not predictions. The path: learn → demo proof (60 days, journalled) → evaluation → funded. The challenge fee is the only money ever at risk.</p>
+  </div>
+  <div class="card">
+    <span class="pill no">non-negotiable</span>
+    <h3>Golden rules for beginners</h3>
+    <ul>
+      <li><strong>One trade per day, maximum.</strong> After a trade — win or lose — you're done.</li>
+      <li><strong>The stop-loss never moves further away.</strong> Not once, not "just this time".</li>
+      <li><strong>A wick is not a close.</strong> Only where the candle FINISHES counts (see Candles tab).</li>
+      <li><strong>A clean skip is a win.</strong> Most days the correct trade is no trade.</li>
+      <li><strong>News window = locked.</strong> No exceptions, however good it looks.</li>
+      <li><strong>0.25% risk, always.</strong> Never "a bit more because I'm confident".</li>
+      <li><strong>When unsure, read the marker's Action row.</strong> If it says DON'T TRADE, don't trade.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="key">
+  <div class="card">
+    <span class="pill info">decoder ring</span>
+    <h2>Key — Every Shorthand Explained</h2>
+    <p>Anything in the course, the journal, or the marker that looks like code lives here. If you meet a term that isn't on this tab, that's a bug — tell Prosper.</p>
+    <label for="keySearch">Find a term</label>
+    <input id="keySearch" type="search" placeholder="Type to filter — e.g. spike, R, OOS, rollover" oninput="filterKey(this.value)">
+  </div>
+  <div class="card">
+    <h3>Money &amp; risk</h3>
+    <table class="qaTable">
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td><strong>R</strong></td><td>One unit of risk = the money risked on a single trade (0.25% of the account). +2R = won twice what was risked.</td></tr>
+      <tr><td><strong>RR / 2R target</strong></td><td>Reward-to-risk ratio. We aim to win 2× what we risk on every trade.</td></tr>
+      <tr><td><strong>WR</strong></td><td>Win rate — % of trades that win. Ours is ~50–59%. Meaningless without knowing the R per win.</td></tr>
+      <tr><td><strong>PF</strong></td><td>Profit factor — total won ÷ total lost. Above 1.0 = profitable. Our out-of-sample PF is 2.56.</td></tr>
+      <tr><td><strong>Expectancy</strong></td><td>Average R made per trade including losers. Ours ≈ +0.48R out-of-sample.</td></tr>
+      <tr><td><strong>Drawdown</strong></td><td>Drop from the account's peak. Prop firms fail you for exceeding theirs — our small risk keeps us far from it.</td></tr>
+      <tr><td><strong>Daily stop 2R</strong></td><td>If a day loses 2R total, stop trading until tomorrow. (With one trade/day, one loss = done anyway.)</td></tr>
+      <tr><td><strong>Spread</strong></td><td>Gap between the platform's buy and sell price — the broker's cut.</td></tr>
+      <tr><td><strong>Leverage / margin</strong></td><td>Borrowed buying power / the deposit it requires. Marketing noise for us — we size by R, never by leverage.</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>The setup</h3>
+    <table class="qaTable">
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td><strong>Box / Asian range</strong></td><td>Highest and lowest price of the H1 candles closing 00:00–06:00 UK. The rectangle on the chart.</td></tr>
+      <tr><td><strong>Updates</strong></td><td>How many times the box high/low was pushed wider overnight. More than 8 = restless, messy range.</td></tr>
+      <tr><td><strong>Spike</strong></td><td>Biggest single Asian candle ÷ box size. Above 0.65 = one violent candle made the box → messy.</td></tr>
+      <tr><td><strong>Range/ATR gate</strong></td><td>Box size must be 0.30–3.00 × ATR. Too small = noise, too big = panic day. Both are skips.</td></tr>
+      <tr><td><strong>Buffer</strong></td><td>0.05 × ATR added beyond the box edge. The close must clear box + buffer, not just touch the line.</td></tr>
+      <tr><td><strong>Breakout close</strong></td><td>THE signal: an H1 candle that finishes beyond box + buffer, 08:00–19:00 UK, with trend agreement.</td></tr>
+      <tr><td><strong>Wick</strong></td><td>The thin line beyond a candle's body — price went there but didn't stay. A wick beyond the box is NOT a signal.</td></tr>
+      <tr><td><strong>Daily bias</strong></td><td>Big-picture trend from yesterday's daily close vs the 50/200-day averages. Must agree with trade direction.</td></tr>
+      <tr><td><strong>EMA stack</strong></td><td>H1 moving averages in order (20 ≥ 50 ≥ 200 for longs, mirrored for shorts). Must also agree. See Indicators tab.</td></tr>
+      <tr><td><strong>Max hold 18h</strong></td><td>Trade still open 18 hours after entry → close it manually. The zones' right edge marks this.</td></tr>
+      <tr><td><strong>Red news</strong></td><td>High-impact scheduled events (Fed rate decisions "FOMC", US jobs report "NFP"). 4-hour lockout around them.</td></tr>
+      <tr><td><strong>Rollover</strong></td><td>Late evening (21:00+ UK) when brokers reset the trading day — wide spreads, no new trades.</td></tr>
+      <tr><td><strong>Shock candle</strong></td><td>An H1 candle bigger than 3 × ATR — panic move. Optional overlay skips the next few candles.</td></tr>
+      <tr><td><strong>Retest (study-only)</strong></td><td>Price returning to the broken level. We journal these to learn — they are NOT tradeable signals.</td></tr>
+      <tr><td><strong>DXY (context)</strong></td><td>US dollar index — often moves opposite to gold. We note it in the journal; it never blocks or takes a trade.</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Evidence words</h3>
+    <table class="qaTable">
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td><strong>Backtest</strong></td><td>Running the rules over years of past data to measure the edge. Our base: 183 trades.</td></tr>
+      <tr><td><strong>OOS</strong></td><td>Out-of-sample — data deliberately held back from rule-building, so the result is honest, not curve-fit.</td></tr>
+      <tr><td><strong>n=</strong></td><td>Sample size. n=3 means three trades — far too few to conclude anything. We need 50+ before trusting a number.</td></tr>
+      <tr><td><strong>Forward test / demo</strong></td><td>Trading the rules live on fake money to prove execution before any fee is paid.</td></tr>
+      <tr><td><strong>Eval / funded / payout</strong></td><td>The prop-firm test → trading their capital → getting paid your profit share.</td></tr>
+      <tr><td><strong>H1 / H4 / D1</strong></td><td>Chart timeframes: each candle = 1 hour / 4 hours / 1 day. This model lives on H1.</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Marker states &amp; Action row</h3>
+    <p>The state (top of the marker table) says where the day is; the Action row (bottom) says what you're allowed to do. Full walkthrough on the Marker tab.</p>
+    <table class="qaTable">
+      <tr><th>Action row says</th><th>You do</th></tr>
+      <tr><td class="grn"><strong>BUY / SELL next H1 open</strong></td><td>Run the checklist; if it agrees, place the trade at the next hourly open with stop and 2R target.</td></tr>
+      <tr><td class="amb"><strong>WAIT - watch BUY/SELL break</strong></td><td>Conditions aligned; watch for an H1 close beyond the box. No order yet.</td></tr>
+      <tr><td class="cyan"><strong>TRADE TAKEN - no re-entry</strong></td><td>Today's one trade happened. Manage it; take nothing new.</td></tr>
+      <tr><td><strong>DON'T TRADE</strong></td><td>Messy box, wrong session, locked, or no bias. Journal the skip — that's a rep.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="candles">
+  <div class="card">
+    <span class="pill info">read the chart</span>
+    <h2>Candles — What We Look For</h2>
+    <p>Every candle on our chart summarises one hour of trading. Learn to read one candle and you can read the whole chart.</p>
+  </div>
+  <div class="card">
+    <h3>Anatomy of a candle</h3>
+    <svg viewBox="0 0 340 210" role="img" aria-label="Candle anatomy: bullish and bearish candles with high, low, open, close labelled" style="width:100%;height:auto">
+      <line x1="110" y1="18" x2="110" y2="192" stroke="#2fd07a" stroke-width="2"/>
+      <rect x="96" y="62" width="28" height="86" rx="3" fill="#2fd07a"/>
+      <line x1="230" y1="18" x2="230" y2="192" stroke="#ff5c5c" stroke-width="2"/>
+      <rect x="216" y="62" width="28" height="86" rx="3" fill="#ff5c5c"/>
+      <text x="132" y="24" fill="#9fb0c0" font-size="11">high (top of wick)</text>
+      <text x="132" y="190" fill="#9fb0c0" font-size="11">low (bottom of wick)</text>
+      <text x="10" y="66" fill="#2fd07a" font-size="11" font-weight="700">close</text>
+      <text x="10" y="150" fill="#9fb0c0" font-size="11">open</text>
+      <line x1="44" y1="62" x2="96" y2="62" stroke="#2fd07a" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="44" y1="146" x2="96" y2="146" stroke="#6b7c8c" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="250" y="66" fill="#9fb0c0" font-size="11">open</text>
+      <text x="250" y="150" fill="#ff5c5c" font-size="11" font-weight="700">close</text>
+      <text x="40" y="207" fill="#2fd07a" font-size="10" font-weight="800">BULLISH · closed higher</text>
+      <text x="196" y="207" fill="#ff5c5c" font-size="10" font-weight="800">BEARISH · closed lower</text>
+    </svg>
+    <p>The fat part is the <strong>body</strong>: where the hour opened and closed. The thin lines are <strong>wicks</strong>: price visited there but didn't stay. <span class="grn">Green = finished higher</span>, <span class="red">red = finished lower</span>.</p>
+    <div class="rule">The close is the truth. Until the hour ends, a candle is still being written — a "breakout" at 25 minutes past can vanish by the close. We only ever act on FINISHED candles.</div>
+  </div>
+  <div class="card">
+    <h3>The signal we want: breakout CLOSE</h3>
+    <svg viewBox="0 0 340 170" role="img" aria-label="Valid breakout: candle closes above the box line" style="width:100%;height:auto">
+      <line x1="10" y1="60" x2="330" y2="60" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="14" y="52" fill="#f0b429" font-size="11" font-weight="700">box high + buffer</text>
+      <line x1="60" y1="92" x2="60" y2="150" stroke="#738295" stroke-width="2"/><rect x="52" y="102" width="16" height="34" rx="2" fill="#738295"/>
+      <line x1="105" y1="86" x2="105" y2="144" stroke="#738295" stroke-width="2"/><rect x="97" y="94" width="16" height="36" rx="2" fill="#738295"/>
+      <line x1="150" y1="78" x2="150" y2="140" stroke="#738295" stroke-width="2"/><rect x="142" y="88" width="16" height="38" rx="2" fill="#738295"/>
+      <line x1="195" y1="70" x2="195" y2="134" stroke="#738295" stroke-width="2"/><rect x="187" y="80" width="16" height="40" rx="2" fill="#738295"/>
+      <line x1="240" y1="26" x2="240" y2="120" stroke="#2fd07a" stroke-width="2"/>
+      <rect x="232" y="34" width="16" height="76" rx="2" fill="#2fd07a"/>
+      <text x="252" y="38" fill="#2fd07a" font-size="10" font-weight="800">CLOSED above</text>
+      <text x="252" y="52" fill="#2fd07a" font-size="10" font-weight="800">the line ✓</text>
+    </svg>
+    <p><span class="pill go">signal</span> The green candle's <strong>body finishes</strong> above box + buffer, between 08:00 and 19:00 UK, with both trend filters agreeing. Entry is the open of the NEXT candle. (Mirror image below the box low for a SELL.)</p>
+  </div>
+  <div class="card">
+    <h3>The trap we skip: wick-only break</h3>
+    <svg viewBox="0 0 340 170" role="img" aria-label="Invalid breakout: wick pokes above the line but the candle closes back inside" style="width:100%;height:auto">
+      <line x1="10" y1="60" x2="330" y2="60" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="14" y="52" fill="#f0b429" font-size="11" font-weight="700">box high + buffer</text>
+      <line x1="80" y1="92" x2="80" y2="150" stroke="#738295" stroke-width="2"/><rect x="72" y="102" width="16" height="34" rx="2" fill="#738295"/>
+      <line x1="130" y1="82" x2="130" y2="144" stroke="#738295" stroke-width="2"/><rect x="122" y="92" width="16" height="36" rx="2" fill="#738295"/>
+      <line x1="185" y1="26" x2="185" y2="140" stroke="#ff5c5c" stroke-width="2"/>
+      <rect x="177" y="84" width="16" height="46" rx="2" fill="#ff5c5c"/>
+      <text x="205" y="38" fill="#ff5c5c" font-size="11" font-weight="800">wick poked above,</text>
+      <text x="205" y="52" fill="#ff5c5c" font-size="11" font-weight="800">closed back inside ✗</text>
+    </svg>
+    <p><span class="pill no">no trade</span> Price spiked over the line and got rejected — the body finished back inside the box. This is the market hunting impatient traders. <strong>A wick is never a signal</strong>, however dramatic it looks.</p>
+  </div>
+  <div class="card">
+    <h3>Clean box vs messy box</h3>
+    <svg viewBox="0 0 340 150" role="img" aria-label="Clean range with small orderly candles" style="width:100%;height:auto">
+      <rect x="14" y="40" width="250" height="70" fill="none" stroke="#39c0d8" stroke-width="2"/>
+      <line x1="40" y1="52" x2="40" y2="100" stroke="#738295" stroke-width="2"/><rect x="33" y="62" width="14" height="26" rx="2" fill="#738295"/>
+      <line x1="75" y1="48" x2="75" y2="96" stroke="#738295" stroke-width="2"/><rect x="68" y="58" width="14" height="26" rx="2" fill="#738295"/>
+      <line x1="110" y1="56" x2="110" y2="104" stroke="#738295" stroke-width="2"/><rect x="103" y="66" width="14" height="26" rx="2" fill="#738295"/>
+      <line x1="145" y1="50" x2="145" y2="98" stroke="#738295" stroke-width="2"/><rect x="138" y="60" width="14" height="26" rx="2" fill="#738295"/>
+      <line x1="180" y1="54" x2="180" y2="102" stroke="#738295" stroke-width="2"/><rect x="173" y="64" width="14" height="26" rx="2" fill="#738295"/>
+      <line x1="215" y1="48" x2="215" y2="98" stroke="#738295" stroke-width="2"/><rect x="208" y="58" width="14" height="28" rx="2" fill="#738295"/>
+      <line x1="245" y1="52" x2="245" y2="100" stroke="#738295" stroke-width="2"/><rect x="238" y="62" width="14" height="26" rx="2" fill="#738295"/>
+      <text x="272" y="70" fill="#2fd07a" font-size="11" font-weight="800">CLEAN ✓</text>
+      <text x="272" y="84" fill="#9fb0c0" font-size="10">tradeable</text>
+    </svg>
+    <svg viewBox="0 0 340 150" role="img" aria-label="Messy range dominated by one huge spike candle" style="width:100%;height:auto">
+      <rect x="14" y="24" width="250" height="102" fill="none" stroke="#ff5c5c" stroke-width="2"/>
+      <line x1="45" y1="80" x2="45" y2="118" stroke="#738295" stroke-width="2"/><rect x="38" y="88" width="14" height="22" rx="2" fill="#738295"/>
+      <line x1="85" y1="76" x2="85" y2="114" stroke="#738295" stroke-width="2"/><rect x="78" y="84" width="14" height="22" rx="2" fill="#738295"/>
+      <line x1="130" y1="28" x2="130" y2="122" stroke="#ff5c5c" stroke-width="2"/><rect x="123" y="34" width="14" height="80" rx="2" fill="#ff5c5c"/>
+      <line x1="175" y1="60" x2="175" y2="104" stroke="#738295" stroke-width="2"/><rect x="168" y="68" width="14" height="24" rx="2" fill="#738295"/>
+      <line x1="215" y1="66" x2="215" y2="108" stroke="#738295" stroke-width="2"/><rect x="208" y="74" width="14" height="24" rx="2" fill="#738295"/>
+      <line x1="245" y1="60" x2="245" y2="102" stroke="#738295" stroke-width="2"/><rect x="238" y="68" width="14" height="22" rx="2" fill="#738295"/>
+      <text x="272" y="70" fill="#ff5c5c" font-size="11" font-weight="800">MESSY ✗</text>
+      <text x="272" y="84" fill="#9fb0c0" font-size="10">skip today</text>
+    </svg>
+    <p>Top: small, orderly overnight candles — a calm range worth trading a break from. Bottom: one violent candle IS most of the box (spike &gt; 0.65) — the range is one panic move, not a real balance. The marker grades this for you (Range / Updates / Spike rows), but your eye should agree.</p>
+    <div class="warn">Everything below this line is chart LANGUAGE, not chart RULES. If it isn't box + close + trend, it's a skip — whatever shape the candles make.</div>
+  </div>
+  <div class="card">
+    <span class="pill wait">vocabulary, not signals</span>
+    <h3>Chart language — words you'll hear online</h3>
+    <p>YouTube and trading Twitter speak in these terms. Learn what they MEAN so you're never lost — and notice that the good ones are already inside our system with stricter definitions.</p>
+    <svg viewBox="0 0 340 110" role="img" aria-label="Three shapes: consolidation then breakout, bull flag, cup and handle" style="width:100%;height:auto">
+      <rect x="12" y="38" width="58" height="34" fill="none" stroke="#39c0d8" stroke-width="1.5"/>
+      <polyline points="18,60 26,52 34,62 42,50 50,58 58,48 66,55 70,55 88,22" fill="none" stroke="#2fd07a" stroke-width="2"/>
+      <text x="12" y="94" fill="#9fb0c0" font-size="10" font-weight="700">box → breakout</text>
+      <polyline points="128,86 146,30" fill="none" stroke="#2fd07a" stroke-width="2.5"/>
+      <polyline points="146,30 152,40 158,34 164,44 170,38" fill="none" stroke="#738295" stroke-width="2"/>
+      <polyline points="170,38 188,12" fill="none" stroke="#2fd07a" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="126" y="94" fill="#9fb0c0" font-size="10" font-weight="700">bull flag</text>
+      <path d="M 232 30 C 236 66, 284 66, 288 30" fill="none" stroke="#738295" stroke-width="2"/>
+      <path d="M 288 30 C 292 44, 302 44, 306 32" fill="none" stroke="#738295" stroke-width="2"/>
+      <polyline points="306,32 322,14" fill="none" stroke="#2fd07a" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="238" y="94" fill="#9fb0c0" font-size="10" font-weight="700">cup &amp; handle</text>
+    </svg>
+    <table class="qaTable">
+      <tr><th>Word</th><th>What it means — and our stance</th></tr>
+      <tr><td><strong>Consolidation</strong></td><td>Price resting sideways in a balance of buyers and sellers — small overlapping candles. <span class="cyan">Our Asian box IS a consolidation</span> — one specific, quality-graded one.</td></tr>
+      <tr><td><strong>Breakout</strong></td><td>Price escaping a consolidation. Ours only counts with an H1 CLOSE beyond box + buffer in the right session with trend agreement.</td></tr>
+      <tr><td><strong>Confluence</strong></td><td>Several independent reasons agreeing at once. <span class="cyan">Our checklist IS confluence</span> — clean box + daily bias + EMA stack + session + no lockout — except ours is backtested, not vibes.</td></tr>
+      <tr><td><strong>Confirmation</strong></td><td>Waiting for proof before acting. For us the H1 close IS the confirmation. A wick, a poke, a feeling — not confirmation.</td></tr>
+      <tr><td><strong>BOS</strong></td><td>"Break of structure" — a close beyond the last swing high/low, suggesting the trend continues. Kindred spirit to our breakout close. As an EXTRA filter it's a lab ticket under test — not a rule yet.</td></tr>
+      <tr><td><strong>CHoCH</strong></td><td>"Change of character" — the first structure break AGAINST the trend; an early reversal warning. Journal-note vocabulary only.</td></tr>
+      <tr><td><strong>Bull / bear flag</strong></td><td>A strong move (the pole), then a small sloping pause (the flag), often continuing. Nice to recognise; never an entry reason here.</td></tr>
+      <tr><td><strong>Reversal patterns</strong></td><td>Shapes read as a trend turning — double top/bottom, head &amp; shoulders. Untested lore for us. Note it, never trade it.</td></tr>
+      <tr><td><strong>Cup &amp; handle</strong></td><td>A long rounded base plus a small dip, then a breakout (yes — the mug). Same verdict: vocabulary, not a signal.</td></tr>
+    </table>
+    <div class="rule">The pattern words describe what price DID. Our edge is a tested rule for what WE do. If a pattern idea ever looks strong, it goes to the lab for a backtest ticket — it never walks straight onto the checklist.</div>
+  </div>
+</section>
+
+<section id="indicators">
+  <div class="card">
+    <span class="pill info">the tools</span>
+    <h2>Indicators — What Each One Does</h2>
+    <p>Only four things sit on our chart, and each has exactly one job. Nothing here predicts — they measure.</p>
+  </div>
+  <div class="card">
+    <h3><span style="color:#ffd54a">━</span> <span style="color:#ffb020">━</span> <span style="color:#b78aff">━</span> EMA 20 / 50 / 200 — the H1 trend</h3>
+    <p>A <strong>moving average</strong> smooths recent prices into one line ("average of the last N hours"). The E is for <em>exponential</em> — recent hours count more. Three of them make the trend readable at a glance:</p>
+    <ul>
+      <li><strong style="color:#ffd54a">EMA 20 (yellow)</strong> — the fast line, roughly the last day's mood.</li>
+      <li><strong style="color:#ffb020">EMA 50 (orange)</strong> — the medium line, the week's drift.</li>
+      <li><strong style="color:#b78aff">EMA 200 (purple)</strong> — the slow line, the underlying tide.</li>
+    </ul>
+    <div class="rule">The stack rule: LONGS need price above yellow, yellow ≥ orange, orange ≥ purple — fast above slow, all agreeing up. SHORTS need the mirror image. Lines tangled = no trade.</div>
+    <p class="note">The lines are labelled on the chart (v2.2) so you never have to guess which is which.</p>
+  </div>
+  <div class="card">
+    <h3>Daily SMA 50 / 200 — the big-picture bias</h3>
+    <p>Same idea, but on the <strong>daily</strong> chart (S = simple average), using yesterday's completed close so it can't repaint. Two checks make the daily bias:</p>
+    <div class="stateTable">
+      <div class="state"><b class="grn">BULL bias</b><span>yesterday's close above the 200-day average AND 50-day above 200-day</span></div>
+      <div class="state"><b class="red">BEAR bias</b><span>both conditions mirrored below</span></div>
+      <div class="state"><b>MIXED</b><span>anything else — no trades either direction</span></div>
+    </div>
+    <p class="note">A signal needs BOTH the daily bias AND the H1 EMA stack agreeing with its direction. One without the other is a skip — this is the two-part trend filter.</p>
+  </div>
+  <div class="card">
+    <h3>ATR(14) — the volatility ruler</h3>
+    <p><strong>Average True Range</strong>: how much gold typically moves in one hour, averaged over the last 14 hours. If ATR is 11, a normal hour covers about $11. It's our ruler for "big" and "small" — the same rules work whether gold is at 2,000 or 5,000:</p>
+    <table class="qaTable">
+      <tr><th>Rule</th><th>Uses ATR how</th></tr>
+      <tr><td>Breakout buffer</td><td>close must clear box + 0.05 × ATR</td></tr>
+      <tr><td>Box too small</td><td>range under 0.30 × ATR = noise, skip</td></tr>
+      <tr><td>Box too big</td><td>range over 3.00 × ATR = panic day, skip</td></tr>
+      <tr><td>Shock candle</td><td>single candle over 3 × ATR = optional cooldown</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>The marker v2.2 — the checklist, drawn</h3>
+    <p>The PROSPER marker isn't an indicator that "gives signals" — it's our tested checklist made visible: it builds the box, grades it (updates / spike / range), tracks both trend filters, and only prints <strong>BREAKOUT CLOSE</strong> when every gate passes. Then it draws the trade: red STOP zone, green TP zone, prices printed inside, zone ending at the 18-hour max hold.</p>
+    <p>Past signals stay on the chart, so scrolling back is a free lesson library. The <strong>Action row</strong> translates everything into one instruction: BUY / SELL / WAIT / TRADE TAKEN / DON'T TRADE.</p>
+    <div class="warn">The marker displays the rules — it doesn't replace the checklist. "The zone was green so I bought" is a rule breach even on a winning trade.</div>
+  </div>
+  <div class="card">
+    <h3>DXY — context on the side</h3>
+    <p>The US dollar index. Gold is priced in dollars, so they often move opposite each other. The marker shows it as <strong>CTX (context)</strong> only: worth a line in the journal, never a reason to take or skip a trade. Testing never proved it improves the edge — so it stays decorative until it does.</p>
+  </div>
+</section>
+
+<section id="youtube">
+  <div class="card">
+    <span class="pill info">bonus material</span>
+    <h2>YouTube — Watch Without Getting Infected</h2>
+    <p>YouTube is brilliant for seeing concepts move and terrible for discipline. House rules before pressing play:</p>
+    <ul>
+      <li><strong>Watch to understand, never to import.</strong> Our rules change only through the backtest lab.</li>
+      <li><strong>Tempting idea?</strong> One journal line — "Lab ticket: …" — then back to the drills.</li>
+      <li><strong>A win rate without R-multiples and a sample size is entertainment,</strong> not evidence.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Curated searches by topic</h3>
+    <p>These open a YouTube <em>search</em>, so the links never die. Each comes with what to watch for — and what to ignore.</p>
+    <div class="stateTable">
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=candlestick+charts+explained+for+beginners" target="_blank" rel="noopener">Candlestick basics</a></b><span>watch for: body, wick, close language · ignore: "this pattern = buy" promises</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=forex+market+sessions+explained+london+new+york" target="_blank" rel="noopener">Market sessions</a></b><span>watch for: why Asia is quiet and London/NY move · ignore: "best session to scalp"</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=asian+session+range+breakout+strategy" target="_blank" rel="noopener">Asian range breakouts</a></b><span>watch for: how others draw the box vs ours · ignore: their entries — most use wick breaks or M15; ours is the H1 CLOSE</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=r+multiple+risk+management+position+sizing+trading" target="_blank" rel="noopener">Risk &amp; R-multiples</a></b><span>watch for: thinking in R, fixed-% sizing · ignore: anyone risking over 1% per trade</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=prop+firm+challenge+rules+explained" target="_blank" rel="noopener">Prop firm rules</a></b><span>watch for: daily loss + max drawdown mechanics · ignore: "pass the challenge in 3 days" content</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=trading+expectancy+explained+backtest" target="_blank" rel="noopener">Expectancy &amp; backtesting</a></b><span>watch for: the expectancy maths behind our +0.48R claim · ignore: curve-fit "never loses" systems</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/results?search_query=trading+psychology+discipline+journaling+routine" target="_blank" rel="noopener">Discipline &amp; journalling</a></b><span>watch for: routines, journal habits, one-setup traders · ignore: mindset gurus selling courses</span></div>
+    </div>
+    <p class="note">Internet needed — this tab is the one part of the course that doesn't work offline on the tube.</p>
+  </div>
+  <div class="card">
+    <span class="pill wait">train your scepticism</span>
+    <h3>The Hype Detector</h3>
+    <p>Run every strategy video through these six questions. Tick what the video actually provides:</p>
+    <div class="checkline"><input type="checkbox"><span>Sample size stated? (n = how many trades)</span></div>
+    <div class="checkline"><input type="checkbox"><span>Results in R or expectancy — not just a win rate?</span></div>
+    <div class="checkline"><input type="checkbox"><span>Out-of-sample or forward-tested, not just one lucky year?</span></div>
+    <div class="checkline"><input type="checkbox"><span>Costs included? (spread/commission)</span></div>
+    <div class="checkline"><input type="checkbox"><span>Rules precise enough that a computer could follow them?</span></div>
+    <div class="checkline"><input type="checkbox"><span>Losing streaks / drawdowns shown honestly?</span></div>
+    <div class="rule">Score 5–6: worth a journal note. Score 3–4: entertainment with homework. Score 0–2: entertainment. For scale — our model answers all six: n=183, +0.479R OOS expectancy, PF 2.56, costed, coded, drawdowns known.</div>
+  </div>
+  <div class="card">
+    <h3>Homework: three videos our research scan found</h3>
+    <p>Real titles from our strategy scan. Watch any one WITH the detector open and count what's missing. That's the rep — spotting the gap, not copying the strategy.</p>
+    <div class="stateTable">
+      <div class="state"><b><a href="https://www.youtube.com/watch?v=HfZTCZTDfWk" target="_blank" rel="noopener">"PROVEN 4-Hour Strategy — 85% Win Rate"</a></b><span>85% of WHAT? Find the R per win and the sample size.</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/watch?v=VqgPgpxNyho" target="_blank" rel="noopener">"The 4H Strategy That Hit 80% — Full Backtest"</a></b><span>Is the backtest out-of-sample? Are costs in?</span></div>
+      <div class="state"><b><a href="https://www.youtube.com/watch?v=4cK3weGxZeA" target="_blank" rel="noopener">"4H Liquidity Sweep Strategy — 75% Win Rate"</a></b><span>Could a computer follow the rules as stated?</span></div>
+    </div>
+    <p class="note">If a video ever scores 5+ on the detector AND the idea survives a week in your journal, it earns a lab ticket. That's the whole pipeline: YouTube → journal note → lab → maybe, one day, a rule.</p>
   </div>
 </section>
 
@@ -274,36 +633,6 @@ label{display:block;font-size:.76rem;color:var(--faint);font-weight:800;text-tra
 </section>
 
 <section id="videos">
-  <div class="card">
-    <span class="pill go">beginner video lessons</span>
-    <h2>One Strategy Video Path</h2>
-    <p>Short UK-voice lessons for Prosper and Gemma. Lesson 1 is a finished candle-anatomy video. Lesson 4 is a voiceover shell only: replace the slate with your real TradingView marker v2.2 footage before using it as the final setup example.</p>
-    <div class="videoList">
-      <div>
-        <h3>1. Reading One Candle</h3>
-        <video controls preload="metadata" poster="./media/video_lessons/lesson01_reading_one_candle_uk_voice.png">
-          <source src="./media/video_lessons/lesson01_reading_one_candle_uk_voice.mp4" type="video/mp4">
-          <track kind="captions" src="./media/video_lessons/lesson01_reading_one_candle_uk_voice.vtt" srclang="en-GB" label="English UK">
-        </video>
-        <details class="transcript"><summary>Recap and quiz</summary>
-          <div class="cue"><b>Takeaways</b> Open is where the hour started. Close is where the hour finished. Wick means price travelled there, but did not hold.</div>
-          <div class="cue"><b>Quiz</b> Do we trade a wick poke or a closed H1 candle? Answer: a closed H1 candle.</div>
-        </details>
-      </div>
-      <div>
-        <h3>4. The Signal: Breakout Close</h3>
-        <video controls preload="metadata" poster="./media/video_lessons/lesson04_breakout_close_uk_voice.png">
-          <source src="./media/video_lessons/lesson04_breakout_close_uk_voice.mp4" type="video/mp4">
-          <track kind="captions" src="./media/video_lessons/lesson04_breakout_close_uk_voice.vtt" srclang="en-GB" label="English UK">
-        </video>
-        <details class="transcript"><summary>Recording target and quiz</summary>
-          <div class="cue"><b>Find this example</b> Clear teal Asian box, BREAKOUT CLOSE on the one-hour close, EXEC @ price, STOP zone, TP zone, then target or 18h time exit visible.</div>
-          <div class="cue"><b>Boundary</b> This shell is not fake TradingView footage. It is the UK voiceover and shot plan for your real chart recording.</div>
-          <div class="cue"><b>Quiz</b> Why is BREAKOUT CLOSE different from a wick outside the box? Answer: the one-hour candle has finished outside the box.</div>
-        </details>
-      </div>
-    </div>
-  </div>
   <div class="card">
     <span class="pill wait">evidence build</span>
     <h2>20-Case Model Book</h2>
@@ -566,9 +895,14 @@ label{display:block;font-size:.76rem;color:var(--faint);font-weight:800;text-tra
 
 <nav>
   <button class="on" data-tab="home"><span class="i">⌂</span>Home</button>
+  <button data-tab="basics"><span class="i">✦</span>Basics</button>
+  <button data-tab="key"><span class="i">≡</span>Key</button>
+  <button data-tab="candles"><span class="i">▮</span>Candles</button>
+  <button data-tab="indicators"><span class="i">∿</span>Indicators</button>
   <button data-tab="learn"><span class="i">▤</span>Learn</button>
   <button data-tab="marker"><span class="i">◎</span>Marker</button>
   <button data-tab="videos"><span class="i">▶</span>Videos</button>
+  <button data-tab="youtube"><span class="i">▷</span>YouTube</button>
   <button data-tab="tutor"><span class="i">◉</span>Tutor</button>
   <button data-tab="cards"><span class="i">?</span>Cards</button>
   <button data-tab="drills"><span class="i">✓</span>Drills</button>
@@ -627,7 +961,16 @@ const cards = [
   {id:"news", q:"When do you turn on manual news lockout?", a:"For FOMC/NFP-class red events and major shock risk. The working block is 4 hours."},
   {id:"master-rule", q:"What is the master rule?", a:"No marker, no checklist, no trade."},
   {id:"h4-lane", q:"Can the H4 London Breakout lane be traded on a funded account?", a:"No. It is a study/demo candidate lane. Funding it before 3 months of journalled forward signals and a positive XAU leg is a rule breach."},
-  {id:"h4-signal", q:"What is an H4 London Breakout signal?", a:"An H4 candle CLOSE outside the 08:00-12:00 UK London range, trend-aligned. Closes land 13:00, 17:00, 21:00 UK. A wick is not a signal."}
+  {id:"h4-signal", q:"What is an H4 London Breakout signal?", a:"An H4 candle CLOSE outside the 08:00-12:00 UK London range, trend-aligned. Closes land 13:00, 17:00, 21:00 UK. A wick is not a signal."},
+  {id:"basics-long-short", q:"[Basics] What do BUY (long) and SELL (short) mean?", a:"Long profits if price rises after entry; short profits if it falls. We never own gold - we trade the price in either direction."},
+  {id:"basics-spread", q:"[Basics] Why does every trade start slightly negative?", a:"The spread: the platform's buy price sits a touch above its sell price - that gap is the broker's cut. One reason we aim for 2R moves, never tiny scalps."},
+  {id:"basics-orders", q:"[Basics] Which three orders make up every trade?", a:"Entry at the next H1 open, stop-loss at the opposite side of the box, take-profit at 2R. Set all three, then hands off."},
+  {id:"basics-stop-move", q:"[Basics] When is it OK to move the stop-loss further away?", a:"Never. Not once, not 'just this time'. Moving a stop turns a planned -1R into an unplanned disaster."},
+  {id:"basics-r-size", q:"[Basics] Account £10,000, risk 0.25%, stop $8 away - what is 1R and how is the trade sized?", a:"1R = £25. Size the position so an $8 move against you loses exactly £25. The 2R target then pays +£50."},
+  {id:"basics-expectancy", q:"[Basics] 4 winners at +2R, 6 losers at -1R. Good month or bad?", a:"Good: +8R - 6R = +2R. You can lose MORE OFTEN than you win and still profit, because winners are twice the size of losers."},
+  {id:"basics-sessions", q:"[Basics] Why does the time of day matter to this system?", a:"Asia (23:00-06:00 UK closes) builds the quiet box, London/NY (08:00-19:00) bring the volume that breaks it, and 21:00+ is rollover - no new trades."},
+  {id:"basics-prop", q:"[Basics] What is a prop firm, and what is the only money we ever risk?", a:"A firm that rents you a large account once you pass their evaluation; you keep ~80% of profits. The challenge fee is the only money ever at risk."},
+  {id:"basics-skip", q:"[Basics] Most days show no valid signal. What is the correct response?", a:"Skip and journal the skip. A clean skip is a rep and counts as progress - most days the correct trade is no trade."}
 ];
 
 const drills = [
@@ -759,8 +1102,23 @@ function switchTab(tab){
   btn.classList.add("on");
   document.getElementById(btn.dataset.tab).classList.add("on");
   localStorage.setItem(learnerKey("last_tab"), btn.dataset.tab);
+  history.replaceState(null, "", "#" + btn.dataset.tab);
 }
 document.querySelectorAll("nav button").forEach(btn => btn.addEventListener("click", () => switchTab(btn.dataset.tab)));
+window.addEventListener("hashchange", () => { const t = location.hash.slice(1); if(t && document.getElementById(t)) switchTab(t); });
+
+function filterKey(qRaw){
+  const q = qRaw.trim().toLowerCase();
+  document.querySelectorAll("#key table tr").forEach(tr => {
+    if(tr.querySelector("th")) return;
+    tr.style.display = !q || tr.textContent.toLowerCase().includes(q) ? "" : "none";
+  });
+  document.querySelectorAll("#key .card").forEach(card => {
+    const rows = [...card.querySelectorAll("table tr")].filter(tr => !tr.querySelector("th"));
+    if(!rows.length) return;
+    card.style.display = rows.some(tr => tr.style.display !== "none") ? "" : "none";
+  });
+}
 
 function initLessons(){
   const wrap = document.getElementById("lessons");
@@ -1021,7 +1379,8 @@ function init(){
   initLessons(); showCard(); showDrill(); showPractice(); renderTutor(); updateProgress(); renderJournal(); renderAssessment();
   calcExpectancy();
   jDate.value = new Date().toISOString().slice(0,10);
-  const last = localStorage.getItem(learnerKey("last_tab"));
+  const hashTab = location.hash.slice(1);
+  const last = (hashTab && document.getElementById(hashTab)) ? hashTab : localStorage.getItem(learnerKey("last_tab"));
   if(last && document.getElementById(last)) document.querySelector(`nav button[data-tab="${last}"]`).click();
 }
 init();
